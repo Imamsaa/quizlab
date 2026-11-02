@@ -43,6 +43,7 @@
       element.hidden = key !== name;
     });
     document.body.classList.toggle('exam-mode', name === 'quiz');
+    document.body.classList.toggle('home-mode', name === 'home');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -88,10 +89,13 @@
 
   function renderBestScore() {
     const best = getBestScore();
-    $('best-score-home').textContent = best ? 'REKOR: ' + best.score + '/100' : 'REKOR: —';
+    $('best-score-home').textContent = best ? best.score + '/100' : 'Belum ada rekor';
+    const footerBest = $('best-score-footer');
+    if (footerBest) footerBest.textContent = best ? best.score + '/100' : '—';
   }
 
   function setupHome() {
+    document.body.classList.add('home-mode');
     $('quiz-title').textContent = config.title || 'Kuis Interaktif';
     $('active-quiz-title').textContent = config.title || 'Kuis Interaktif';
     $('quiz-description').textContent = config.description || 'Uji pemahamanmu melalui kuis interaktif.';
@@ -113,6 +117,8 @@
     const count = chosen === 'all' ? questionBank.length : Math.min(Number(chosen), questionBank.length);
     const minutes = Math.ceil((count * (config.secondsPerQuestion || 60)) / 60);
     $('time-estimate').textContent = minutes + ' menit';
+    const estimateCopy = $('time-estimate-copy');
+    if (estimateCopy) estimateCopy.textContent = minutes + ' menit';
   }
 
   function startQuiz() {
