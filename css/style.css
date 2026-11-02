@@ -16,13 +16,18 @@ button:disabled { cursor: not-allowed; opacity: .45; }
 button:focus-visible, input:focus-visible, select:focus-visible {
   outline: 3px solid rgba(25,118,184,.24); outline-offset: 2px;
 }
-.material-symbols-rounded {
-  font-family: 'Material Symbols Rounded';
-  font-weight: normal; font-style: normal; font-size: 24px; line-height: 1;
-  letter-spacing: normal; text-transform: none; display: inline-block;
-  white-space: nowrap; word-wrap: normal; direction: ltr;
-  font-feature-settings: 'liga'; -webkit-font-feature-settings: 'liga';
-  -webkit-font-smoothing: antialiased; font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+.ui-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  flex: 0 0 auto;
+  vertical-align: -0.16em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  overflow: visible;
 }
 .screen { animation: screen-in .22s ease both; }
 @keyframes screen-in { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
@@ -187,4 +192,40 @@ button:focus-visible, input:focus-visible, select:focus-visible {
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+
+.session-count-display {
+  min-height: 54px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 12px;
+  border: 1px solid #cbd6e0;
+  border-radius: 7px;
+  background: #f8fafc;
+}
+.session-count-number {
+  color: #26394d;
+  font-size: 19px;
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.session-count-label {
+  min-width: 0;
+  flex: 1;
+  color: #64778a;
+  font-size: 12px;
+  font-weight: 500;
+}
+.session-count-status {
+  padding: 4px 8px;
+  border: 1px solid #d7e5ef;
+  border-radius: 999px;
+  color: #386d91;
+  background: #edf5fa;
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
 }

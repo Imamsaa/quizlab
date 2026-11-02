@@ -24,7 +24,7 @@ QuizLab adalah web kuis statis berbasis HTML, Tailwind CSS, CSS, dan JavaScript.
 
 ## Styling dan Tailwind CSS
 
-QuizLab menggunakan Tailwind CSS v4 yang dikompilasi menjadi file statis `css/tailwind.css`. GitHub Actions membangun ulang file tersebut setiap kali source HTML/JavaScript/Tailwind diubah pada branch `main`. Browser hanya memuat CSS hasil kompilasi; tidak menjalankan compiler Tailwind saat halaman dibuka. Komponen interaktif khusus (radio pilihan, status nomor, dialog, dan ring nilai) berada di `css/style.css`.
+QuizLab menggunakan Tailwind CSS v4 yang dikompilasi menjadi file statis `css/tailwind.css`. Ikon antarmuka disimpan lokal dalam satu SVG sprite di `assets/icons.svg`, sehingga tidak perlu mengunduh Material Symbols dari Google Fonts. GitHub Actions membangun ulang file tersebut setiap kali source HTML/JavaScript/Tailwind diubah pada branch `main`. Browser hanya memuat CSS hasil kompilasi dan satu SVG sprite lokal; tidak menjalankan compiler Tailwind atau mengunduh font ikon saat halaman dibuka. Komponen interaktif khusus (radio pilihan, status nomor, dialog, dan ring nilai) berada di `css/style.css`.
 
 Untuk membangun CSS secara lokal, jalankan `npm install` lalu `npm run build:css`. Proses build memerlukan Node.js 20 atau lebih baru. File hasil build tetap dilayani sebagai file statis oleh GitHub Pages.
 

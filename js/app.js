@@ -260,13 +260,13 @@
     $('prev-button').disabled = state.currentIndex === 0;
     const isLast = state.currentIndex === total - 1;
     $('next-button').innerHTML = isLast
-      ? 'Selesaikan Tes <span class="material-symbols-rounded text-lg">task_alt</span>'
-      : 'Soal Berikutnya <span class="material-symbols-rounded text-lg">chevron_right</span>';
+      ? 'Selesaikan Tes <svg class="ui-icon text-lg" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=local-icons-20261102-1#task-alt"></use></svg>'
+      : 'Soal Berikutnya <svg class="ui-icon text-lg" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=local-icons-20261102-1#chevron-right"></use></svg>';
 
     const isDoubtful = state.doubtful.has(question.id);
     $('doubt-button').classList.toggle('active', isDoubtful);
     $('doubt-button').setAttribute('aria-pressed', isDoubtful ? 'true' : 'false');
-    $('doubt-button').innerHTML = '<span class="material-symbols-rounded text-lg">flag</span> ' +
+    $('doubt-button').innerHTML = '<svg class="ui-icon text-lg" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=local-icons-20261102-1#flag"></use></svg> ' +
       (isDoubtful ? 'Hapus Ragu-ragu' : 'Ragu-ragu');
 
     updateExamSummary();
