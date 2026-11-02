@@ -315,15 +315,77 @@
     $('active-quiz-title').textContent = config.title || 'Kuis Interaktif';
     $('summary-title').textContent = config.title || 'Kuis Interaktif';
     $('quiz-description').textContent = config.description || 'Uji pemahamanmu melalui kuis interaktif.';
-    const requiredCount = config.questionsPerSession || 30;
     $('total-questions').textContent = questionBank.length;
-    $('start-button').disabled = questionBank.length < requiredCount;
+    $('start-button').disabled = Boolean(getQuestionSelectionIssue());
     updateTimeEstimate();
     renderBestScore();
   }
 
   function getSelectedQuestionCount() {
     return config.questionsPerSession || 30;
+  }
+
+  function getQuestionSelectionIssue() {
+    const amount = getSelectedQuestionCount();
+    const plan = config.selectionPlan;
+
+    if (!Array.isArray(plan) || !plan.length) {
+      return questionBank.length < amount
+        ? 'Bank soal belum mencukupi. Dibutuhkan ' + amount + ' soal.'
+        : '';
+    }
+
+    const plannedTotal = plan.reduce((total, rule) => {
+      const values = rule && rule.difficulties ? Object.values(rule.difficulties) : [];
+      return total + values.reduce((sum, value) => sum + (Number.isInteger(value) && value > 0 ? value : 0), 0);
+    }, 0);
+
+    if (plannedTotal !== amount) {
+      return 'Konfigurasi komposisi soal tidak sesuai dengan jumlah soal per sesi.';
+    }
+
+    for (const rule of plan) {
+      if (!rule || typeof rule.topicId !== 'string' || !rule.difficulties) {
+        return 'Konfigurasi bank soal tidak lengkap. Periksa selectionPlan.';
+      }
+
+      for (const [difficulty, required] of Object.entries(rule.difficulties)) {
+        if (!Number.isInteger(required) || required < 0) {
+          return 'Jumlah soal pada selectionPlan harus berupa bilangan bulat positif.';
+        }
+        const available = questionBank.filter((question) =>
+          question.topicId === rule.topicId && question.difficulty === difficulty
+        ).length;
+
+        if (available < required) {
+          return 'Bank soal topik ' + rule.topicId + ' untuk tingkat ' + difficulty +
+            ' belum mencukupi. Tersedia ' + available + ', dibutuhkan ' + required + '.';
+        }
+      }
+    }
+
+    return '';
+  }
+
+  function selectQuestionsForSession() {
+    const plan = config.selectionPlan;
+    if (!Array.isArray(plan) || !plan.length) {
+      const pool = config.shuffleQuestions === false ? [...questionBank] : shuffle(questionBank);
+      return pool.slice(0, getSelectedQuestionCount());
+    }
+
+    const selected = [];
+    plan.forEach((rule) => {
+      Object.entries(rule.difficulties).forEach(([difficulty, required]) => {
+        const pool = questionBank.filter((question) =>
+          question.topicId === rule.topicId && question.difficulty === difficulty
+        );
+        const randomizedPool = config.shuffleQuestions === false ? pool : shuffle(pool);
+        selected.push(...randomizedPool.slice(0, required));
+      });
+    });
+
+    return config.shuffleQuestions === false ? selected : shuffle(selected);
   }
 
   function updateTimeEstimate() {
@@ -345,8 +407,9 @@
     }
 
     const count = getSelectedQuestionCount();
-    if (questionBank.length < count) {
-      showToast('Bank soal belum mencukupi. Dibutuhkan ' + count + ' soal.');
+    const selectionIssue = getQuestionSelectionIssue();
+    if (selectionIssue) {
+      showToast(selectionIssue);
       return;
     }
     const duration = (config.sessionDurationMinutes || 45) * 60;
@@ -365,14 +428,13 @@
     }
 
     const amount = getSelectedQuestionCount();
-    if (questionBank.length < amount) {
-      showToast('Bank soal belum mencukupi. Dibutuhkan ' + amount + ' soal.');
+    const selectionIssue = getQuestionSelectionIssue();
+    if (selectionIssue) {
+      showToast(selectionIssue);
       return;
     }
     state.player = $('player-name').value.trim();
-    let selected = [...questionBank];
-    if (config.shuffleQuestions !== false) selected = shuffle(selected);
-    selected = selected.slice(0, amount);
+    const selected = selectQuestionsForSession();
 
     state.questions = selected.map((question) => {
       const choices = question.options.map((text, index) => ({ text, correct: index === question.answer }));

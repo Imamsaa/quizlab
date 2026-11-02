@@ -7,7 +7,11 @@ QuizLab adalah web kuis statis berbasis HTML, Tailwind CSS, CSS, dan JavaScript.
 - Antarmuka responsif bergaya Material Design dengan layout utility-first Tailwind CSS dan elemen visual yang difokuskan pada informasi serta tindakan penting.
 - Alur persiapan peserta → konfirmasi tes → ruang ujian → hasil dan pembahasan.
 - Identitas peserta wajib diisi sebelum ujian.
+- Bank soal berisi 90 soal yang disusun dari materi dan latihan buku Informatika Kelas IX Semester 1.
 - Satu sesi tetap berisi 30 soal dengan batas waktu total 45 menit.
+- Komposisi setiap sesi dijaga: 15 soal Elemen 1 (Berpikir Komputasional) dan 15 soal Elemen 2 (Literasi Digital).
+- Cakupan 30 soal per sesi: 5 Struktur Data, 5 Ekspresi dan Operasi Logika, 5 Algoritma, 5 Analisis Konten dan Integrasi Aplikasi, 5 Blog, serta 5 Vlog.
+- Tingkat kesulitan per sesi: 8 mudah, 16 sedang, dan 6 sulit. Soal dipilih acak dari bank pada setiap topik dan tingkat kesulitan, kemudian urutannya serta pilihan jawabannya diacak.
 - Navigasi nomor soal dengan status aktif, terjawab, belum dijawab, dan ragu-ragu.
 - Konteks bacaan opsional pada soal melalui properti `context`.
 - Pengaturan ukuran font soal dan pintasan keyboard A–D / panah kiri-kanan.
@@ -53,9 +57,13 @@ window.QUIZ_CONFIG = {
 
 `questionsPerSession` menentukan jumlah soal dalam satu sesi dan `sessionDurationMinutes` menentukan durasi total sesi.
 
+## Komposisi bank dan pemilihan soal
+
+Setiap soal memiliki metadata `chapter`, `topicId`, `difficulty` (`mudah`, `sedang`, atau `sulit`), dan `sourcePages`. Aturan pemilihan terdapat pada `selectionPlan` di `js/questions.js`. Jangan mengubah kuota tanpa memastikan bank pada setiap topik dan tingkat kesulitan memiliki stok yang cukup. Aplikasi memeriksa kecukupan tersebut sebelum peserta melanjutkan ke konfirmasi ujian.
+
 ## Menambah atau mengedit soal
 
-Semua soal berada di dalam array `window.QUIZ_QUESTIONS` pada file `js/questions.js`.
+Semua soal berada di dalam array `window.QUIZ_QUESTIONS` pada file `js/questions.js`. Soal baru perlu diberi `id` unik, `topicId` yang sesuai dengan `selectionPlan`, tingkat `difficulty`, empat pilihan, indeks jawaban benar, dan pembahasan.
 
 ```js
 {
