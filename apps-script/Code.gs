@@ -26,11 +26,15 @@ const SHEET_NAME = 'Hasil QuizLab';
  * Extensions > Apps Script di spreadsheet tujuan.
  */
 function setupQuizLab() {
-  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  const spreadsheet = SPREADSHEET_ID
+    ? SpreadsheetApp.openById(SPREADSHEET_ID)
+    : SpreadsheetApp.getActiveSpreadsheet();
+
   if (!spreadsheet) {
     throw new Error('Buka Apps Script dari Extensions > Apps Script pada spreadsheet tujuan, atau isi SPREADSHEET_ID.');
   }
 
+  spreadsheet.setSpreadsheetTimeZone('Asia/Jakarta');
   PropertiesService.getScriptProperties().setProperty('SPREADSHEET_ID', spreadsheet.getId());
   getOrCreateSheet_(spreadsheet);
   SpreadsheetApp.flush();
