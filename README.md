@@ -16,6 +16,8 @@ QuizLab adalah web kuis statis berbasis HTML, Tailwind CSS, CSS, dan JavaScript.
 - Skor, rekor terbaik lokal, dan pembahasan setiap soal.
 - Sesi aktif disimpan di `localStorage` (urutan soal, jawaban, tanda ragu-ragu, posisi, dan batas waktu) sehingga dapat dipulihkan setelah refresh.
 - Tombol selesai tes hanya aktif setelah semua soal dijawab dan semua tanda ragu-ragu dihapus. Waktu yang habis tetap mengakhiri ujian otomatis.
+- Proteksi copy/cut/paste dan deteksi perpindahan tab/jendela selama ujian. Setiap pelanggaran terdeteksi mengurangi sisa waktu 5 menit dan menampilkan modal peringatan.
+- Deteksi perpindahan tab menggunakan Page Visibility API dan window focus. Proteksi browser tidak dapat mencegah penggunaan kamera atau perangkat lain.
 - Hasil terbaik disimpan di `localStorage` browser, bukan dikirim ke server.
 
 ## Menjalankan di komputer

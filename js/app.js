@@ -4,6 +4,10 @@
   const config = window.QUIZ_CONFIG || {};
   const questionBank = Array.isArray(window.QUIZ_QUESTIONS) ? window.QUIZ_QUESTIONS : [];
   const SESSION_STORAGE_KEY = 'quizlab-active-session-' + (config.id || 'default');
+  const VIOLATION_PENALTY_SECONDS = 5 * 60;
+  const TAB_SWITCH_MIN_DURATION_MS = 700;
+  let awaySince = null;
+  let lastSecurityViolation = { type: '', at: 0 };
   const $ = (id) => document.getElementById(id);
 
   const screens = {
@@ -25,6 +29,8 @@
     remainingSeconds: 0,
     timerId: null,
     finished: false,
+    violationCount: 0,
+    pendingWarningType: '',
     questionFontSize: 19
   };
 
@@ -69,6 +75,8 @@
       endTime: state.endTime,
       durationSeconds: state.durationSeconds,
       questionFontSize: state.questionFontSize,
+      violationCount: state.violationCount,
+      pendingWarningType: state.pendingWarningType,
       savedAt: Date.now()
     };
 
@@ -158,6 +166,12 @@
     state.endTime = snapshot.endTime;
     state.durationSeconds = snapshot.durationSeconds;
     state.remainingSeconds = Math.max(0, Math.ceil((state.endTime - Date.now()) / 1000));
+    state.violationCount = Number.isInteger(snapshot.violationCount) && snapshot.violationCount >= 0
+      ? snapshot.violationCount
+      : 0;
+    state.pendingWarningType = ['copy', 'cut', 'paste', 'tab'].includes(snapshot.pendingWarningType)
+      ? snapshot.pendingWarningType
+      : '';
     state.questionFontSize = Number.isFinite(snapshot.questionFontSize)
       ? Math.min(30, Math.max(16, snapshot.questionFontSize))
       : 19;
@@ -176,14 +190,80 @@
     showScreen('quiz');
     renderQuestion();
 
-    if (state.remainingSeconds <= 0) {
+    if (state.remainingSeconds <= 0 && !state.pendingWarningType) {
       submitQuiz(true);
     } else {
+      if (state.pendingWarningType) {
+        showSecurityWarning(state.pendingWarningType);
+      }
       startTimer();
-      showToast('Sesi sebelumnya berhasil dipulihkan. Lanjutkan dari soal terakhir.');
+      if (!state.pendingWarningType) {
+        showToast('Sesi sebelumnya berhasil dipulihkan. Lanjutkan dari soal terakhir.');
+      }
     }
 
     return true;
+  }
+
+  function isQuizActive() {
+    return !state.finished && state.questions.length > 0 && !screens.quiz.hidden;
+  }
+
+  function showSecurityWarning(type) {
+    const messages = {
+      copy: 'Percobaan menyalin teks terdeteksi. Menyalin materi atau soal selama ujian tidak diperbolehkan.',
+      cut: 'Percobaan memotong teks terdeteksi. Tindakan ini tidak diperbolehkan selama ujian.',
+      paste: 'Percobaan menempelkan teks terdeteksi. Menempelkan jawaban atau teks dari luar tidak diperbolehkan.',
+      tab: 'Kamu terdeteksi berpindah tab, membuka jendela lain, atau meninggalkan jendela ujian.'
+    };
+    $('security-warning-message').textContent = messages[type] || 'Aktivitas yang tidak diizinkan terdeteksi selama ujian.';
+    $('security-warning-count').textContent = 'Jumlah pelanggaran: ' + state.violationCount;
+    $('security-warning-penalty').textContent = 'Sisa waktu dikurangi 05:00.';
+    $('security-warning-modal').hidden = false;
+    $('security-warning-ack').focus();
+  }
+
+  function registerSecurityViolation(type) {
+    if (!isQuizActive()) return;
+
+    const now = Date.now();
+    if (lastSecurityViolation.type === type && now - lastSecurityViolation.at < 300) return;
+    lastSecurityViolation = { type, at: now };
+
+    state.violationCount += 1;
+    state.pendingWarningType = type;
+    state.endTime -= VIOLATION_PENALTY_SECONDS * 1000;
+    state.remainingSeconds = Math.max(0, Math.ceil((state.endTime - now) / 1000));
+    $('timer').textContent = formatTime(state.remainingSeconds);
+    $('timer-box').classList.toggle('warning', state.remainingSeconds <= 60);
+    persistSession();
+    showSecurityWarning(type);
+  }
+
+  function acknowledgeSecurityWarning() {
+    $('security-warning-modal').hidden = true;
+    state.pendingWarningType = '';
+    persistSession();
+    if (state.remainingSeconds <= 0 && isQuizActive()) submitQuiz(true);
+  }
+
+  function beginAwayPeriod() {
+    if (!isQuizActive() || awaySince !== null) return;
+    awaySince = Date.now();
+    persistSession();
+  }
+
+  function endAwayPeriod() {
+    if (awaySince === null || document.visibilityState === 'hidden') return;
+    const awayDuration = Date.now() - awaySince;
+    awaySince = null;
+    if (awayDuration >= TAB_SWITCH_MIN_DURATION_MS) registerSecurityViolation('tab');
+  }
+
+  function handleClipboardAttempt(event) {
+    if (!isQuizActive()) return;
+    event.preventDefault();
+    registerSecurityViolation(event.type);
   }
 
   function canFinishManually() {
@@ -306,6 +386,8 @@
     state.answers = new Map();
     state.doubtful = new Set();
     state.finished = false;
+    state.violationCount = 0;
+    state.pendingWarningType = '';
     state.questionFontSize = 19;
     state.startTime = Date.now();
     state.durationSeconds = (config.sessionDurationMinutes || 45) * 60;
@@ -335,7 +417,7 @@
       $('timer').textContent = formatTime(state.remainingSeconds);
       $('timer-box').classList.toggle('warning', state.remainingSeconds <= 60);
 
-      if (state.remainingSeconds <= 0) {
+      if (state.remainingSeconds <= 0 && $('security-warning-modal').hidden) {
         submitQuiz(true);
       }
     };
@@ -735,12 +817,19 @@
     if ($('finish-modal').hidden === false && event.key === 'Escape') $('finish-modal').hidden = true;
 
     if ($('quiz-screen').hidden || state.finished) return;
+
+    const key = event.key.toLowerCase();
+    if ((event.ctrlKey || event.metaKey) && ['c', 'x', 'v'].includes(key)) {
+      event.preventDefault();
+      const violationType = key === 'c' ? 'copy' : key === 'x' ? 'cut' : 'paste';
+      registerSecurityViolation(violationType);
+      return;
+    }
+
     if (event.altKey || event.ctrlKey || event.metaKey) return;
 
     const active = document.activeElement;
     if (active && ['BUTTON', 'INPUT', 'SELECT', 'TEXTAREA'].includes(active.tagName)) return;
-
-    const key = event.key.toLowerCase();
     if (['a', 'b', 'c', 'd'].includes(key)) {
       const index = key.charCodeAt(0) - 97;
       if (state.questions[state.currentIndex].choices[index]) {
@@ -753,10 +842,27 @@
     }
   });
 
-  window.addEventListener('pagehide', persistSession);
-  document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'hidden') persistSession();
+  ['copy', 'cut', 'paste'].forEach((eventName) => {
+    document.addEventListener(eventName, handleClipboardAttempt, true);
   });
+
+  document.addEventListener('contextmenu', (event) => {
+    if (isQuizActive()) event.preventDefault();
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') {
+      beginAwayPeriod();
+      persistSession();
+    } else {
+      endAwayPeriod();
+    }
+  });
+
+  window.addEventListener('blur', beginAwayPeriod);
+  window.addEventListener('focus', endAwayPeriod);
+  window.addEventListener('pagehide', persistSession);
+  $('security-warning-ack').addEventListener('click', acknowledgeSecurityWarning);
 
   setupHome();
   restoreActiveSession();

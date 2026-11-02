@@ -243,3 +243,19 @@ button:focus-visible, input:focus-visible, select:focus-visible {
 #finish-requirement[hidden] {
   display: none !important;
 }
+
+
+/* Exam anti-copy and security warning dialog. */
+#quiz-screen .md-card {
+  -webkit-user-select: none;
+  user-select: none;
+}
+.security-warning-backdrop {
+  z-index: 75;
+}
+.security-warning-backdrop .md-dialog {
+  border-top: 4px solid #c43c3c;
+}
+#security-warning-modal .md-button {
+  min-width: 128px;
+}

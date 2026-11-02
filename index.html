@@ -117,7 +117,7 @@
           <div class="border-t border-slate-100 bg-slate-50 px-5 py-5 sm:px-7">
             <div class="mb-4 flex items-start gap-3">
               <svg class="ui-icon text-primary-700" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=session-persistence-20261102-1#info"></use></svg>
-              <div><strong class="block text-sm text-ink-800">Perhatikan sebelum mulai</strong><p class="mt-1 text-xs leading-5 text-slate-600">Timer akan berjalan setelah ujian dimulai. Kamu dapat berpindah soal, mengubah jawaban, dan menandai soal yang masih diragukan.</p></div>
+              <div><strong class="block text-sm text-ink-800">Perhatikan sebelum mulai</strong><p class="mt-1 text-xs leading-5 text-slate-600">Timer berjalan setelah ujian dimulai. Kamu dapat berpindah soal dan mengubah jawaban. Menyalin, memotong, menempel teks, atau berpindah tab akan mengurangi waktu 5 menit setiap pelanggaran.</p></div>
             </div>
             <div class="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
               <button id="back-to-settings-button" class="md-button md-button-outlined" type="button">Kembali</button>
@@ -292,6 +292,7 @@
           <li>Tombol Ragu-ragu digunakan untuk menandai soal yang ingin diperiksa kembali.</li>
           <li>Jawaban bisa diubah sampai ujian diakhiri.</li>
           <li>Waktu habis akan mengakhiri ujian secara otomatis.</li>
+          <li>Jangan menyalin, memotong, menempel teks, berpindah tab, atau meninggalkan jendela ujian. Setiap pelanggaran mengurangi waktu 5 menit.</li>
         </ol>
       </div>
       <div class="flex justify-end border-t border-slate-100 bg-slate-50 px-5 py-3"><button id="info-understood-button" class="md-button md-button-primary" type="button">Saya Mengerti</button></div>
@@ -308,6 +309,25 @@
       <div class="flex flex-col-reverse gap-2 border-t border-slate-100 bg-slate-50 px-5 py-3 sm:flex-row sm:justify-end">
         <button id="finish-cancel-button" class="md-button md-button-outlined" type="button">Kembali ke Soal</button>
         <button id="finish-submit-button" class="md-button md-button-success" type="button">Ya, Selesai Tes</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="security-warning-modal" class="md-dialog-backdrop security-warning-backdrop" hidden>
+    <div class="md-dialog max-w-md" role="alertdialog" aria-modal="true" aria-labelledby="security-warning-title">
+      <div class="flex items-start gap-3 px-5 py-5">
+        <span class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-red-50 text-red-700">
+          <svg class="ui-icon text-2xl" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=local-icons-20261102-1#info"></use></svg>
+        </span>
+        <div class="min-w-0">
+          <h2 id="security-warning-title" class="font-bold text-ink-800">Peringatan Pelanggaran</h2>
+          <p id="security-warning-message" class="mt-2 text-sm leading-6 text-slate-600">Aktivitas yang tidak diizinkan terdeteksi.</p>
+          <p id="security-warning-count" class="mt-3 text-xs font-semibold text-red-700">Jumlah pelanggaran: 1</p>
+          <p id="security-warning-penalty" class="mt-1 rounded-lg bg-red-50 px-3 py-2 text-sm font-bold text-red-700">Sisa waktu dikurangi 05:00.</p>
+        </div>
+      </div>
+      <div class="flex justify-end border-t border-slate-100 bg-slate-50 px-5 py-3">
+        <button id="security-warning-ack" class="md-button md-button-primary" type="button">Saya Mengerti</button>
       </div>
     </div>
   </div>
