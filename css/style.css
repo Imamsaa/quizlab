@@ -52,7 +52,7 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   min-width: 0; display: flex; align-items: center; gap: 10px; padding: 13px;
   border: 1px solid #e4eaf0; border-radius: 9px; background: #fbfcfd;
 }
-.md-metric > .material-symbols-rounded { flex: 0 0 auto; font-size: 23px; }
+.md-metric > .ui-icon { flex: 0 0 auto; width: 23px; height: 23px; }
 .md-metric small { display: block; margin-bottom: 3px; color: #8593a1; font-size: 8px; font-weight: 800; letter-spacing: .55px; }
 .md-metric strong { display: block; color: #34495e; font-size: 12px; font-weight: 700; }
 .md-button {
