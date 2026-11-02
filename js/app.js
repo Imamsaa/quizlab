@@ -918,6 +918,44 @@
   window.addEventListener('pagehide', persistSession);
   $('security-warning-ack').addEventListener('click', acknowledgeSecurityWarning);
 
+  const DEADLINE_TIMESTAMP = new Date('2026-11-03T13:00:00+07:00').getTime();
+
+  function updateDeadlineCountdown() {
+    const remainingMs = DEADLINE_TIMESTAMP - Date.now();
+    const totalSeconds = Math.max(0, Math.floor(remainingMs / 1000));
+    const values = {
+      days: Math.floor(totalSeconds / 86400),
+      hours: Math.floor((totalSeconds % 86400) / 3600),
+      minutes: Math.floor((totalSeconds % 3600) / 60),
+      seconds: totalSeconds % 60
+    };
+
+    Object.entries(values).forEach(([unit, value]) => {
+      const element = $('deadline-' + unit);
+      if (element) element.textContent = String(value).padStart(2, '0');
+    });
+
+    if (remainingMs <= 0) {
+      const container = $('deadline-countdown');
+      const status = $('deadline-status');
+      if (container) container.classList.add('expired');
+      if (status) status.textContent = 'Batas akhir pengerjaan telah lewat.';
+      return false;
+    }
+
+    return true;
+  }
+
+  function startDeadlineCountdown() {
+    if (!$('deadline-countdown')) return;
+    if (!updateDeadlineCountdown()) return;
+
+    const intervalId = window.setInterval(() => {
+      if (!updateDeadlineCountdown()) window.clearInterval(intervalId);
+    }, 1000);
+  }
+
+  startDeadlineCountdown();
   setupHome();
   restoreActiveSession();
 })();

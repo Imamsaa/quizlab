@@ -9,9 +9,9 @@
 
 
   <link rel="stylesheet" href="css/tailwind.css?v=google-sheets-20261102-1">
-  <link rel="stylesheet" href="css/style.css?v=google-sheets-20261102-1">
+  <link rel="stylesheet" href="css/style.css?v=deadline-20261102-1">
   <script src="js/questions.js?v=google-sheets-20261102-1" defer></script>
-  <script src="js/app.js?v=google-sheets-20261102-1" defer></script>
+  <script src="js/app.js?v=deadline-20261102-1" defer></script>
 </head>
 
 <body class="min-h-screen bg-slate-100 font-sans text-slate-800 antialiased">
@@ -24,6 +24,23 @@
           <p class="mt-2 max-w-xl text-sm leading-6 text-slate-600">Periksa informasi tes, lengkapi identitas peserta, lalu mulai simulasi ketika sudah siap.</p>
         </div>
       </div>
+
+      <section id="deadline-countdown" class="deadline-countdown" role="timer" aria-label="Hitung mundur batas akhir pengerjaan">
+        <div class="deadline-copy">
+          <div class="deadline-kicker"><span class="deadline-dot" aria-hidden="true"></span> BATAS AKHIR PENGERJAAN</div>
+          <h2>Waktu pengumpulan berakhir</h2>
+          <p>Selasa, 3 November 2026 <span aria-hidden="true">·</span> <strong>13.00 WIB</strong></p>
+        </div>
+        <div class="deadline-countdown-side">
+          <div class="deadline-units" aria-label="Waktu tersisa">
+            <div class="deadline-unit"><strong id="deadline-days">--</strong><span>Hari</span></div>
+            <div class="deadline-unit"><strong id="deadline-hours">--</strong><span>Jam</span></div>
+            <div class="deadline-unit"><strong id="deadline-minutes">--</strong><span>Menit</span></div>
+            <div class="deadline-unit"><strong id="deadline-seconds">--</strong><span>Detik</span></div>
+          </div>
+          <p id="deadline-status">Selesaikan pengerjaan sebelum batas waktu berakhir.</p>
+        </div>
+      </section>
 
       <div class="grid items-start gap-5 lg:grid-cols-[minmax(0,1.15fr)_minmax(340px,.85fr)]">
         <section class="md-card overflow-hidden">
