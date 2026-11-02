@@ -9,9 +9,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=cbt-home-20261102-2">
-  <script src="js/questions.js?v=cbt-home-20261102-2" defer></script>
-  <script src="js/app.js?v=cbt-home-20261102-2" defer></script>
+  <link rel="stylesheet" href="css/style.css?v=cbt-result-20261102-3">
+  <script src="js/questions.js?v=cbt-result-20261102-3" defer></script>
+  <script src="js/app.js?v=cbt-result-20261102-3" defer></script>
 </head>
 <body>
   <div class="ambient ambient-one" aria-hidden="true"></div>
@@ -204,22 +204,77 @@
     </section>
 
     <section id="result-screen" class="screen result-screen" hidden>
-      <div class="result-header"><div class="result-confetti" aria-hidden="true">✦　✧　✦</div><span class="eyebrow"><span class="eyebrow-line"></span> HASIL AKHIR</span><h1 id="result-heading">Kuis selesai!</h1><p id="result-subtitle">Kerja bagus. Ini hasil latihanmu.</p></div>
-      <div class="result-card">
-        <div class="score-orb"><div class="score-orb-inner"><span>SKOR KAMU</span><strong id="score-value">0</strong><small> dari 100</small></div></div>
-        <div class="result-message"><span id="result-rank" class="rank-pill">TERUS BERLATIH</span><h2 id="result-message-title">Perjalanan belajarmu berlanjut.</h2><p id="result-message-text">Setiap latihan adalah kesempatan untuk menjadi lebih baik.</p></div>
-        <div class="result-stats">
-          <div class="stat-box"><span class="stat-symbol correct-symbol">✓</span><strong id="correct-count">0</strong><small>Benar</small></div>
-          <div class="stat-box"><span class="stat-symbol wrong-symbol">×</span><strong id="wrong-count">0</strong><small>Salah / Kosong</small></div>
-          <div class="stat-box"><span class="stat-symbol time-symbol">◷</span><strong id="time-used">00:00</strong><small>Waktu</small></div>
+      <div class="result-page-container">
+        <div class="result-breadcrumb"><span>BERANDA</span><span aria-hidden="true">›</span><strong>HASIL UJIAN</strong></div>
+
+        <div class="result-page-heading">
+          <div>
+            <div class="result-page-eyebrow"><span></span> LAPORAN HASIL • QUIZLAB CBT</div>
+            <h1 id="result-heading">Ujian selesai!</h1>
+            <p id="result-subtitle">Peserta, berikut hasil pengerjaan ujianmu.</p>
+          </div>
+          <div class="result-complete-card">
+            <span class="result-complete-icon" aria-hidden="true">✓</span>
+            <span><small>STATUS PENGERJAAN</small><strong id="result-completion-status">SELESAI</strong></span>
+          </div>
         </div>
-        <div class="result-actions"><button id="review-button" class="primary-button" type="button">Lihat Pembahasan <span aria-hidden="true">↓</span></button><button id="retry-button" class="secondary-button" type="button">Ulangi Kuis ↻</button></div>
+
+        <section class="result-card" aria-label="Ringkasan hasil ujian">
+          <div class="result-score-area">
+            <div class="score-orb" id="score-orb">
+              <div class="score-orb-inner">
+                <span>SKOR AKHIR</span>
+                <strong id="score-value">0</strong>
+                <small> dari 100</small>
+              </div>
+            </div>
+            <span class="result-score-caption">NILAI PESERTA</span>
+          </div>
+
+          <div class="result-message">
+            <span id="result-rank" class="rank-pill">TERUS BERLATIH</span>
+            <h2 id="result-message-title">Perjalanan belajarmu berlanjut.</h2>
+            <p id="result-message-text">Setiap latihan adalah kesempatan untuk menjadi lebih baik. Pelajari pembahasannya dan coba lagi.</p>
+            <div class="result-message-meta">
+              <span class="result-meta-icon" aria-hidden="true">▤</span>
+              <span>Ujian: <strong id="result-exam-name">Kuis Informatika</strong></span>
+            </div>
+          </div>
+
+          <div class="result-stats">
+            <div class="stat-box">
+              <span class="stat-symbol correct-symbol" aria-hidden="true">✓</span>
+              <span class="stat-copy"><strong id="correct-count">0</strong><small>Jawaban benar</small></span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-symbol wrong-symbol" aria-hidden="true">×</span>
+              <span class="stat-copy"><strong id="wrong-count">0</strong><small>Salah / kosong</small></span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-symbol time-symbol" aria-hidden="true">◷</span>
+              <span class="stat-copy"><strong id="time-used">00:00</strong><small>Waktu digunakan</small></span>
+            </div>
+          </div>
+
+          <div class="result-actions">
+            <button id="review-button" class="primary-button" type="button">Lihat Pembahasan <span aria-hidden="true">↓</span></button>
+            <button id="retry-button" class="secondary-button" type="button">Ulangi Ujian <span aria-hidden="true">↻</span></button>
+          </div>
+        </section>
+
+        <section id="review-section" class="review-section" hidden>
+          <div class="review-heading">
+            <div><span class="result-page-eyebrow"><span></span> EVALUASI JAWABAN</span><h2>Pembahasan Soal</h2></div>
+            <span id="review-summary" class="review-summary">0 benar dari 0 soal</span>
+          </div>
+          <div id="review-list" class="review-list"></div>
+        </section>
+
+        <footer class="result-footer">
+          <span><strong>QuizLab CBT</strong> · LAPORAN HASIL UJIAN</span>
+          <span>Terus belajar dan tingkatkan kemampuanmu.</span>
+        </footer>
       </div>
-      <section id="review-section" class="review-section" hidden>
-        <div class="review-heading"><div><span class="overline">EVALUASI JAWABAN</span><h2>Pembahasan soal</h2></div><span id="review-summary" class="review-summary">0 benar dari 0 soal</span></div>
-        <div id="review-list" class="review-list"></div>
-      </section>
-      <div class="result-footer"><span>QUIZLAB</span><span>TERUS BERTUMBUH, TERUS BELAJAR.</span></div>
     </section>
   </main>
 
