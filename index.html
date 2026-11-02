@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#101827">
-  <meta name="description" content="Kuis interaktif untuk menguji pengetahuan dan kemampuan berpikir.">
+  <meta name="theme-color" content="#245b91">
+  <meta name="description" content="QuizLab — simulasi ujian interaktif bergaya CBT ANBK dan TKA.">
   <title>QuizLab — Kuis Interaktif</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,13 +28,11 @@
   </header>
 
   <main class="app-shell">
-    <!-- HOME SCREEN -->
     <section id="home-screen" class="screen home-screen">
       <div class="hero-copy">
         <div class="eyebrow"><span class="eyebrow-line"></span> BELAJAR • BERLATIH • BERTUMBUH</div>
         <h1>Uji pemahamanmu.<br><span class="gradient-text">Tunjukkan kemampuanmu.</span></h1>
         <p class="hero-description">Satu langkah kecil untuk mengetahui seberapa jauh kamu sudah berkembang. Fokus, pikirkan baik-baik, dan berikan yang terbaik!</p>
-
         <div class="feature-row">
           <div class="feature-item"><span class="feature-icon purple">✦</span><span>Interaktif</span></div>
           <div class="feature-item"><span class="feature-icon blue">◷</span><span>Berbatas waktu</span></div>
@@ -67,45 +65,92 @@
       <div class="home-footer"><span>QUIZLAB</span><span>THINK CLEARLY. LEARN DEEPLY.</span><span id="best-score-home">REKOR: —</span></div>
     </section>
 
-    <!-- QUIZ SCREEN -->
+    <!-- EXAM SCREEN: CBT-inspired layout -->
     <section id="quiz-screen" class="screen quiz-screen" hidden>
-      <div class="quiz-topbar">
-        <div class="quiz-heading"><span class="mini-brand-mark">Q</span><div><p class="overline">SEDANG MENGERJAKAN</p><h2 id="active-quiz-title">Kuis Informatika</h2></div></div>
-        <div class="timer-box" id="timer-box"><span class="timer-symbol">◷</span><div><span class="timer-caption">SISA WAKTU</span><strong id="timer">10:00</strong></div></div>
-      </div>
+      <header class="exam-header">
+        <div class="exam-brand">
+          <span class="exam-brand-mark">Q</span>
+          <span><strong>QuizLab</strong><small>CBT APPLICATION</small></span>
+        </div>
+        <div class="exam-participant">
+          <span class="participant-avatar" aria-hidden="true">P</span>
+          <span id="player-label">PESERTA</span>
+        </div>
+      </header>
 
-      <div class="progress-area">
-        <div class="progress-labels"><span id="progress-text">SOAL 1 DARI 10</span><span id="progress-percent">10%</span></div>
-        <div class="progress-track"><div id="progress-fill" class="progress-fill"></div></div>
-      </div>
-
-      <div class="question-layout">
-        <article class="question-card">
-          <div class="question-meta"><span id="question-category" class="category-pill">DASAR INFORMATIKA</span><span id="question-number" class="question-number">PERTANYAAN 01</span></div>
-          <h1 id="question-text" class="question-text">Pertanyaan akan muncul di sini.</h1>
-          <p class="instruction"><span class="instruction-dot"></span> Pilih satu jawaban yang paling tepat.</p>
-          <div id="options-list" class="options-list"></div>
-          <div class="question-actions">
-            <button id="prev-button" class="secondary-button" type="button" disabled><span aria-hidden="true">←</span> Sebelumnya</button>
-            <button id="next-button" class="primary-button next-button" type="button" disabled>Selanjutnya <span aria-hidden="true">→</span></button>
+      <div class="exam-toolbar">
+        <div class="exam-toolbar-left">
+          <span class="exam-subject-label">UJIAN • <strong id="active-quiz-title">Kuis Informatika</strong></span>
+        </div>
+        <div class="exam-toolbar-right">
+          <button id="info-button" class="toolbar-button" type="button"><span aria-hidden="true">ⓘ</span> Informasi Soal</button>
+          <div class="timer-box" id="timer-box">
+            <span class="timer-symbol" aria-hidden="true">◷</span>
+            <span><small>SISA WAKTU</small><strong id="timer">10:00</strong></span>
           </div>
-        </article>
+          <button id="question-list-toggle" class="toolbar-button question-list-toggle" type="button"><span aria-hidden="true">▦</span> Daftar Soal</button>
+        </div>
+      </div>
 
-        <aside class="quiz-side-card">
-          <div class="side-card-head"><span class="side-icon">◎</span><span>PROGRES KUIS</span></div>
-          <div class="answered-count"><strong id="answered-count">0</strong><span>/ <span id="side-total">10</span> terjawab</span></div>
-          <div class="mini-progress-track"><div id="mini-progress-fill" class="mini-progress-fill"></div></div>
-          <p class="side-hint">Kerjakan dengan teliti. Kamu bisa kembali ke soal sebelumnya untuk mengubah jawaban.</p>
-          <div class="side-divider"></div>
-          <div class="legend-row"><span class="legend-dot answered"></span> Sudah dijawab</div>
-          <div class="legend-row"><span class="legend-dot unanswered"></span> Belum dijawab</div>
-          <div class="side-bottom-note"><span>✦</span> Semangat! Kamu pasti bisa.</div>
+      <div class="exam-main">
+        <div class="exam-content-column">
+          <div class="exam-progress">
+            <div class="exam-progress-label"><span id="progress-text">SOAL 1 DARI 10</span><strong id="progress-percent">10%</strong></div>
+            <div class="exam-progress-track"><span id="progress-fill"></span></div>
+          </div>
+
+          <article class="exam-question-panel">
+            <div class="exam-question-heading">
+              <div>
+                <div class="question-number-label">NOMOR SOAL</div>
+                <h1 id="question-number">Soal nomor 1</h1>
+              </div>
+              <div class="font-controls" aria-label="Pengaturan ukuran tulisan">
+                <span>Ukuran font soal:</span>
+                <button id="font-smaller" type="button" aria-label="Perkecil tulisan">A−</button>
+                <button id="font-reset" type="button" aria-label="Ukuran tulisan normal">A</button>
+                <button id="font-larger" type="button" aria-label="Perbesar tulisan">A+</button>
+              </div>
+            </div>
+
+            <div class="exam-question-content">
+              <div id="question-category" class="category-pill">INFORMATIKA</div>
+              <h2 id="question-text" class="question-text">Pertanyaan akan muncul di sini.</h2>
+              <p class="exam-instruction">Pilih salah satu jawaban yang paling tepat.</p>
+              <div id="options-list" class="options-list" role="radiogroup" aria-label="Pilihan jawaban"></div>
+            </div>
+
+            <div class="exam-navigation">
+              <button id="prev-button" class="exam-nav-button previous" type="button"><span aria-hidden="true">‹</span> Soal sebelumnya</button>
+              <button id="doubt-button" class="exam-nav-button doubt" type="button" aria-pressed="false"><span class="doubt-square" aria-hidden="true"></span> Ragu-ragu</button>
+              <button id="next-button" class="exam-nav-button next" type="button">Soal berikutnya <span aria-hidden="true">›</span></button>
+            </div>
+          </article>
+          <div class="exam-bottom-note"><span>QuizLab CBT</span><span>Jawaban tersimpan otomatis pada perangkat ini.</span></div>
+        </div>
+
+        <aside id="question-list-panel" class="question-list-panel">
+          <div class="question-list-heading">
+            <div><span class="question-list-eyebrow">NAVIGASI UJIAN</span><h2>Daftar Soal</h2></div>
+            <button id="list-close-button" type="button" aria-label="Tutup daftar soal">×</button>
+          </div>
+          <div class="question-summary">
+            <div><strong id="count-answered">0</strong><span>Terjawab</span></div>
+            <div><strong id="count-unanswered">10</strong><span>Belum</span></div>
+            <div><strong id="count-doubt">0</strong><span>Ragu-ragu</span></div>
+          </div>
+          <div id="question-grid" class="question-grid" aria-label="Pilih nomor soal"></div>
+          <div class="question-legend">
+            <div><span class="legend-square current"></span>Sedang dibuka</div>
+            <div><span class="legend-square answered"></span>Sudah dijawab</div>
+            <div><span class="legend-square unanswered"></span>Belum dijawab</div>
+            <div><span class="legend-square doubtful"></span>Ragu-ragu</div>
+          </div>
+          <button id="finish-button" class="finish-exam-button" type="button">Selesai Ujian <span aria-hidden="true">✓</span></button>
         </aside>
       </div>
-      <div class="quiz-footer"><span id="player-label">PESERTA</span><button id="exit-button" class="text-button" type="button">Akhiri kuis</button></div>
     </section>
 
-    <!-- RESULT SCREEN -->
     <section id="result-screen" class="screen result-screen" hidden>
       <div class="result-header"><div class="result-confetti" aria-hidden="true">✦　✧　✦</div><span class="eyebrow"><span class="eyebrow-line"></span> HASIL AKHIR</span><h1 id="result-heading">Kuis selesai!</h1><p id="result-subtitle">Kerja bagus. Ini hasil latihanmu.</p></div>
       <div class="result-card">
@@ -113,7 +158,7 @@
         <div class="result-message"><span id="result-rank" class="rank-pill">TERUS BERLATIH</span><h2 id="result-message-title">Perjalanan belajarmu berlanjut.</h2><p id="result-message-text">Setiap latihan adalah kesempatan untuk menjadi lebih baik.</p></div>
         <div class="result-stats">
           <div class="stat-box"><span class="stat-symbol correct-symbol">✓</span><strong id="correct-count">0</strong><small>Benar</small></div>
-          <div class="stat-box"><span class="stat-symbol wrong-symbol">×</span><strong id="wrong-count">0</strong><small>Salah</small></div>
+          <div class="stat-box"><span class="stat-symbol wrong-symbol">×</span><strong id="wrong-count">0</strong><small>Salah / Kosong</small></div>
           <div class="stat-box"><span class="stat-symbol time-symbol">◷</span><strong id="time-used">00:00</strong><small>Waktu</small></div>
         </div>
         <div class="result-actions"><button id="review-button" class="primary-button" type="button">Lihat Pembahasan <span aria-hidden="true">↓</span></button><button id="retry-button" class="secondary-button" type="button">Ulangi Kuis ↻</button></div>
@@ -125,6 +170,20 @@
       <div class="result-footer"><span>QUIZLAB</span><span>TERUS BERTUMBUH, TERUS BELAJAR.</span></div>
     </section>
   </main>
+
+  <div id="instruction-modal" class="instruction-modal" hidden>
+    <div class="instruction-dialog" role="dialog" aria-modal="true" aria-labelledby="instruction-title">
+      <div class="instruction-dialog-head"><h2 id="instruction-title">Informasi Pengerjaan Soal</h2><button id="info-close-button" type="button" aria-label="Tutup informasi">×</button></div>
+      <ul>
+        <li>Pilih satu jawaban dengan menekan lingkaran atau teks pilihan.</li>
+        <li>Gunakan tombol <strong>Soal sebelumnya</strong> dan <strong>Soal berikutnya</strong> untuk berpindah.</li>
+        <li>Gunakan tombol <strong>Ragu-ragu</strong> untuk memberi tanda pada soal yang ingin diperiksa kembali.</li>
+        <li>Tekan nomor pada panel Daftar Soal untuk langsung membuka soal tersebut.</li>
+        <li>Tekan <strong>Selesai Ujian</strong> untuk mengakhiri dan melihat hasil.</li>
+      </ul>
+      <button id="info-understood-button" class="primary-button" type="button">Saya Mengerti</button>
+    </div>
+  </div>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
