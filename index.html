@@ -21,7 +21,7 @@
 <body class="min-h-screen bg-slate-100 font-sans text-slate-800 antialiased">
   <header class="sticky top-0 z-30 border-b border-blue-800/20 bg-primary-700 text-white shadow-material">
     <div class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-      <a class="flex min-w-0 items-center gap-3" href="#home" aria-label="QuizLab beranda">
+      <div class="flex min-w-0 items-center gap-3">
         <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-white/15 ring-1 ring-white/25">
           <span class="material-symbols-rounded text-[25px]">assignment_turned_in</span>
         </span>
@@ -29,24 +29,14 @@
           <span class="block text-lg font-bold leading-tight tracking-tight">QuizLab</span>
           <span class="block text-[10px] font-medium uppercase tracking-[.18em] text-blue-100">Computer Based Test</span>
         </span>
-      </a>
-      <div class="flex items-center gap-2 text-xs font-medium text-blue-50 sm:gap-3">
-        <span class="hidden rounded-full bg-white/10 px-3 py-1.5 sm:inline-flex">SIMULASI UJIAN</span>
-        <span class="flex h-8 w-8 items-center justify-center rounded-full bg-white/15">
-          <span class="material-symbols-rounded text-[18px]">school</span>
-        </span>
       </div>
+      <span class="rounded-full bg-white/10 px-3 py-1.5 text-[10px] font-semibold tracking-wide text-blue-50">MODE LATIHAN</span>
     </div>
   </header>
 
   <main class="mx-auto w-full max-w-7xl px-4 pb-10 pt-5 sm:px-6 sm:pt-7 lg:px-8">
     <!-- SETUP / HOME -->
     <section id="home-screen" class="screen space-y-5">
-      <nav class="flex items-center gap-2 text-xs text-slate-500" aria-label="Breadcrumb">
-        <span>QuizLab</span><span class="material-symbols-rounded text-sm">chevron_right</span>
-        <span class="font-semibold text-primary-700">Persiapan Ujian</span>
-      </nav>
-
       <div class="flex flex-col justify-between gap-4 md:flex-row md:items-end">
         <div class="max-w-2xl">
           <div class="mb-2 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[.16em] text-primary-700">
@@ -55,24 +45,17 @@
           <h1 class="text-2xl font-bold tracking-tight text-ink-800 sm:text-3xl">Persiapan Simulasi Ujian</h1>
           <p class="mt-2 max-w-xl text-sm leading-6 text-slate-600">Periksa informasi tes, lengkapi identitas peserta, lalu mulai simulasi ketika sudah siap.</p>
         </div>
-        <div class="flex items-center gap-3 rounded-xl border border-emerald-200 bg-white px-4 py-3 shadow-material">
-          <span class="grid h-10 w-10 place-items-center rounded-full bg-emerald-50 text-emerald-700">
-            <span class="material-symbols-rounded">verified</span>
-          </span>
-          <span><span class="block text-[10px] font-bold uppercase tracking-wider text-slate-500">Status Aplikasi</span><strong class="mt-0.5 block text-sm text-emerald-700">Siap Digunakan</strong></span>
-        </div>
       </div>
 
       <div class="grid items-start gap-5 lg:grid-cols-[minmax(0,1.15fr)_minmax(340px,.85fr)]">
         <section class="md-card overflow-hidden">
-          <div class="flex items-center gap-3 border-b border-slate-100 px-5 py-4 sm:px-6">
-            <span class="md-step">01</span>
-            <div><p class="md-overline">INFORMASI UJIAN</p><h2 id="quiz-title" class="text-lg font-bold text-ink-800">Kuis Informatika</h2></div>
+          <div class="border-b border-slate-100 px-5 py-4 sm:px-6">
+            <h2 id="quiz-title" class="text-lg font-bold text-ink-800">Kuis Informatika</h2>
           </div>
           <div class="space-y-5 p-5 sm:p-6">
             <p id="quiz-description" class="text-sm leading-6 text-slate-600">Asah logika dan pengetahuan digitalmu melalui kuis singkat ini.</p>
 
-            <div class="grid grid-cols-1 gap-3 sm:grid-cols-3">
+            <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
               <div class="md-metric">
                 <span class="material-symbols-rounded text-primary-600">format_list_numbered</span>
                 <span><small>SOAL TERSEDIA</small><strong><b id="total-questions">12</b> soal</strong></span>
@@ -81,10 +64,6 @@
                 <span class="material-symbols-rounded text-primary-600">schedule</span>
                 <span><small>ALOKASI WAKTU</small><strong id="time-estimate">10 menit</strong></span>
               </div>
-              <div class="md-metric">
-                <span class="material-symbols-rounded text-primary-600">quiz</span>
-                <span><small>JENIS SOAL</small><strong>Pilihan ganda</strong></span>
-              </div>
             </div>
 
             <div class="border-t border-slate-100 pt-4">
@@ -92,12 +71,10 @@
                 <span class="material-symbols-rounded text-lg text-primary-600">info</span>
                 Petunjuk Pengerjaan
               </div>
-              <ol class="space-y-2.5 pl-5 text-sm leading-5 text-slate-600 marker:font-bold marker:text-primary-700">
-                <li>Isi nama peserta dan tentukan jumlah soal.</li>
-                <li>Waktu ujian mulai dihitung setelah tombol Mulai Ujian ditekan.</li>
-                <li>Jawaban dapat diubah dan nomor soal dapat dibuka kembali selama ujian berlangsung.</li>
-                <li>Gunakan penanda <strong>Ragu-ragu</strong> untuk soal yang ingin diperiksa kembali.</li>
-                <li>Pastikan semua jawaban sudah diperiksa sebelum mengakhiri ujian.</li>
+              <ol class="space-y-2 pl-5 text-sm leading-5 text-slate-600 marker:font-bold marker:text-primary-700">
+                <li>Waktu mulai berjalan setelah ujian dimulai.</li>
+                <li>Jawaban bisa diubah dan soal dapat dibuka melalui daftar nomor.</li>
+                <li>Tandai soal yang belum yakin dengan tombol <strong>Ragu-ragu</strong>.</li>
               </ol>
             </div>
 
@@ -112,18 +89,13 @@
         </section>
 
         <section class="md-card overflow-hidden">
-          <div class="flex items-center justify-between border-b border-slate-100 px-5 py-4 sm:px-6">
-            <div class="flex items-center gap-3">
-              <span class="md-step">02</span>
-              <div><p class="md-overline">IDENTITAS</p><h2 class="text-lg font-bold text-ink-800">Data Peserta</h2></div>
-            </div>
-            <span class="rounded-full bg-red-50 px-2.5 py-1 text-[10px] font-bold text-red-700">WAJIB DIISI</span>
+          <div class="border-b border-slate-100 px-5 py-4 sm:px-6">
+            <h2 class="text-lg font-bold text-ink-800">Data Peserta</h2>
           </div>
           <div class="space-y-5 p-5 sm:p-6">
             <div>
               <label for="player-name" class="md-label">NAMA LENGKAP PESERTA</label>
               <input id="player-name" class="md-input" type="text" maxlength="50" placeholder="Masukkan nama lengkap" autocomplete="name" required>
-              <p class="mt-1.5 text-[11px] text-slate-500">Gunakan nama yang mudah dikenali pada hasil ujian.</p>
             </div>
             <div>
               <label for="question-count" class="md-label">JUMLAH SOAL YANG DIKERJAKAN</label>
@@ -139,66 +111,33 @@
               </div>
             </div>
 
-            <div class="rounded-lg border border-blue-100 bg-primary-50 p-4">
-              <div class="flex items-start gap-3">
-                <span class="material-symbols-rounded mt-0.5 text-primary-700">timer</span>
-                <div class="min-w-0 flex-1">
-                  <strong class="block text-sm text-ink-800">Alokasi waktu ujian</strong>
-                  <p class="mt-1 text-xs leading-5 text-slate-600">Waktu disesuaikan dengan jumlah soal yang dipilih.</p>
-                </div>
-                <strong id="time-estimate-copy" class="whitespace-nowrap text-sm font-bold text-primary-700">10 menit</strong>
-              </div>
-            </div>
-
             <button id="start-button" class="md-button md-button-primary w-full" type="button">
               Konfirmasi Data <span class="material-symbols-rounded text-lg">arrow_forward</span>
             </button>
-            <p class="flex items-center justify-center gap-1.5 text-center text-[11px] text-slate-500">
-              <span class="material-symbols-rounded text-sm">devices</span>
-              Hasil latihan tersimpan di browser perangkat ini.
-            </p>
           </div>
         </section>
       </div>
-      <footer class="flex flex-col gap-2 border-t border-slate-200 pt-4 text-[11px] text-slate-500 sm:flex-row sm:items-center sm:justify-between">
-        <span><strong class="text-slate-600">QuizLab CBT</strong> · Simulasi ujian digital</span>
-        <span>Belajar dengan fokus, teliti, dan jujur.</span>
-        <span>REKOR: <strong id="best-score-footer" class="text-slate-700">—</strong></span>
-      </footer>
     </section>
 
     <!-- TEST CONFIRMATION / SUMMARY -->
     <section id="summary-screen" class="screen space-y-5" hidden>
-      <nav class="flex items-center gap-2 text-xs text-slate-500" aria-label="Breadcrumb">
-        <button id="back-to-settings-button" class="font-medium text-primary-700 hover:underline" type="button">Persiapan Ujian</button>
-        <span class="material-symbols-rounded text-sm">chevron_right</span>
-        <span class="font-semibold text-primary-700">Konfirmasi Tes</span>
-      </nav>
-
       <div class="mx-auto max-w-4xl">
-        <div class="mb-5 text-center">
-          <span class="mx-auto mb-3 grid h-14 w-14 place-items-center rounded-full bg-primary-100 text-primary-700">
-            <span class="material-symbols-rounded text-3xl">fact_check</span>
-          </span>
-          <p class="md-overline">TAHAP TERAKHIR SEBELUM UJIAN</p>
-          <h1 class="mt-1 text-2xl font-bold tracking-tight text-ink-800 sm:text-3xl">Konfirmasi Tes</h1>
-          <p class="mt-2 text-sm text-slate-600">Pastikan data berikut sudah benar sebelum memulai.</p>
+        <div class="mb-5">
+          <h1 class="text-2xl font-bold tracking-tight text-ink-800 sm:text-3xl">Konfirmasi Tes</h1>
+          <p class="mt-2 text-sm text-slate-600">Periksa identitas dan alokasi ujian sebelum memulai.</p>
         </div>
 
         <div class="md-card overflow-hidden">
           <div class="border-b border-slate-100 bg-slate-50 px-5 py-4 sm:px-7">
             <h2 class="text-base font-bold text-ink-800">Rangkuman Ujian</h2>
-            <p class="mt-1 text-xs text-slate-500">Informasi peserta dan alokasi pengerjaan.</p>
           </div>
           <div class="grid gap-0 md:grid-cols-2">
             <div class="space-y-0 px-5 py-2 sm:px-7">
               <div class="md-summary-row"><span>Nama peserta</span><strong id="summary-player">—</strong></div>
               <div class="md-summary-row"><span>Nama tes</span><strong id="summary-title">Kuis Informatika</strong></div>
-              <div class="md-summary-row"><span>Status tes</span><strong><span class="inline-flex items-center gap-1.5 rounded-full bg-blue-50 px-2.5 py-1 text-xs font-semibold text-primary-700"><i class="h-1.5 w-1.5 rounded-full bg-primary-600"></i> Tes baru</span></strong></div>
             </div>
             <div class="space-y-0 border-t border-slate-100 px-5 py-2 sm:px-7 md:border-l md:border-t-0">
               <div class="md-summary-row"><span>Jumlah soal</span><strong id="summary-question-count">10 soal</strong></div>
-              <div class="md-summary-row"><span>Waktu tes</span><strong id="summary-date">—</strong></div>
               <div class="md-summary-row"><span>Alokasi waktu</span><strong id="summary-duration">10 menit</strong></div>
             </div>
           </div>
@@ -208,7 +147,7 @@
               <div><strong class="block text-sm text-ink-800">Perhatikan sebelum mulai</strong><p class="mt-1 text-xs leading-5 text-slate-600">Timer akan berjalan setelah ujian dimulai. Kamu dapat berpindah soal, mengubah jawaban, dan menandai soal yang masih diragukan.</p></div>
             </div>
             <div class="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
-              <button id="back-to-settings-secondary" class="md-button md-button-outlined" type="button">Kembali</button>
+              <button id="back-to-settings-button" class="md-button md-button-outlined" type="button">Kembali</button>
               <button id="begin-exam-button" class="md-button md-button-primary" type="button">Mulai Ujian <span class="material-symbols-rounded text-lg">play_arrow</span></button>
             </div>
           </div>
@@ -221,12 +160,11 @@
       <div class="-mx-4 -mt-5 border-b border-slate-200 bg-white px-4 py-3 shadow-sm sm:-mx-6 sm:-mt-7 sm:px-6 lg:-mx-8 lg:px-8">
         <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3">
           <div class="min-w-0">
-            <p class="text-[10px] font-bold uppercase tracking-[.15em] text-slate-500">SEDANG MENGERJAKAN</p>
             <h1 id="active-quiz-title" class="mt-0.5 truncate text-base font-bold text-ink-800">Kuis Informatika</h1>
             <p class="mt-1 text-[11px] text-slate-500">Peserta: <strong id="player-label" class="font-semibold text-slate-700">Peserta</strong></p>
           </div>
           <div class="flex items-center gap-2">
-            <button id="info-button" class="md-icon-button hidden sm:inline-flex" type="button" aria-label="Informasi pengerjaan" title="Informasi pengerjaan">
+            <button id="info-button" class="md-icon-button inline-flex" type="button" aria-label="Informasi pengerjaan" title="Informasi pengerjaan">
               <span class="material-symbols-rounded">info</span>
             </button>
             <div id="timer-box" class="flex min-w-[118px] items-center gap-2 rounded-lg border border-blue-100 bg-primary-50 px-3 py-2 text-primary-800">
@@ -243,7 +181,7 @@
       <div class="grid items-start gap-4 lg:grid-cols-[minmax(0,1fr)_300px]">
         <div class="min-w-0 space-y-3">
           <div class="flex items-center justify-between text-[11px] font-bold tracking-wide text-slate-500">
-            <span id="progress-text">SOAL 1 DARI 10</span><strong id="progress-percent" class="text-primary-700">10%</strong>
+            <span id="progress-text">TERJAWAB 0 DARI 10 SOAL</span><strong id="progress-percent" class="text-primary-700">10%</strong>
           </div>
           <div class="h-1.5 overflow-hidden rounded-full bg-slate-200"><div id="progress-fill" class="h-full w-0 rounded-full bg-primary-600 transition-all duration-200"></div></div>
 
@@ -308,12 +246,8 @@
 
     <!-- RESULT -->
     <section id="result-screen" class="screen space-y-5" hidden>
-      <nav class="flex items-center gap-2 text-xs text-slate-500" aria-label="Breadcrumb">
-        <span>QuizLab</span><span class="material-symbols-rounded text-sm">chevron_right</span><strong class="text-primary-700">Hasil Ujian</strong>
-      </nav>
       <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
-          <p class="mb-2 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[.15em] text-primary-700"><span class="h-0.5 w-6 bg-primary-600"></span> LAPORAN HASIL UJIAN</p>
           <h1 id="result-heading" class="text-2xl font-bold tracking-tight text-ink-800 sm:text-3xl">Ujian selesai!</h1>
           <p id="result-subtitle" class="mt-2 text-sm text-slate-600">Peserta, berikut hasil pengerjaan ujianmu.</p>
         </div>
@@ -367,10 +301,6 @@
         <div id="review-list" class="grid gap-3"></div>
       </section>
 
-      <footer class="flex flex-col gap-2 border-t border-slate-200 pt-4 text-[11px] text-slate-500 sm:flex-row sm:items-center sm:justify-between">
-        <span><strong class="text-slate-600">QuizLab CBT</strong> · Laporan hasil ujian</span>
-        <span>Terus belajar dan tingkatkan kemampuanmu.</span>
-      </footer>
     </section>
   </main>
 
