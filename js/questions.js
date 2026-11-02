@@ -1,70 +1,78 @@
 /*
  * BANK SOAL UJIAN KHUSUS 9A — INFORMATIKA KELAS IX SEMESTER 1
  * Berbasis materi dan latihan dalam buku Informatika Kelas IX Semester 1.
- * Setiap soal memuat chapter, topicId, difficulty, dan sourcePages.
+ * Metadata: chapter, topicId, difficulty, sourcePages.
  * answer adalah indeks jawaban benar (0–3). Satu sesi mengambil tepat 30 soal
- * menggunakan selectionPlan agar cakupan topik dan tingkat kesulitan konsisten.
+ * dengan kuota per topik dan tingkat kesulitan pada selectionPlan.
  */
 window.QUIZ_CONFIG = {
-  id: 'quiz-informatika-smp',
-  title: 'Ujian Khusus 9A',
-  description: 'Asesmen Informatika kelas IX semester 1 berdasarkan materi dan latihan dalam buku.',
-  questionsPerSession: 30,
-  sessionDurationMinutes: 45,
-  googleAppsScriptUrl: 'https://script.google.com/macros/s/AKfycbzRAqVPOOe982Rozm6K--1n2ZvKUqx5gYnVYjqs-zFtvYrgVvWMzNDNn1NHO1UAKTll/exec',
-  shuffleQuestions: true,
-  shuffleOptions: true,
-  showExplanation: true,
-  selectionPlan: [
-  {
-    "topicId": "struktur-data",
-    "difficulties": {
-      "mudah": 2,
-      "sedang": 2,
-      "sulit": 1
+  "id": "quiz-informatika-smp",
+  "title": "Ujian Khusus 9A",
+  "description": "Asesmen Informatika kelas IX semester 1 berdasarkan materi dan latihan dalam buku.",
+  "questionsPerSession": 30,
+  "sessionDurationMinutes": 45,
+  "googleAppsScriptUrl": "https://script.google.com/macros/s/AKfycbzRAqVPOOe982Rozm6K--1n2ZvKUqx5gYnVYjqs-zFtvYrgVvWMzNDNn1NHO1UAKTll/exec",
+  "shuffleQuestions": true,
+  "shuffleOptions": true,
+  "showExplanation": true,
+  "selectionPlan": [
+    {
+      "topicId": "struktur-data",
+      "difficulties": {
+        "mudah": 1,
+        "sedang": 2,
+        "sulit": 1
+      }
+    },
+    {
+      "topicId": "ekspresi-logika",
+      "difficulties": {
+        "mudah": 1,
+        "sedang": 2,
+        "sulit": 1
+      }
+    },
+    {
+      "topicId": "algoritma",
+      "difficulties": {
+        "mudah": 1,
+        "sedang": 2,
+        "sulit": 1
+      }
+    },
+    {
+      "topicId": "analisis-integrasi",
+      "difficulties": {
+        "mudah": 1,
+        "sedang": 2,
+        "sulit": 1
+      }
+    },
+    {
+      "topicId": "blog",
+      "difficulties": {
+        "mudah": 1,
+        "sedang": 2,
+        "sulit": 1
+      }
+    },
+    {
+      "topicId": "vlog",
+      "difficulties": {
+        "mudah": 1,
+        "sedang": 2,
+        "sulit": 1
+      }
+    },
+    {
+      "topicId": "dasar-informatika",
+      "difficulties": {
+        "mudah": 1,
+        "sedang": 4,
+        "sulit": 1
+      }
     }
-  },
-  {
-    "topicId": "ekspresi-logika",
-    "difficulties": {
-      "mudah": 2,
-      "sedang": 2,
-      "sulit": 1
-    }
-  },
-  {
-    "topicId": "algoritma",
-    "difficulties": {
-      "mudah": 1,
-      "sedang": 3,
-      "sulit": 1
-    }
-  },
-  {
-    "topicId": "analisis-integrasi",
-    "difficulties": {
-      "mudah": 1,
-      "sedang": 3,
-      "sulit": 1
-    }
-  },
-  {
-    "topicId": "blog",
-    "difficulties": {
-      "mudah": 1,
-      "sedang": 3,
-      "sulit": 1
-    }
-  },
-  {
-    "topicId": "vlog",
-    "difficulties": {
-      "mudah": 1,
-      "sedang": 3,
-      "sulit": 1
-    }
-  }
-]
+  ]
 };
 
 window.QUIZ_QUESTIONS = [
@@ -1597,5 +1605,260 @@ window.QUIZ_QUESTIONS = [
     ],
     "answer": 2,
     "explanation": "Pembuatan vlog memerlukan perencanaan topik dan tujuan, proses pengambilan gambar, editing, dan kemudian publikasi atau berbagi video."
+  },
+  {
+    "id": "di01",
+    "chapter": "Pengayaan — Asesmen Akhir Semester",
+    "topicId": "dasar-informatika",
+    "category": "DASAR INFORMATIKA & APLIKASI",
+    "difficulty": "mudah",
+    "sourcePages": "55–60",
+    "question": "Orang yang menggunakan perangkat komputasi disebut ....",
+    "options": [
+      "hardware",
+      "software",
+      "brainware",
+      "firmware"
+    ],
+    "answer": 2,
+    "explanation": "Brainware adalah manusia atau pengguna yang mengoperasikan perangkat komputasi."
+  },
+  {
+    "id": "di02",
+    "chapter": "Pengayaan — Asesmen Akhir Semester",
+    "topicId": "dasar-informatika",
+    "category": "DASAR INFORMATIKA & APLIKASI",
+    "difficulty": "mudah",
+    "sourcePages": "55–60",
+    "question": "Tipe data yang digunakan untuk menyimpan nilai benar atau salah (TRUE/FALSE) adalah ....",
+    "options": [
+      "integer",
+      "boolean",
+      "string",
+      "float"
+    ],
+    "answer": 1,
+    "explanation": "Boolean merupakan tipe data yang memiliki dua kemungkinan nilai, yaitu TRUE dan FALSE."
+  },
+  {
+    "id": "di03",
+    "chapter": "Pengayaan — Asesmen Akhir Semester",
+    "topicId": "dasar-informatika",
+    "category": "DASAR INFORMATIKA & APLIKASI",
+    "difficulty": "mudah",
+    "sourcePages": "55–60",
+    "question": "Aplikasi yang fungsi utamanya digunakan untuk membuat dan mengolah dokumen teks adalah ....",
+    "options": [
+      "Microsoft Word",
+      "Microsoft Excel",
+      "Microsoft PowerPoint",
+      "Microsoft Outlook"
+    ],
+    "answer": 0,
+    "explanation": "Microsoft Word termasuk aplikasi pengolah kata untuk membuat dan mengolah dokumen teks."
+  },
+  {
+    "id": "di04",
+    "chapter": "Pengayaan — Asesmen Akhir Semester",
+    "topicId": "dasar-informatika",
+    "category": "DASAR INFORMATIKA & APLIKASI",
+    "difficulty": "sedang",
+    "sourcePages": "55–60",
+    "question": "Fungsi informatika yang mengambil kembali informasi yang telah tersimpan disebut ....",
+    "options": [
+      "processing",
+      "transmission",
+      "retrieval",
+      "capture"
+    ],
+    "answer": 2,
+    "explanation": "Retrieval adalah fungsi untuk mendapatkan kembali informasi yang telah disimpan."
+  },
+  {
+    "id": "di05",
+    "chapter": "Pengayaan — Asesmen Akhir Semester",
+    "topicId": "dasar-informatika",
+    "category": "DASAR INFORMATIKA & APLIKASI",
+    "difficulty": "sedang",
+    "sourcePages": "55–60",
+    "question": "Mengirim data atau informasi dari satu lokasi ke lokasi lain melalui jaringan komputer disebut ....",
+    "options": [
+      "storage",
+      "transmission",
+      "generating",
+      "processing"
+    ],
+    "answer": 1,
+    "explanation": "Transmission merupakan fungsi pengiriman data atau informasi dari satu lokasi ke lokasi lain melalui jaringan komputer."
+  },
+  {
+    "id": "di06",
+    "chapter": "Pengayaan — Asesmen Akhir Semester",
+    "topicId": "dasar-informatika",
+    "category": "DASAR INFORMATIKA & APLIKASI",
+    "difficulty": "sedang",
+    "sourcePages": "55–60",
+    "question": "Dalam berpikir komputasional, memecah masalah besar menjadi bagian-bagian kecil yang lebih mudah ditangani disebut ....",
+    "options": [
+      "dekomposisi",
+      "plagiarisme",
+      "transmisi",
+      "publikasi"
+    ],
+    "answer": 0,
+    "explanation": "Dekomposisi memecah masalah kompleks menjadi bagian yang lebih kecil agar lebih mudah dianalisis dan diselesaikan."
+  },
+  {
+    "id": "di07",
+    "chapter": "Pengayaan — Asesmen Akhir Semester",
+    "topicId": "dasar-informatika",
+    "category": "DASAR INFORMATIKA & APLIKASI",
+    "difficulty": "sedang",
+    "sourcePages": "55–60",
+    "question": "Dalam berpikir komputasional, mengabaikan detail yang tidak penting dan berfokus pada informasi utama disebut ....",
+    "options": [
+      "retrieval",
+      "abstraksi",
+      "transmission",
+      "formatting"
+    ],
+    "answer": 1,
+    "explanation": "Abstraksi membantu menyederhanakan masalah dengan berfokus pada informasi penting dan mengabaikan detail yang tidak relevan."
+  },
+  {
+    "id": "di08",
+    "chapter": "Pengayaan — Asesmen Akhir Semester",
+    "topicId": "dasar-informatika",
+    "category": "DASAR INFORMATIKA & APLIKASI",
+    "difficulty": "sedang",
+    "sourcePages": "55–60",
+    "question": "Tipe data yang paling sesuai untuk menyimpan nama siswa seperti \"Rani\" adalah ....",
+    "options": [
+      "boolean",
+      "integer",
+      "string",
+      "float"
+    ],
+    "answer": 2,
+    "explanation": "String digunakan untuk menyimpan teks atau kumpulan karakter, seperti nama siswa."
+  },
+  {
+    "id": "di09",
+    "chapter": "Pengayaan — Asesmen Akhir Semester",
+    "topicId": "dasar-informatika",
+    "category": "DASAR INFORMATIKA & APLIKASI",
+    "difficulty": "sedang",
+    "sourcePages": "55–60",
+    "question": "Tipe data yang umum digunakan untuk menyimpan bilangan bulat tanpa pecahan adalah ....",
+    "options": [
+      "integer",
+      "string",
+      "boolean",
+      "character"
+    ],
+    "answer": 0,
+    "explanation": "Integer digunakan untuk menyimpan bilangan bulat, sedangkan float digunakan untuk bilangan yang memiliki bagian pecahan."
+  },
+  {
+    "id": "di10",
+    "chapter": "Pengayaan — Asesmen Akhir Semester",
+    "topicId": "dasar-informatika",
+    "category": "DASAR INFORMATIKA & APLIKASI",
+    "difficulty": "sedang",
+    "sourcePages": "55–60",
+    "question": "Aplikasi yang paling sesuai untuk mengelola data dalam bentuk tabel baris dan kolom adalah ....",
+    "options": [
+      "Microsoft Word",
+      "Microsoft Excel",
+      "Microsoft PowerPoint",
+      "Microsoft Outlook"
+    ],
+    "answer": 1,
+    "explanation": "Microsoft Excel merupakan aplikasi spreadsheet untuk mengolah data dalam bentuk lembar kerja yang terdiri dari baris dan kolom."
+  },
+  {
+    "id": "di11",
+    "chapter": "Pengayaan — Asesmen Akhir Semester",
+    "topicId": "dasar-informatika",
+    "category": "DASAR INFORMATIKA & APLIKASI",
+    "difficulty": "sedang",
+    "sourcePages": "55–60",
+    "question": "Dokumen Microsoft Excel yang dapat berisi satu atau beberapa lembar kerja disebut ....",
+    "options": [
+      "cell",
+      "row",
+      "workbook",
+      "column"
+    ],
+    "answer": 2,
+    "explanation": "Workbook merupakan dokumen atau file Excel yang dapat memuat satu atau beberapa worksheet."
+  },
+  {
+    "id": "di12",
+    "chapter": "Pengayaan — Asesmen Akhir Semester",
+    "topicId": "dasar-informatika",
+    "category": "DASAR INFORMATIKA & APLIKASI",
+    "difficulty": "sedang",
+    "sourcePages": "55–60",
+    "question": "Mengambil grafik dari Excel untuk digunakan dalam presentasi PowerPoint merupakan contoh ....",
+    "options": [
+      "integrasi konten antar aplikasi",
+      "penghapusan data",
+      "penggantian sistem operasi",
+      "kompresi perangkat keras"
+    ],
+    "answer": 0,
+    "explanation": "Integrasi konten memungkinkan objek, data, atau komponen dari satu aplikasi digunakan dalam aplikasi lainnya."
+  },
+  {
+    "id": "di13",
+    "chapter": "Pengayaan — Asesmen Akhir Semester",
+    "topicId": "dasar-informatika",
+    "category": "DASAR INFORMATIKA & APLIKASI",
+    "difficulty": "sulit",
+    "sourcePages": "55–60",
+    "question": "Sekolah menyimpan nilai beberapa siswa untuk beberapa mata pelajaran. Data disusun berdasarkan baris siswa dan kolom mata pelajaran. Contoh tersebut paling sesuai direpresentasikan dengan ....",
+    "options": [
+      "array satu dimensi",
+      "array dua dimensi",
+      "stack",
+      "queue"
+    ],
+    "answer": 1,
+    "explanation": "Data dengan dua indeks, misalnya siswa dan mata pelajaran, sesuai direpresentasikan sebagai array dua dimensi."
+  },
+  {
+    "id": "di14",
+    "chapter": "Pengayaan — Asesmen Akhir Semester",
+    "topicId": "dasar-informatika",
+    "category": "DASAR INFORMATIKA & APLIKASI",
+    "difficulty": "sulit",
+    "sourcePages": "55–60",
+    "question": "Sebuah program perlu menyimpan status kelulusan yang hanya memiliki dua kemungkinan, yaitu lulus atau tidak lulus. Tipe data yang paling sesuai adalah ....",
+    "options": [
+      "string",
+      "float",
+      "boolean",
+      "integer"
+    ],
+    "answer": 2,
+    "explanation": "Status lulus atau tidak lulus hanya memiliki dua nilai kebenaran, sehingga tipe data Boolean paling sesuai."
+  },
+  {
+    "id": "di15",
+    "chapter": "Pengayaan — Asesmen Akhir Semester",
+    "topicId": "dasar-informatika",
+    "category": "DASAR INFORMATIKA & APLIKASI",
+    "difficulty": "sulit",
+    "sourcePages": "55–60",
+    "question": "Sebuah objek Excel dimasukkan ke dokumen Word. Pengguna ingin dokumen Word menyimpan objeknya sendiri dan tidak bergantung pada perubahan file Excel sumber. Pilihan OLE yang sesuai adalah ....",
+    "options": [
+      "Linking, karena objek selalu mengikuti perubahan sumber",
+      "Embedding, karena objek disimpan di dalam dokumen tujuan",
+      "Retrieval, karena data diambil dari internet",
+      "Transmission, karena data dikirim melalui jaringan"
+    ],
+    "answer": 1,
+    "explanation": "Embedding menyimpan objek di dalam dokumen tujuan. Berbeda dengan linking yang menyimpan tautan ke file sumber."
   }
 ];
