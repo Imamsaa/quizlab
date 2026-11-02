@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#245b91">
-  <meta name="description" content="QuizLab — simulasi ujian interaktif bergaya CBT ANBK dan TKA.">
+  <meta name="description" content="QuizLab — simulasi ujian berbasis komputer.">
   <title>QuizLab — Kuis Interaktif</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=cbt-20261102-1">
-  <script src="js/questions.js?v=cbt-20261102-1" defer></script>
-  <script src="js/app.js?v=cbt-20261102-1" defer></script>
+  <link rel="stylesheet" href="css/style.css?v=cbt-home-20261102-2">
+  <script src="js/questions.js?v=cbt-home-20261102-2" defer></script>
+  <script src="js/app.js?v=cbt-home-20261102-2" defer></script>
 </head>
 <body>
   <div class="ambient ambient-one" aria-hidden="true"></div>
@@ -24,45 +24,97 @@
       </span>
       <span class="brand-name">Quiz<span>Lab</span></span>
     </a>
-    <div class="header-label"><span class="status-dot"></span> LEARNING MODE</div>
+    <div class="header-label"><span class="status-dot"></span> COMPUTER BASED TEST</div>
   </header>
 
   <main class="app-shell">
     <section id="home-screen" class="screen home-screen">
-      <div class="hero-copy">
-        <div class="eyebrow"><span class="eyebrow-line"></span> BELAJAR • BERLATIH • BERTUMBUH</div>
-        <h1>Uji pemahamanmu.<br><span class="gradient-text">Tunjukkan kemampuanmu.</span></h1>
-        <p class="hero-description">Satu langkah kecil untuk mengetahui seberapa jauh kamu sudah berkembang. Fokus, pikirkan baik-baik, dan berikan yang terbaik!</p>
-        <div class="feature-row">
-          <div class="feature-item"><span class="feature-icon purple">✦</span><span>Interaktif</span></div>
-          <div class="feature-item"><span class="feature-icon blue">◷</span><span>Berbatas waktu</span></div>
-          <div class="feature-item"><span class="feature-icon green">✓</span><span>Ada pembahasan</span></div>
+      <div class="home-page-container">
+        <div class="home-breadcrumb"><span>BERANDA</span><span aria-hidden="true">›</span><strong>SIMULASI UJIAN</strong></div>
+
+        <div class="home-page-heading">
+          <div class="home-heading-copy">
+            <div class="home-eyebrow"><span></span> COMPUTER BASED TEST • MODE LATIHAN</div>
+            <h1>Simulasi Ujian <span>QuizLab</span></h1>
+            <p>Selamat datang di ruang ujian digital. Pastikan identitas dan pengaturan ujian sudah benar sebelum memulai.</p>
+          </div>
+          <div class="home-mode-card">
+            <div class="home-mode-icon" aria-hidden="true">✓</div>
+            <div><small>STATUS APLIKASI</small><strong>Siap Digunakan</strong><span><i></i> Sistem latihan aktif</span></div>
+          </div>
         </div>
+
+        <div class="home-exam-layout">
+          <section class="home-information-card">
+            <div class="home-card-heading">
+              <span class="home-step-number">01</span>
+              <div><small>INFORMASI UJIAN</small><h2 id="quiz-title">Kuis Informatika</h2></div>
+            </div>
+            <p id="quiz-description" class="home-exam-description">Asah logika dan pengetahuan digitalmu melalui kuis singkat ini.</p>
+
+            <div class="home-exam-facts">
+              <div class="home-fact">
+                <span class="home-fact-icon" aria-hidden="true">▤</span>
+                <div><small>JUMLAH SOAL</small><strong><span id="total-questions">12</span> Soal</strong></div>
+              </div>
+              <div class="home-fact">
+                <span class="home-fact-icon" aria-hidden="true">◷</span>
+                <div><small>ALOKASI WAKTU</small><strong id="time-estimate">10 menit</strong></div>
+              </div>
+              <div class="home-fact">
+                <span class="home-fact-icon" aria-hidden="true">▣</span>
+                <div><small>METODE UJIAN</small><strong>Pilihan Ganda</strong></div>
+              </div>
+            </div>
+
+            <div class="home-instructions">
+              <div class="home-instructions-title"><span aria-hidden="true">ⓘ</span><h3>Petunjuk Pengerjaan</h3></div>
+              <ol>
+                <li>Isi nama peserta dan tentukan jumlah soal sebelum memulai ujian.</li>
+                <li>Waktu akan berjalan otomatis setelah tombol Mulai Ujian ditekan.</li>
+                <li>Jawaban dapat diubah selama ujian berlangsung. Gunakan daftar soal untuk berpindah nomor.</li>
+                <li>Periksa kembali soal yang ditandai ragu-ragu sebelum mengakhiri ujian.</li>
+              </ol>
+            </div>
+
+            <div class="home-record-strip">
+              <span class="home-record-icon" aria-hidden="true">★</span>
+              <span><small>REKOR NILAI TERBAIK</small><strong id="best-score-home">Belum ada rekor</strong></span>
+            </div>
+          </section>
+
+          <section class="start-card">
+            <div class="start-card-top">
+              <div class="home-card-heading">
+                <span class="home-step-number">02</span>
+                <div><small>DATA PESERTA</small><h2>Identitas Peserta</h2></div>
+              </div>
+              <span class="start-card-badge">WAJIB DIISI</span>
+            </div>
+
+            <label class="field-label" for="player-name">NAMA LENGKAP PESERTA</label>
+            <input id="player-name" class="text-input" type="text" maxlength="40" placeholder="Masukkan nama lengkap..." autocomplete="name">
+
+            <label class="field-label" for="question-count">JUMLAH SOAL YANG DIKERJAKAN</label>
+            <div class="select-wrap"><select id="question-count" class="text-input"><option value="5">5 soal</option><option value="10" selected>10 soal</option><option value="all">Semua soal</option></select><span class="select-chevron">⌄</span></div>
+
+            <div class="home-exam-notice">
+              <span class="home-notice-icon" aria-hidden="true">◷</span>
+              <div><strong>Alokasi waktu ujian</strong><p>Waktu dihitung berdasarkan jumlah soal yang dipilih.</p></div>
+              <b id="time-estimate-copy">10 menit</b>
+            </div>
+
+            <button id="start-button" class="primary-button" type="button">Mulai Ujian <span aria-hidden="true">→</span></button>
+            <p class="privacy-note"><span aria-hidden="true">ⓘ</span> Mode latihan. Hasil disimpan pada perangkat ini.</p>
+          </section>
+        </div>
+
+        <footer class="home-footer">
+          <span><strong>QuizLab CBT</strong> · SIMULASI UJIAN DIGITAL</span>
+          <span>Gunakan perangkat dengan koneksi dan daya yang memadai.</span>
+          <span>REKOR: <b id="best-score-footer">—</b></span>
+        </footer>
       </div>
-
-      <div class="start-card">
-        <div class="card-topline"><span class="card-kicker">SIAP MEMULAI?</span><span class="sparkle">✧</span></div>
-        <div class="quiz-icon-wrap" aria-hidden="true">
-          <div class="quiz-icon"><svg viewBox="0 0 64 64" fill="none"><rect x="13" y="9" width="38" height="46" rx="8" stroke="currentColor" stroke-width="3"/><path d="M23 23h18M23 32h18M23 41h8" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="46" cy="45" r="8" fill="#A78BFA" stroke="#171B2B" stroke-width="2"/><path d="m43 45 2 2 4-5" stroke="#171B2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <span class="orbit orbit-a"></span><span class="orbit orbit-b"></span>
-        </div>
-        <h2 id="quiz-title">Kuis Informatika</h2>
-        <p id="quiz-description" class="start-description">Asah logika dan pengetahuan digitalmu melalui kuis singkat ini.</p>
-
-        <label class="field-label" for="player-name">NAMA PESERTA <span class="optional">(opsional)</span></label>
-        <input id="player-name" class="text-input" type="text" maxlength="40" placeholder="Masukkan nama kamu..." autocomplete="name">
-
-        <label class="field-label" for="question-count">JUMLAH SOAL</label>
-        <div class="select-wrap"><select id="question-count" class="text-input"><option value="5">5 soal</option><option value="10" selected>10 soal</option><option value="all">Semua soal</option></select><span class="select-chevron">⌄</span></div>
-
-        <div class="quiz-meta">
-          <div><span class="meta-icon">▤</span><span><strong id="total-questions">12</strong> soal tersedia</span></div>
-          <div><span class="meta-icon">◷</span><span><strong id="time-estimate">10 menit</strong></span></div>
-        </div>
-        <button id="start-button" class="primary-button" type="button">Mulai Kuis <span aria-hidden="true">→</span></button>
-        <p class="privacy-note"><span aria-hidden="true">⌑</span> Hasil tersimpan di perangkat ini saja.</p>
-      </div>
-      <div class="home-footer"><span>QUIZLAB</span><span>THINK CLEARLY. LEARN DEEPLY.</span><span id="best-score-home">REKOR: —</span></div>
     </section>
 
     <!-- EXAM SCREEN: CBT-inspired layout -->
