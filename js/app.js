@@ -177,6 +177,7 @@
     $('timer-box').classList.remove('warning');
     $('timer').textContent = formatTime(state.remainingSeconds);
     $('question-list-panel').classList.remove('mobile-open', 'is-collapsed');
+    $('exam-layout').style.gridTemplateColumns = '';
     $('instruction-modal').hidden = true;
     $('finish-modal').hidden = true;
     $('review-section').hidden = true;
@@ -461,13 +462,31 @@
     $('instruction-modal').hidden = true;
   }
 
+  function setQuestionListVisible(visible) {
+    const panel = $('question-list-panel');
+    const layout = $('exam-layout');
+    const isMobile = window.matchMedia('(max-width: 1023px)').matches;
+
+    if (isMobile) {
+      panel.classList.remove('is-collapsed');
+      layout.style.gridTemplateColumns = '';
+      panel.classList.toggle('mobile-open', visible);
+      return;
+    }
+
+    panel.classList.remove('mobile-open');
+    panel.classList.toggle('is-collapsed', !visible);
+    layout.style.gridTemplateColumns = visible ? '' : 'minmax(0, 1fr)';
+  }
+
   function toggleQuestionList() {
     const panel = $('question-list-panel');
-    if (window.matchMedia('(max-width: 1023px)').matches) {
-      panel.classList.toggle('mobile-open');
-    } else {
-      panel.classList.toggle('is-collapsed');
-    }
+    const isMobile = window.matchMedia('(max-width: 1023px)').matches;
+    const isVisible = isMobile
+      ? panel.classList.contains('mobile-open')
+      : !panel.classList.contains('is-collapsed');
+
+    setQuestionListVisible(!isVisible);
   }
 
   $('question-count').addEventListener('change', updateTimeEstimate);
@@ -501,7 +520,7 @@
   });
 
   $('question-list-toggle').addEventListener('click', toggleQuestionList);
-  $('list-close-button').addEventListener('click', () => $('question-list-panel').classList.remove('mobile-open'));
+  $('list-close-button').addEventListener('click', () => setQuestionListVisible(false));
 
   $('font-smaller').addEventListener('click', () => {
     state.questionFontSize = Math.max(16, state.questionFontSize - 2);
