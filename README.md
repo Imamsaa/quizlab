@@ -1,6 +1,6 @@
 # QuizLab — Kuis Interaktif untuk GitHub Pages
 
-QuizLab adalah web kuis statis berbasis HTML, CSS, dan JavaScript. Tidak membutuhkan Node.js, database, backend, framework, atau proses build. Cocok untuk di-host secara gratis menggunakan GitHub Pages.
+QuizLab adalah web kuis statis berbasis HTML, Tailwind CSS, CSS, dan JavaScript. Situs hasil build tidak membutuhkan backend atau server aplikasi dan dapat di-host menggunakan GitHub Pages. Node.js hanya diperlukan ketika mengembangkan source dan membangun ulang CSS Tailwind.
 
 ## Fitur
 
@@ -18,11 +18,9 @@ QuizLab adalah web kuis statis berbasis HTML, CSS, dan JavaScript. Tidak membutu
 
 ## Menjalankan di komputer
 
-1. Ekstrak folder proyek.
-2. Buka `index.html` di browser.
-3. Tidak perlu instalasi dependency.
-
-Untuk pengembangan, disarankan menggunakan ekstensi Live Server di VS Code. Namun, proyek ini juga dapat dibuka langsung melalui browser.
+1. Clone atau unduh repository.
+2. Untuk menjalankan versi yang sudah dibangun, buka situs GitHub Pages atau jalankan `index.html` dengan Live Server.
+3. Untuk mengubah utility Tailwind, jalankan `npm install` lalu `npm run build:css`. GitHub Actions juga menjalankan proses ini otomatis setelah perubahan source di-push ke `main`.
 
 ## Styling dan Tailwind CSS
 
