@@ -9,6 +9,10 @@ QuizLab adalah web kuis statis berbasis HTML, CSS, dan JavaScript. Tidak membutu
 - Pengacakan urutan soal dan pilihan jawaban.
 - Timer otomatis berdasarkan jumlah soal.
 - Navigasi soal sebelumnya/berikutnya dan indikator progres.
+- Tampilan halaman ujian bergaya CBT ANBK/TKA dengan header biru dan panel navigasi nomor soal.
+- Daftar soal dengan status sedang dibuka, sudah dijawab, belum dijawab, dan ragu-ragu.
+- Tombol penanda ragu-ragu, navigasi langsung ke nomor soal, dan pengaturan ukuran teks.
+- Pintasan keyboard A–D untuk memilih jawaban serta tombol panah kiri/kanan untuk navigasi.
 - Skor akhir, rekor terbaik lokal, serta pembahasan setiap soal.
 - Otomatis mengakhiri kuis ketika waktu habis.
 - Data hasil disimpan di `localStorage` browser, bukan dikirim ke server.
