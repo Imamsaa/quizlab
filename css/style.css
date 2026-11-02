@@ -229,3 +229,17 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   font-weight: 700;
   white-space: nowrap;
 }
+
+
+#finish-button:disabled {
+  opacity: .48;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+#finish-requirement {
+  color: #64778a;
+}
+#finish-requirement[hidden] {
+  display: none !important;
+}
