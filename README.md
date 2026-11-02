@@ -4,18 +4,17 @@ QuizLab adalah web kuis statis berbasis HTML, CSS, dan JavaScript. Tidak membutu
 
 ## Fitur
 
-- Tampilan responsif untuk desktop, tablet, dan ponsel.
-- Nama peserta (opsional) dan pilihan jumlah soal.
-- Pengacakan urutan soal dan pilihan jawaban.
+- Antarmuka responsif bergaya Material Design dengan layout utility-first Tailwind CSS.
+- Alur persiapan peserta → konfirmasi tes → ruang ujian → hasil dan pembahasan.
+- Identitas peserta wajib diisi sebelum ujian.
 - Timer otomatis berdasarkan jumlah soal.
-- Navigasi soal sebelumnya/berikutnya dan indikator progres.
-- Tampilan halaman awal, halaman pengerjaan, dan halaman hasil bergaya CBT ANBK/TKA dengan header biru, informasi ujian, identitas peserta, ringkasan nilai, evaluasi jawaban, serta panel navigasi nomor soal.
-- Daftar soal dengan status sedang dibuka, sudah dijawab, belum dijawab, dan ragu-ragu.
-- Tombol penanda ragu-ragu, navigasi langsung ke nomor soal, dan pengaturan ukuran teks.
-- Pintasan keyboard A–D untuk memilih jawaban serta tombol panah kiri/kanan untuk navigasi.
-- Skor akhir, rekor terbaik lokal, serta pembahasan setiap soal.
-- Otomatis mengakhiri kuis ketika waktu habis.
-- Data hasil disimpan di `localStorage` browser, bukan dikirim ke server.
+- Navigasi nomor soal dengan status aktif, terjawab, belum dijawab, dan ragu-ragu.
+- Konteks bacaan opsional pada soal melalui properti `context`.
+- Pengaturan ukuran font soal dan pintasan keyboard A–D / panah kiri-kanan.
+- Dialog konfirmasi sebelum mengakhiri ujian dan pengakhiran otomatis saat waktu habis.
+- Pengacakan urutan soal dan pilihan jawaban.
+- Skor, rekor terbaik lokal, dan pembahasan setiap soal.
+- Hasil disimpan di `localStorage` browser, bukan dikirim ke server.
 
 ## Menjalankan di komputer
 
@@ -24,6 +23,12 @@ QuizLab adalah web kuis statis berbasis HTML, CSS, dan JavaScript. Tidak membutu
 3. Tidak perlu instalasi dependency.
 
 Untuk pengembangan, disarankan menggunakan ekstensi Live Server di VS Code. Namun, proyek ini juga dapat dibuka langsung melalui browser.
+
+## Styling dan Tailwind CSS
+
+QuizLab menggunakan Tailwind CSS Play CDN agar tetap dapat dijalankan langsung dari GitHub Pages tanpa proses build atau Node.js. Karena utilitas Tailwind diproses di browser, halaman membutuhkan koneksi internet untuk memuat CDN Tailwind. Komponen interaktif khusus (radio pilihan, status nomor, dialog, dan ring nilai) berada di `css/style.css`.
+
+Tampilan mengadopsi pola Material Design seperti app bar, cards, outlined fields, radio controls, dialogs, dan elevation. Aplikasi ini tetap HTML/CSS/JavaScript biasa, bukan aplikasi resmi Pusmendik/ANBK dan bukan proyek React Material UI.
 
 ## Mengubah judul dan pengaturan kuis
 
@@ -64,6 +69,20 @@ Semua soal berada di dalam array `window.QUIZ_QUESTIONS` pada file `js/questions
 ```
 
 Penting: `answer` memakai indeks mulai dari nol. `0` berarti pilihan pertama, `1` pilihan kedua, `2` pilihan ketiga, dan `3` pilihan keempat. Setiap soal wajib memiliki `id` unik dan empat pilihan jawaban.
+
+Untuk soal berbasis bacaan, properti `context` bersifat opsional:
+
+```js
+{
+  id: 'q13',
+  category: 'LITERASI',
+  context: 'Teks bacaan atau informasi pendukung ditampilkan sebelum pertanyaan.',
+  question: 'Berdasarkan konteks tersebut, ...',
+  options: ['Pilihan A', 'Pilihan B', 'Pilihan C', 'Pilihan D'],
+  answer: 1,
+  explanation: 'Alasan jawaban benar.'
+}
+```
 
 ## Deploy ke GitHub Pages
 
