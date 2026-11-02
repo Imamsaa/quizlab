@@ -4,8 +4,16 @@ on:
   push:
     branches:
       - main
-    paths-ignore:
-      - "css/tailwind.css"
+    paths:
+      - "index.html"
+      - "js/**/*.js"
+      - "src/input.css"
+      - "package.json"
+      - "package-lock.json"
+
+concurrency:
+  group: tailwind-build-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: write
