@@ -488,7 +488,6 @@
     setQuestionListVisible(!isVisible);
   }
 
-  $('question-count').addEventListener('change', updateTimeEstimate);
   $('start-button').addEventListener('click', prepareSummary);
   $('back-to-settings-button').addEventListener('click', () => showScreen('home'));
   $('begin-exam-button').addEventListener('click', startQuiz);
