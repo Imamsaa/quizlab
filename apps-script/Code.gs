@@ -18,8 +18,25 @@
  *    di file js/questions.js.
  */
 
-const SPREADSHEET_ID = ''; // Kosongkan untuk memakai spreadsheet tempat script ini dibuat.
+const SPREADSHEET_ID = ''; // Isi jika project Apps Script dibuat secara standalone.
 const SHEET_NAME = 'Hasil QuizLab';
+
+/**
+ * Jalankan sekali dari editor Apps Script saat script dibuat dari
+ * Extensions > Apps Script di spreadsheet tujuan.
+ */
+function setupQuizLab() {
+  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  if (!spreadsheet) {
+    throw new Error('Buka Apps Script dari Extensions > Apps Script pada spreadsheet tujuan, atau isi SPREADSHEET_ID.');
+  }
+
+  PropertiesService.getScriptProperties().setProperty('SPREADSHEET_ID', spreadsheet.getId());
+  getOrCreateSheet_(spreadsheet);
+  SpreadsheetApp.flush();
+
+  return 'QuizLab terhubung ke: ' + spreadsheet.getName();
+}
 
 function doGet() {
   return jsonResponse_({
@@ -73,16 +90,14 @@ function doPost(e) {
 }
 
 function getSpreadsheet_() {
-  if (SPREADSHEET_ID) {
-    return SpreadsheetApp.openById(SPREADSHEET_ID);
+  const savedId = PropertiesService.getScriptProperties().getProperty('SPREADSHEET_ID');
+  const spreadsheetId = savedId || SPREADSHEET_ID;
+
+  if (!spreadsheetId) {
+    throw new Error('Spreadsheet belum dikonfigurasi. Jalankan setupQuizLab() sekali dari editor atau isi SPREADSHEET_ID.');
   }
 
-  const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  if (!spreadsheet) {
-    throw new Error('Spreadsheet tidak ditemukan. Isi SPREADSHEET_ID atau buat script dari Extensions > Apps Script di Google Sheets.');
-  }
-
-  return spreadsheet;
+  return SpreadsheetApp.openById(spreadsheetId);
 }
 
 function getOrCreateSheet_(spreadsheet) {
