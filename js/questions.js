@@ -15,7 +15,8 @@ window.QUIZ_CONFIG = {
   id: 'quiz-informatika-smp',
   title: 'Kuis Informatika',
   description: 'Asah logika dan pengetahuan digitalmu melalui kuis singkat ini.',
-  secondsPerQuestion: 60,
+  questionsPerSession: 30,
+  sessionDurationMinutes: 45,
   shuffleQuestions: true,
   shuffleOptions: true,
   showExplanation: true
@@ -93,5 +94,114 @@ window.QUIZ_QUESTIONS = [
     question: 'Urutan instruksi yang logis dan sistematis untuk menyelesaikan suatu masalah disebut ....',
     options: ['Algoritma', 'Aplikasi', 'Jaringan', 'Antarmuka'], answer: 0,
     explanation: 'Algoritma merupakan urutan langkah yang logis, terstruktur, dan berhingga untuk menyelesaikan masalah atau mencapai tujuan tertentu.'
+  }
+  ,
+  {
+    id: 'q13', category: 'APLIKASI PERKANTORAN',
+    question: 'Saat mengedit dokumen, kombinasi tombol keyboard yang umum digunakan untuk menyimpan perubahan adalah ....',
+    options: ['Ctrl + P', 'Ctrl + S', 'Ctrl + C', 'Ctrl + V'], answer: 1,
+    explanation: 'Ctrl + S adalah pintasan untuk menyimpan dokumen atau file. Ctrl + P digunakan untuk mencetak, Ctrl + C untuk menyalin, dan Ctrl + V untuk menempel.'
+  },
+  {
+    id: 'q14', category: 'WEB DESIGN',
+    question: 'Ekstensi file yang paling umum digunakan untuk menyimpan dokumen HTML adalah ....',
+    options: ['.html', '.css', '.jpg', '.mp3'], answer: 0,
+    explanation: 'File HTML umumnya disimpan dengan ekstensi .html atau .htm. File CSS menggunakan .css, gambar dapat menggunakan .jpg, dan audio dapat menggunakan .mp3.'
+  },
+  {
+    id: 'q15', category: 'CSS',
+    question: 'Dalam CSS, properti yang digunakan untuk mengubah warna teks adalah ....',
+    options: ['font-style', 'background', 'color', 'display'], answer: 2,
+    explanation: 'Properti color mengatur warna teks. Properti background mengatur latar, font-style mengatur gaya huruf, dan display mengatur perilaku tata letak elemen.'
+  },
+  {
+    id: 'q16', category: 'JAVASCRIPT',
+    question: 'Dalam JavaScript, kata kunci yang digunakan untuk membuat variabel dengan cakupan blok dan nilainya dapat diubah kembali adalah ....',
+    options: ['const', 'return', 'let', 'function'], answer: 2,
+    explanation: 'let digunakan untuk mendeklarasikan variabel dengan block scope yang nilainya dapat diubah. const juga memiliki block scope, tetapi tidak dapat diisi ulang dengan nilai baru.'
+  },
+  {
+    id: 'q17', category: 'ARRAY',
+    question: 'Jika sebuah array berisi [12, 18, 25, 30], elemen pertama berada pada indeks ....',
+    options: ['0', '1', '2', '3'], answer: 0,
+    explanation: 'Pada JavaScript dan banyak bahasa pemrograman lain, indeks array dimulai dari 0. Karena itu, elemen pertama berada pada indeks 0.'
+  },
+  {
+    id: 'q18', category: 'PERCABANGAN',
+    question: 'Perintah if pada program akan menjalankan blok kode di dalamnya ketika ....',
+    options: ['Program selalu dimulai', 'Kondisi bernilai benar', 'Kondisi bernilai salah', 'Komputer dimatikan'], answer: 1,
+    explanation: 'Percabangan if menjalankan blok perintah ketika ekspresi kondisinya bernilai true atau benar.'
+  },
+  {
+    id: 'q19', category: 'PERULANGAN',
+    question: 'Perhatikan pseudocode: for i = 1 sampai 4, tampilkan i. Berapa kali perintah tampilkan dijalankan?',
+    options: ['2 kali', '3 kali', '4 kali', '5 kali'], answer: 2,
+    explanation: 'Nilai i berjalan dari 1, 2, 3, hingga 4. Jadi, perintah di dalam perulangan dijalankan sebanyak empat kali.'
+  },
+  {
+    id: 'q20', category: 'FUNGSI',
+    question: 'Dalam pemrograman, fungsi (function) terutama berguna untuk ....',
+    options: ['Menghapus semua file komputer', 'Mengulang kode yang sama secara manual', 'Mengubah monitor menjadi perangkat input', 'Mengelompokkan instruksi agar dapat digunakan kembali'], answer: 3,
+    explanation: 'Fungsi mengelompokkan instruksi untuk tugas tertentu sehingga kode lebih terstruktur dan dapat dipanggil kembali tanpa menulis ulang seluruh instruksi.'
+  },
+  {
+    id: 'q21', category: 'TIPE DATA',
+    question: 'Jika variabel teks berisi "BELAJAR", berapakah hasil dari operasi panjang teks (length)?',
+    options: ['5', '6', '7', '8'], answer: 2,
+    explanation: 'Kata BELAJAR terdiri dari tujuh karakter. Properti length pada string menghitung jumlah karakter di dalam teks.'
+  },
+  {
+    id: 'q22', category: 'OPERATOR LOGIKA',
+    question: 'Operator logika AND akan menghasilkan nilai benar apabila ....',
+    options: ['Kedua kondisi bernilai benar', 'Salah satu kondisi bernilai benar', 'Kedua kondisi bernilai salah', 'Tidak ada kondisi yang diperiksa'], answer: 0,
+    explanation: 'Operator AND menghasilkan true hanya jika semua kondisi yang digabungkan bernilai true.'
+  },
+  {
+    id: 'q23', category: 'SCRATCH',
+    question: 'Pada Scratch, blok perintah yang biasanya digunakan untuk memulai skrip ketika bendera hijau diklik termasuk kategori ....',
+    options: ['Motion', 'Looks', 'Events', 'Operators'], answer: 2,
+    explanation: 'Blok ketika bendera hijau diklik termasuk kategori Events karena merespons suatu kejadian atau peristiwa.'
+  },
+  {
+    id: 'q24', category: 'FLOWCHART',
+    question: 'Pada flowchart, simbol berbentuk belah ketupat digunakan untuk menunjukkan ....',
+    options: ['Mulai atau selesai', 'Keputusan atau percabangan kondisi', 'Proses perhitungan', 'Arah aliran data saja'], answer: 1,
+    explanation: 'Simbol belah ketupat menunjukkan decision, yaitu pemeriksaan kondisi yang dapat menghasilkan cabang seperti Ya/Tidak atau Benar/Salah.'
+  },
+  {
+    id: 'q25', category: 'ELEKTRONIKA DASAR',
+    question: 'Mengapa LED pada rangkaian Arduino umumnya dipasang bersama resistor?',
+    options: ['Agar LED dapat terhubung ke Wi-Fi', 'Agar program berjalan lebih cepat', 'Untuk memperbesar tegangan tanpa batas', 'Untuk membatasi arus agar LED tidak rusak'], answer: 3,
+    explanation: 'Resistor membatasi arus yang mengalir melalui LED. Tanpa pembatas arus yang sesuai, LED dapat dialiri arus berlebihan dan rusak.'
+  },
+  {
+    id: 'q26', category: 'ROBOTIKA',
+    question: 'Komponen servo motor pada robot umumnya digunakan ketika kita perlu ....',
+    options: ['Mengatur posisi atau sudut putaran tertentu', 'Mengukur suhu ruangan', 'Menyimpan program ke internet', 'Mendeteksi warna layar monitor'], answer: 0,
+    explanation: 'Servo motor dapat diarahkan ke posisi atau sudut tertentu melalui sinyal kendali, sehingga sering digunakan pada lengan robot, capit, dan mekanisme pengarah.'
+  },
+  {
+    id: 'q27', category: 'SENSOR',
+    question: 'Sensor ultrasonik seperti HC-SR04 mengukur jarak objek dengan memanfaatkan ....',
+    options: ['Cahaya inframerah yang dipantulkan', 'Gelombang suara ultrasonik dan waktu pantulnya', 'Medan magnet bumi', 'Perubahan warna objek'], answer: 1,
+    explanation: 'Sensor ultrasonik mengirim gelombang suara berfrekuensi tinggi dan mengukur waktu hingga pantulannya diterima kembali untuk memperkirakan jarak.'
+  },
+  {
+    id: 'q28', category: 'ROBOTIKA',
+    question: 'Pada robot line follower, sensor inframerah biasanya dimanfaatkan untuk ....',
+    options: ['Mengukur kapasitas baterai', 'Menghasilkan suara', 'Membedakan pantulan permukaan jalur, misalnya hitam dan putih', 'Menghubungkan robot ke proyektor'], answer: 2,
+    explanation: 'Sensor inframerah membaca perbedaan pantulan dari permukaan. Perbedaan ini dapat digunakan robot untuk mengikuti garis pada lintasan.'
+  },
+  {
+    id: 'q29', category: 'PERANGKAT KERAS',
+    question: 'Port USB pada komputer umumnya digunakan untuk ....',
+    options: ['Mendinginkan prosesor', 'Menambah ukuran layar', 'Mengubah sistem operasi', 'Menghubungkan perangkat dan melakukan transfer data'], answer: 3,
+    explanation: 'USB merupakan antarmuka untuk menghubungkan perangkat seperti keyboard, mouse, flash drive, dan perangkat lain, termasuk untuk transfer data dan daya.'
+  },
+  {
+    id: 'q30', category: 'INTERNET',
+    question: 'Layanan penyimpanan cloud memungkinkan pengguna untuk ....',
+    options: ['Menyimpan dan mengakses file melalui server di internet', 'Memperbesar RAM fisik secara otomatis', 'Menggunakan komputer tanpa sistem operasi', 'Mengubah file digital menjadi perangkat keras'], answer: 0,
+    explanation: 'Penyimpanan cloud menyimpan data pada server yang dapat diakses melalui internet menggunakan akun dan izin yang sesuai.'
   }
 ];
