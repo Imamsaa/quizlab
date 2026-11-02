@@ -44,6 +44,7 @@
     });
     document.body.classList.toggle('exam-mode', name === 'quiz');
     document.body.classList.toggle('home-mode', name === 'home');
+    document.body.classList.toggle('result-mode', name === 'result');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -316,11 +317,14 @@
     const total = state.questions.length;
     const wrong = total - result.correct;
     $('score-value').textContent = result.score;
+    $('score-orb').style.setProperty('--score-angle', (result.score * 3.6) + 'deg');
+    $('result-exam-name').textContent = config.title || 'Kuis Interaktif';
     $('correct-count').textContent = result.correct;
     $('wrong-count').textContent = wrong;
     $('time-used').textContent = formatTime(result.elapsedSeconds);
-    $('result-heading').textContent = result.timeExpired ? 'Waktu habis!' : 'Ujian selesai!';
-    $('result-subtitle').textContent = state.player + ', berikut hasil pengerjaan kuismu.';
+    $('result-heading').textContent = result.timeExpired ? 'Waktu ujian habis' : 'Ujian selesai!';
+    $('result-subtitle').textContent = state.player + ', berikut hasil pengerjaan ujianmu.';
+    $('result-completion-status').textContent = result.timeExpired ? 'WAKTU HABIS' : 'SELESAI';
     $('review-summary').textContent = result.correct + ' benar dari ' + total + ' soal';
 
     let rank = 'TERUS BERLATIH';
