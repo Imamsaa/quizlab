@@ -26,7 +26,9 @@ Untuk pengembangan, disarankan menggunakan ekstensi Live Server di VS Code. Namu
 
 ## Styling dan Tailwind CSS
 
-QuizLab menggunakan Tailwind CSS Play CDN agar tetap dapat dijalankan langsung dari GitHub Pages tanpa proses build atau Node.js. Karena utilitas Tailwind diproses di browser, halaman membutuhkan koneksi internet untuk memuat CDN Tailwind. Komponen interaktif khusus (radio pilihan, status nomor, dialog, dan ring nilai) berada di `css/style.css`.
+QuizLab menggunakan Tailwind CSS v4 yang dikompilasi menjadi file statis `css/tailwind.css`. GitHub Actions membangun ulang file tersebut setiap kali source HTML/JavaScript/Tailwind diubah pada branch `main`. Browser hanya memuat CSS hasil kompilasi; tidak menjalankan compiler Tailwind saat halaman dibuka. Komponen interaktif khusus (radio pilihan, status nomor, dialog, dan ring nilai) berada di `css/style.css`.
+
+Untuk membangun CSS secara lokal, jalankan `npm install` lalu `npm run build:css`. Proses build memerlukan Node.js 20 atau lebih baru. File hasil build tetap dilayani sebagai file statis oleh GitHub Pages.
 
 Tampilan mengadopsi pola Material Design seperti app bar, cards, outlined fields, radio controls, dialogs, dan elevation. Aplikasi ini tetap HTML/CSS/JavaScript biasa, bukan aplikasi resmi Pusmendik/ANBK dan bukan proyek React Material UI.
 
