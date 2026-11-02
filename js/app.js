@@ -142,7 +142,6 @@
     state.durationSeconds = amount * (config.secondsPerQuestion || 60);
     state.remainingSeconds = state.durationSeconds;
     $('player-label').textContent = state.player;
-    $('side-total').textContent = amount;
     $('timer-box').classList.remove('warning');
     $('timer').textContent = formatTime(state.remainingSeconds);
     $('question-list-panel').classList.remove('mobile-open');
