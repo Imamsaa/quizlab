@@ -12,10 +12,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,400,0,0" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/tailwind.css?v=minimal-ui-20261102-1">
-  <link rel="stylesheet" href="css/style.css?v=minimal-ui-20261102-1">
-  <script src="js/questions.js?v=minimal-ui-20261102-1" defer></script>
-  <script src="js/app.js?v=minimal-ui-20261102-1" defer></script>
+  <link rel="stylesheet" href="css/tailwind.css?v=session-45m-30q-20261102">
+  <link rel="stylesheet" href="css/style.css?v=session-45m-30q-20261102">
+  <script src="js/questions.js?v=session-45m-30q-20261102" defer></script>
+  <script src="js/app.js?v=session-45m-30q-20261102" defer></script>
 </head>
 
 <body class="min-h-screen bg-slate-100 font-sans text-slate-800 antialiased">
@@ -80,16 +80,10 @@
               <input id="player-name" class="md-input" type="text" maxlength="50" placeholder="Masukkan nama lengkap" autocomplete="name" required>
             </div>
             <div>
-              <label for="question-count" class="md-label">JUMLAH SOAL YANG DIKERJAKAN</label>
-              <div class="relative">
-                <select id="question-count" class="md-input appearance-none pr-10">
-                  <option value="5">5 soal</option>
-                  <option value="10" selected>10 soal</option>
-                  <option value="all">Semua soal</option>
-                </select>
-                <span class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-slate-500">
-                  <span class="material-symbols-rounded">expand_more</span>
-                </span>
+              <span class="md-label">JUMLAH SOAL PER SESI</span>
+              <div class="md-input flex items-center justify-between bg-slate-50">
+                <strong class="font-semibold text-ink-800">30 soal</strong>
+                <span class="text-xs font-medium text-slate-500">Tetap</span>
               </div>
             </div>
 
