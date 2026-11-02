@@ -202,6 +202,7 @@
     if (!question) return;
 
     const total = state.questions.length;
+    const current = state.currentIndex + 1;
     const answered = state.answers.size;
     const progress = total ? Math.round((answered / total) * 100) : 0;
     const selectedIndex = state.answers.get(question.id);
