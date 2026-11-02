@@ -4,7 +4,7 @@ QuizLab adalah web kuis statis berbasis HTML, Tailwind CSS, CSS, dan JavaScript.
 
 ## Fitur
 
-- Antarmuka responsif bergaya Material Design dengan layout utility-first Tailwind CSS.
+- Antarmuka responsif bergaya Material Design dengan layout utility-first Tailwind CSS dan elemen visual yang difokuskan pada informasi serta tindakan penting.
 - Alur persiapan peserta → konfirmasi tes → ruang ujian → hasil dan pembahasan.
 - Identitas peserta wajib diisi sebelum ujian.
 - Timer otomatis berdasarkan jumlah soal.
