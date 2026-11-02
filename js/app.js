@@ -229,11 +229,9 @@
     const doubtful = state.doubtful.size;
     const unanswered = total - answered;
     const percent = total ? (answered / total) * 100 : 0;
-    $('answered-count').textContent = answered;
     $('count-answered').textContent = answered;
     $('count-unanswered').textContent = unanswered;
     $('count-doubt').textContent = doubtful;
-    $('mini-progress-fill').style.width = percent + '%';
   }
 
   function renderQuestionGrid() {
@@ -290,13 +288,11 @@
   function finishQuiz(timeExpired) {
     if (state.finished) return;
     const unanswered = state.questions.length - state.answers.size;
-    if (!timeExpired && unanswered > 0) {
-      const shouldFinish = window.confirm('Masih ada ' + unanswered + ' soal yang belum dijawab. Tetap akhiri ujian?');
-      if (!shouldFinish) return;
-    }
     if (!timeExpired) {
-      const shouldSubmit = window.confirm('Apakah kamu yakin ingin mengakhiri ujian dan melihat hasil?');
-      if (!shouldSubmit) return;
+      const message = unanswered > 0
+        ? 'Masih ada ' + unanswered + ' soal yang belum dijawab. Tetap akhiri ujian dan lihat hasil?'
+        : 'Semua soal sudah dijawab. Akhiri ujian dan lihat hasil?';
+      if (!window.confirm(message)) return;
     }
     state.finished = true;
     window.clearInterval(state.timerId);
@@ -387,9 +383,6 @@
   $('prev-button').addEventListener('click', goPrevious);
   $('doubt-button').addEventListener('click', toggleDoubt);
   $('finish-button').addEventListener('click', () => finishQuiz(false));
-  $('exit-button').addEventListener('click', () => {
-    if (window.confirm('Akhiri kuis sekarang? Progres jawabanmu akan dihitung sebagai hasil akhir.')) finishQuiz(false);
-  });
   $('retry-button').addEventListener('click', () => {
     $('review-section').hidden = true;
     startQuiz();
