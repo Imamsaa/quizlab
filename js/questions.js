@@ -17,7 +17,7 @@ window.QUIZ_CONFIG = {
   description: 'Asah logika dan pengetahuan digitalmu melalui kuis singkat ini.',
   questionsPerSession: 30,
   sessionDurationMinutes: 45,
-  googleAppsScriptUrl: '',
+  googleAppsScriptUrl: 'https://script.google.com/macros/s/AKfycbzRAqVPOOe982Rozm6K--1n2ZvKUqx5gYnVYjqs-zFtvYrgVvWMzNDNn1NHO1UAKTll/exec',
   shuffleQuestions: true,
   shuffleOptions: true,
   showExplanation: true
