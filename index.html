@@ -8,10 +8,10 @@
   <title>QuizLab CBT — Simulasi Ujian</title>
 
 
-  <link rel="stylesheet" href="css/tailwind.css?v=session-persistence-20261102-1">
-  <link rel="stylesheet" href="css/style.css?v=session-persistence-20261102-1">
-  <script src="js/questions.js?v=session-persistence-20261102-1" defer></script>
-  <script src="js/app.js?v=session-persistence-20261102-1" defer></script>
+  <link rel="stylesheet" href="css/tailwind.css?v=google-sheets-20261102-1">
+  <link rel="stylesheet" href="css/style.css?v=google-sheets-20261102-1">
+  <script src="js/questions.js?v=google-sheets-20261102-1" defer></script>
+  <script src="js/app.js?v=google-sheets-20261102-1" defer></script>
 </head>
 
 <body class="min-h-screen bg-slate-100 font-sans text-slate-800 antialiased">
@@ -35,18 +35,18 @@
 
             <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
               <div class="md-metric">
-                <svg class="ui-icon text-primary-600" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=session-persistence-20261102-1#format-list-numbered"></use></svg>
+                <svg class="ui-icon text-primary-600" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=google-sheets-20261102-1#format-list-numbered"></use></svg>
                 <span><small>SOAL TERSEDIA</small><strong><b id="total-questions">12</b> soal</strong></span>
               </div>
               <div class="md-metric">
-                <svg class="ui-icon text-primary-600" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=session-persistence-20261102-1#schedule"></use></svg>
+                <svg class="ui-icon text-primary-600" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=google-sheets-20261102-1#schedule"></use></svg>
                 <span><small>ALOKASI WAKTU</small><strong id="time-estimate">10 menit</strong></span>
               </div>
             </div>
 
             <div class="border-t border-slate-100 pt-4">
               <div class="mb-3 flex items-center gap-2 text-sm font-bold text-ink-800">
-                <svg class="ui-icon text-lg text-primary-600" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=session-persistence-20261102-1#info"></use></svg>
+                <svg class="ui-icon text-lg text-primary-600" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=google-sheets-20261102-1#info"></use></svg>
                 Petunjuk Pengerjaan
               </div>
               <ol class="space-y-2 pl-5 text-sm leading-5 text-slate-600 marker:font-bold marker:text-primary-700">
@@ -58,7 +58,7 @@
 
             <div class="flex flex-wrap items-center justify-between gap-3 rounded-lg bg-slate-50 px-4 py-3">
               <span class="flex items-center gap-2 text-xs font-medium text-slate-500">
-                <svg class="ui-icon text-amber-500" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=session-persistence-20261102-1#emoji-events"></use></svg>
+                <svg class="ui-icon text-amber-500" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=google-sheets-20261102-1#emoji-events"></use></svg>
                 Rekor nilai terbaik
               </span>
               <strong id="best-score-home" class="text-sm font-bold text-ink-800">Belum ada rekor</strong>
@@ -85,7 +85,7 @@
             </div>
 
             <button id="start-button" class="md-button md-button-primary w-full" type="button">
-              Konfirmasi Data <svg class="ui-icon text-lg" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=session-persistence-20261102-1#arrow-forward"></use></svg>
+              Konfirmasi Data <svg class="ui-icon text-lg" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=google-sheets-20261102-1#arrow-forward"></use></svg>
             </button>
           </div>
         </section>
@@ -116,12 +116,12 @@
           </div>
           <div class="border-t border-slate-100 bg-slate-50 px-5 py-5 sm:px-7">
             <div class="mb-4 flex items-start gap-3">
-              <svg class="ui-icon text-primary-700" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=session-persistence-20261102-1#info"></use></svg>
+              <svg class="ui-icon text-primary-700" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=google-sheets-20261102-1#info"></use></svg>
               <div><strong class="block text-sm text-ink-800">Perhatikan sebelum mulai</strong><p class="mt-1 text-xs leading-5 text-slate-600">Timer berjalan setelah ujian dimulai. Kamu dapat berpindah soal dan mengubah jawaban. Menyalin, memotong, menempel teks, atau berpindah tab akan mengurangi waktu 5 menit setiap pelanggaran.</p></div>
             </div>
             <div class="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
               <button id="back-to-settings-button" class="md-button md-button-outlined" type="button">Kembali</button>
-              <button id="begin-exam-button" class="md-button md-button-primary" type="button">Mulai Ujian <svg class="ui-icon text-lg" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=session-persistence-20261102-1#play-arrow"></use></svg></button>
+              <button id="begin-exam-button" class="md-button md-button-primary" type="button">Mulai Ujian <svg class="ui-icon text-lg" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=google-sheets-20261102-1#play-arrow"></use></svg></button>
             </div>
           </div>
         </div>
@@ -138,14 +138,14 @@
           </div>
           <div class="flex items-center gap-2">
             <button id="info-button" class="md-icon-button inline-flex" type="button" aria-label="Informasi pengerjaan" title="Informasi pengerjaan">
-              <svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=session-persistence-20261102-1#info"></use></svg>
+              <svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=google-sheets-20261102-1#info"></use></svg>
             </button>
             <div id="timer-box" class="flex min-w-[118px] items-center gap-2 rounded-lg border border-blue-100 bg-primary-50 px-3 py-2 text-primary-800">
-              <svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=session-persistence-20261102-1#timer"></use></svg>
+              <svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=google-sheets-20261102-1#timer"></use></svg>
               <span><small class="block text-[9px] font-bold uppercase tracking-wider text-slate-500">Sisa waktu</small><strong id="timer" class="block font-bold tabular-nums">10:00</strong></span>
             </div>
             <button id="question-list-toggle" class="md-button md-button-outlined !min-h-10 !px-3" type="button">
-              <svg class="ui-icon text-lg" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=session-persistence-20261102-1#grid-view"></use></svg><span class="hidden sm:inline">Daftar Soal</span><span class="sm:hidden">Soal</span>
+              <svg class="ui-icon text-lg" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=google-sheets-20261102-1#grid-view"></use></svg><span class="hidden sm:inline">Daftar Soal</span><span class="sm:hidden">Soal</span>
             </button>
           </div>
         </div>
@@ -171,7 +171,7 @@
 
             <div class="space-y-5 p-4 sm:p-6">
               <div id="question-context" class="hidden rounded-lg border border-blue-100 bg-primary-50/70 p-4">
-                <div class="mb-2 flex items-center gap-2 text-xs font-bold text-primary-800"><svg class="ui-icon text-base" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=session-persistence-20261102-1#menu-book"></use></svg> KONTEKS SOAL</div>
+                <div class="mb-2 flex items-center gap-2 text-xs font-bold text-primary-800"><svg class="ui-icon text-base" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=google-sheets-20261102-1#menu-book"></use></svg> KONTEKS SOAL</div>
                 <p id="context-text" class="whitespace-pre-line text-sm leading-6 text-slate-700"></p>
               </div>
               <div>
@@ -183,10 +183,10 @@
             </div>
 
             <div class="flex flex-col-reverse gap-2 border-t border-slate-100 bg-slate-50 p-3 sm:flex-row sm:items-center sm:justify-between sm:px-5">
-              <button id="prev-button" class="md-button md-button-outlined" type="button"><svg class="ui-icon text-lg" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=session-persistence-20261102-1#chevron-left"></use></svg> Soal Sebelumnya</button>
+              <button id="prev-button" class="md-button md-button-outlined" type="button"><svg class="ui-icon text-lg" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=google-sheets-20261102-1#chevron-left"></use></svg> Soal Sebelumnya</button>
               <div class="flex flex-col-reverse gap-2 sm:flex-row">
-                <button id="doubt-button" class="md-button md-button-warning" type="button" aria-pressed="false"><svg class="ui-icon text-lg" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=session-persistence-20261102-1#flag"></use></svg> Ragu-ragu</button>
-                <button id="next-button" class="md-button md-button-primary" type="button">Soal Berikutnya <svg class="ui-icon text-lg" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=session-persistence-20261102-1#chevron-right"></use></svg></button>
+                <button id="doubt-button" class="md-button md-button-warning" type="button" aria-pressed="false"><svg class="ui-icon text-lg" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=google-sheets-20261102-1#flag"></use></svg> Ragu-ragu</button>
+                <button id="next-button" class="md-button md-button-primary" type="button">Soal Berikutnya <svg class="ui-icon text-lg" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=google-sheets-20261102-1#chevron-right"></use></svg></button>
               </div>
             </div>
           </article>
@@ -196,7 +196,7 @@
         <aside id="question-list-panel" class="question-list-panel md-card overflow-hidden lg:sticky lg:top-24">
           <div class="flex items-center justify-between border-b border-slate-100 px-4 py-4">
             <div><p class="md-overline">NAVIGASI UJIAN</p><h2 class="mt-0.5 font-bold text-ink-800">Daftar Soal</h2></div>
-            <button id="list-close-button" class="md-icon-button" type="button" aria-label="Tutup daftar soal" title="Tutup daftar soal"><svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=session-persistence-20261102-1#close"></use></svg></button>
+            <button id="list-close-button" class="md-icon-button" type="button" aria-label="Tutup daftar soal" title="Tutup daftar soal"><svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=google-sheets-20261102-1#close"></use></svg></button>
           </div>
           <div class="grid grid-cols-3 divide-x divide-slate-100 border-b border-slate-100">
             <div class="px-2 py-3 text-center"><strong id="count-answered" class="block text-xl font-bold text-emerald-700">0</strong><span class="mt-0.5 block text-[10px] text-slate-500">Terjawab</span></div>
@@ -211,7 +211,7 @@
               <div class="flex items-center gap-2"><span class="legend-dot legend-unanswered"></span>Belum dijawab</div>
               <div class="flex items-center gap-2"><span class="legend-dot legend-doubtful"></span>Ragu-ragu</div>
             </div>
-            <button id="finish-button" class="md-button md-button-success mt-5 w-full" type="button"><svg class="ui-icon text-lg" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=session-persistence-20261102-1#task-alt"></use></svg> Selesai Tes</button>
+            <button id="finish-button" class="md-button md-button-success mt-5 w-full" type="button"><svg class="ui-icon text-lg" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=google-sheets-20261102-1#task-alt"></use></svg> Selesai Tes</button>
             <p id="finish-requirement" class="mt-2 text-center text-[11px] leading-5 text-slate-500" role="status">Jawab semua soal dan hapus tanda ragu-ragu untuk menyelesaikan tes.</p>
           </div>
         </aside>
@@ -226,7 +226,7 @@
           <p id="result-subtitle" class="mt-2 text-sm text-slate-600">Peserta, berikut hasil pengerjaan ujianmu.</p>
         </div>
         <div class="flex items-center gap-3 rounded-xl border border-emerald-200 bg-white px-4 py-3 shadow-material">
-          <span class="grid h-10 w-10 place-items-center rounded-full bg-emerald-50 text-emerald-700"><svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=session-persistence-20261102-1#check-circle"></use></svg></span>
+          <span class="grid h-10 w-10 place-items-center rounded-full bg-emerald-50 text-emerald-700"><svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=google-sheets-20261102-1#check-circle"></use></svg></span>
           <span><small class="block text-[10px] font-bold uppercase tracking-wider text-slate-500">STATUS PENGERJAAN</small><strong id="result-completion-status" class="mt-0.5 block text-sm text-emerald-700">SELESAI</strong></span>
         </div>
       </div>
@@ -242,29 +242,30 @@
             <h2 id="result-message-title" class="mt-3 text-xl font-bold text-ink-800">Perjalanan belajarmu berlanjut.</h2>
             <p id="result-message-text" class="mt-2 max-w-2xl text-sm leading-6 text-slate-600">Setiap latihan adalah kesempatan untuk menjadi lebih baik. Pelajari pembahasannya dan coba lagi.</p>
             <div class="mt-4 inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-600">
-              <svg class="ui-icon text-base text-primary-700" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=session-persistence-20261102-1#menu-book"></use></svg>
+              <svg class="ui-icon text-base text-primary-700" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=google-sheets-20261102-1#menu-book"></use></svg>
               Nama tes: <strong id="result-exam-name" class="font-semibold text-ink-800">Kuis Informatika</strong>
             </div>
           </div>
         </div>
         <div class="grid border-t border-slate-100 sm:grid-cols-3 sm:divide-x sm:divide-slate-100">
           <div class="flex items-center gap-3 px-5 py-4 sm:px-7">
-            <span class="grid h-10 w-10 place-items-center rounded-lg bg-emerald-50 text-emerald-700"><svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=session-persistence-20261102-1#check"></use></svg></span>
+            <span class="grid h-10 w-10 place-items-center rounded-lg bg-emerald-50 text-emerald-700"><svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=google-sheets-20261102-1#check"></use></svg></span>
             <span><strong id="correct-count" class="block text-xl font-bold text-ink-800">0</strong><small class="text-xs text-slate-500">Jawaban benar</small></span>
           </div>
           <div class="flex items-center gap-3 border-t border-slate-100 px-5 py-4 sm:border-t-0 sm:px-7">
-            <span class="grid h-10 w-10 place-items-center rounded-lg bg-red-50 text-red-700"><svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=session-persistence-20261102-1#close"></use></svg></span>
+            <span class="grid h-10 w-10 place-items-center rounded-lg bg-red-50 text-red-700"><svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=google-sheets-20261102-1#close"></use></svg></span>
             <span><strong id="wrong-count" class="block text-xl font-bold text-ink-800">0</strong><small class="text-xs text-slate-500">Salah / kosong</small></span>
           </div>
           <div class="flex items-center gap-3 border-t border-slate-100 px-5 py-4 sm:border-t-0 sm:px-7">
-            <span class="grid h-10 w-10 place-items-center rounded-lg bg-blue-50 text-primary-700"><svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=session-persistence-20261102-1#schedule"></use></svg></span>
+            <span class="grid h-10 w-10 place-items-center rounded-lg bg-blue-50 text-primary-700"><svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=google-sheets-20261102-1#schedule"></use></svg></span>
             <span><strong id="time-used" class="block text-xl font-bold tabular-nums text-ink-800">00:00</strong><small class="text-xs text-slate-500">Waktu digunakan</small></span>
           </div>
         </div>
         <div class="flex flex-col gap-2 border-t border-slate-100 bg-slate-50 p-4 sm:flex-row sm:justify-end sm:px-7">
-          <button id="retry-button" class="md-button md-button-outlined" type="button"><svg class="ui-icon text-lg" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=session-persistence-20261102-1#replay"></use></svg> Ulangi Ujian</button>
-          <button id="review-button" class="md-button md-button-primary" type="button">Lihat Pembahasan <svg class="ui-icon text-lg" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=session-persistence-20261102-1#expand-more"></use></svg></button>
+          <button id="retry-button" class="md-button md-button-outlined" type="button"><svg class="ui-icon text-lg" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=google-sheets-20261102-1#replay"></use></svg> Ulangi Ujian</button>
+          <button id="review-button" class="md-button md-button-primary" type="button">Lihat Pembahasan <svg class="ui-icon text-lg" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=google-sheets-20261102-1#expand-more"></use></svg></button>
         </div>
+        <p id="sheet-sync-status" class="hidden px-5 pb-4 text-right text-xs leading-5 text-slate-500 sm:px-7" role="status" aria-live="polite"></p>
       </section>
 
       <section id="review-section" class="space-y-3" hidden>
@@ -282,8 +283,8 @@
   <div id="instruction-modal" class="md-dialog-backdrop" hidden>
     <div class="md-dialog" role="dialog" aria-modal="true" aria-labelledby="instruction-title">
       <div class="flex items-center justify-between gap-3 border-b border-slate-100 px-5 py-4">
-        <div class="flex items-center gap-2"><svg class="ui-icon text-primary-700" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=session-persistence-20261102-1#info"></use></svg><h2 id="instruction-title" class="font-bold text-ink-800">Informasi Pengerjaan</h2></div>
-        <button id="info-close-button" class="md-icon-button" type="button" aria-label="Tutup"><svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=session-persistence-20261102-1#close"></use></svg></button>
+        <div class="flex items-center gap-2"><svg class="ui-icon text-primary-700" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=google-sheets-20261102-1#info"></use></svg><h2 id="instruction-title" class="font-bold text-ink-800">Informasi Pengerjaan</h2></div>
+        <button id="info-close-button" class="md-icon-button" type="button" aria-label="Tutup"><svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=google-sheets-20261102-1#close"></use></svg></button>
       </div>
       <div class="px-5 py-4">
         <ol class="list-decimal space-y-2 pl-5 text-sm leading-6 text-slate-600">
@@ -303,7 +304,7 @@
   <div id="finish-modal" class="md-dialog-backdrop" hidden>
     <div class="md-dialog max-w-md" role="dialog" aria-modal="true" aria-labelledby="finish-title">
       <div class="flex items-start gap-3 px-5 py-5">
-        <span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-amber-50 text-amber-700"><svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=session-persistence-20261102-1#help"></use></svg></span>
+        <span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-amber-50 text-amber-700"><svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=google-sheets-20261102-1#help"></use></svg></span>
         <div><h2 id="finish-title" class="font-bold text-ink-800">Akhiri Ujian?</h2><p id="finish-confirm-message" class="mt-2 text-sm leading-6 text-slate-600">Pastikan semua jawaban sudah diperiksa.</p></div>
       </div>
       <div class="flex flex-col-reverse gap-2 border-t border-slate-100 bg-slate-50 px-5 py-3 sm:flex-row sm:justify-end">

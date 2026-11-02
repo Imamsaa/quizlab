@@ -619,6 +619,59 @@
     $('finish-cancel-button').focus();
   }
 
+  function sendResultToGoogleSheets(name, score) {
+    const endpoint = String(config.googleAppsScriptUrl || '').trim();
+    const status = $('sheet-sync-status');
+
+    if (!endpoint) {
+      status.hidden = true;
+      return;
+    }
+
+    if (!/^https:\/\/script\.google\.com\/macros\/s\/[^/]+\/exec(?:\?.*)?$/.test(endpoint)) {
+      status.hidden = false;
+      status.textContent = 'URL Google Apps Script belum valid. Hasil hanya tersimpan di perangkat ini.';
+      return;
+    }
+
+    status.hidden = false;
+    status.textContent = 'Mengirim nama, waktu submit, dan nilai akhir ke Google Sheets…';
+
+    const frameName = 'quizlab-sheet-submit-' + Date.now();
+    const frame = document.createElement('iframe');
+    frame.name = frameName;
+    frame.title = 'Pengiriman hasil QuizLab';
+    frame.style.display = 'none';
+
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = endpoint;
+    form.target = frameName;
+    form.style.display = 'none';
+
+    const fields = { name, score: String(score) };
+    Object.entries(fields).forEach(([fieldName, value]) => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = fieldName;
+      input.value = String(value);
+      form.appendChild(input);
+    });
+
+    document.body.append(frame, form);
+
+    try {
+      form.submit();
+      status.textContent = 'Permintaan rekap sudah dikirim. Periksa Google Sheets untuk memastikan hasil tercatat.';
+    } catch (error) {
+      status.textContent = 'Pengiriman hasil gagal dimulai. Nilai tetap tersedia pada layar ini.';
+      console.error('QuizLab: gagal mengirim hasil ke Google Sheets.', error);
+    } finally {
+      form.remove();
+      window.setTimeout(() => frame.remove(), 120000);
+    }
+  }
+
   function submitQuiz(timeExpired) {
     if (state.finished) return;
     if (!timeExpired && !canFinishManually()) {
@@ -645,6 +698,7 @@
     renderResults({ correct, score, elapsedSeconds, timeExpired });
     updateBestScore(score);
     showScreen('result');
+    sendResultToGoogleSheets(state.player, score);
   }
 
   function renderResults(result) {

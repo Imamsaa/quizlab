@@ -89,6 +89,53 @@ Untuk soal berbasis bacaan, properti `context` bersifat opsional:
 }
 ```
 
+## Integrasi Google Sheets (Apps Script)
+
+QuizLab dapat mengirim rekap hasil setiap peserta ke Google Sheets. Data yang disimpan hanya tiga kolom:
+
+1. Nama peserta
+2. Waktu submit (dibuat oleh server Apps Script)
+3. Nilai akhir (0–100)
+
+Jawaban tiap soal, urutan soal, data pelanggaran, dan isi localStorage tidak dikirim ke Google Sheets.
+
+### 1. Siapkan spreadsheet dan Apps Script
+
+1. Buat Google Spreadsheet baru.
+2. Beri nama misalnya \`Rekap Nilai QuizLab\`.
+3. Buka **Extensions → Apps Script** dari spreadsheet tersebut.
+4. Buka file \`apps-script/Code.gs\` dari repository QuizLab, salin seluruh isinya ke editor Apps Script, lalu simpan.
+5. Karena script dibuat dari spreadsheet yang sama, biarkan \`SPREADSHEET_ID\` kosong. Script akan membuat tab \`Hasil QuizLab\` dan header kolom secara otomatis saat hasil pertama masuk.
+
+Jika Apps Script dibuat sebagai project standalone, isi \`SPREADSHEET_ID\` dengan ID spreadsheet.
+
+### 2. Deploy sebagai Web App
+
+1. Di Apps Script, klik **Deploy → New deployment**.
+2. Pilih tipe **Web app**.
+3. **Execute as:** Me.
+4. **Who has access:** Anyone.
+5. Klik **Deploy**, lalu selesaikan otorisasi Google.
+6. Salin URL Web App yang berakhiran \`/exec\`.
+
+Untuk penggunaan internal kelas, URL endpoint ini dipasang di konfigurasi frontend. Siapa pun yang memiliki URL Web App dengan akses tersebut dapat mengirim data ke spreadsheet, jadi jangan gunakan endpoint ini untuk data sensitif.
+
+### 3. Hubungkan URL ke QuizLab
+
+Buka \`js/questions.js\`, lalu isi properti berikut pada \`window.QUIZ_CONFIG\`:
+
+\`\`\`js
+googleAppsScriptUrl: 'https://script.google.com/macros/s/ID_DEPLOYMENT/exec',
+\`\`\`
+
+Ganti URL contoh dengan URL Web App milikmu, simpan, lalu push perubahan ke branch \`main\`. GitHub Actions akan membangun Tailwind dan GitHub Pages akan menerbitkan versi terbaru.
+
+### 4. Cara kerja pengiriman
+
+Saat peserta menyelesaikan ujian (atau waktu habis), QuizLab menghitung nilai akhir dan mengirim nama serta nilai ke Apps Script. Waktu submit dicatat menggunakan waktu server Google. Pengiriman menggunakan form tersembunyi agar tidak membutuhkan konfigurasi CORS atau library tambahan.
+
+Pesan pada layar hasil menyatakan bahwa permintaan pengiriman telah dikirim. Karena respons Apps Script lintas domain tidak dibaca langsung oleh halaman, periksa tab \`Hasil QuizLab\` untuk memastikan baris benar-benar tercatat.
+
 ## Deploy ke GitHub Pages
 
 1. Buat repository baru di GitHub, misalnya `quiz-informatika`.
@@ -103,6 +150,5 @@ Untuk repository khusus `USERNAME.github.io`, URL-nya biasanya `https://USERNAME
 ## Catatan penting
 
 - Proyek ini murni frontend. Tidak ada login, database online, atau dashboard admin.
-- Rekor hanya tersimpan pada browser/perangkat yang digunakan. Hasil peserta tidak otomatis terkumpul ke guru.
-- Jika nanti membutuhkan rekap nilai terpusat, autentikasi, atau dashboard guru, tambahkan backend seperti Firebase atau Google Apps Script.
+- Rekor terbaik tetap tersimpan pada browser/perangkat. Jika `googleAppsScriptUrl` sudah diisi, rekap nama, waktu submit, dan nilai akhir juga dikirim ke Google Sheets.
 - Google Fonts digunakan untuk tipografi. Jika font eksternal tidak dapat diakses, browser akan memakai font cadangan.
