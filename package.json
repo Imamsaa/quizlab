@@ -1,0 +1,13 @@
+{
+  "name": "quizlab",
+  "version": "1.0.0",
+  "private": true,
+  "description": "QuizLab CBT static website with Tailwind CSS",
+  "scripts": {
+    "build:css": "@tailwindcss/cli -i ./src/input.css -o ./css/tailwind.css --minify"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "4.1.10",
+    "tailwindcss": "4.1.10"
+  }
+}
