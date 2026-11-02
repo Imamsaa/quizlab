@@ -16,11 +16,13 @@
     questions: [],
     currentIndex: 0,
     answers: new Map(),
+    doubtful: new Set(),
     startTime: 0,
     durationSeconds: 0,
     remainingSeconds: 0,
     timerId: null,
-    finished: false
+    finished: false,
+    questionFontSize: 21
   };
 
   const escapeHTML = (value) => String(value).replace(/[&<>"']/g, (char) => ({
@@ -40,6 +42,7 @@
     Object.entries(screens).forEach(([key, element]) => {
       element.hidden = key !== name;
     });
+    document.body.classList.toggle('exam-mode', name === 'quiz');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -47,7 +50,7 @@
     const safe = Math.max(0, totalSeconds);
     const minutes = Math.floor(safe / 60).toString().padStart(2, '0');
     const seconds = (safe % 60).toString().padStart(2, '0');
-    return `${minutes}:${seconds}`;
+    return minutes + ':' + seconds;
   }
 
   function showToast(message) {
@@ -60,7 +63,7 @@
 
   function getBestScore() {
     try {
-      const raw = localStorage.getItem(`quizlab-best-${config.id || 'default'}`);
+      const raw = localStorage.getItem('quizlab-best-' + (config.id || 'default'));
       return raw ? JSON.parse(raw) : null;
     } catch (error) {
       return null;
@@ -71,7 +74,11 @@
     const current = getBestScore();
     if (!current || score > current.score) {
       try {
-        localStorage.setItem(`quizlab-best-${config.id || 'default'}`, JSON.stringify({ score, player: state.player, date: new Date().toISOString() }));
+        localStorage.setItem('quizlab-best-' + (config.id || 'default'), JSON.stringify({
+          score,
+          player: state.player,
+          date: new Date().toISOString()
+        }));
       } catch (error) {
         // Kuis tetap berjalan meskipun penyimpanan browser tidak tersedia.
       }
@@ -81,7 +88,7 @@
 
   function renderBestScore() {
     const best = getBestScore();
-    $('best-score-home').textContent = best ? `REKOR: ${best.score}/100` : 'REKOR: —';
+    $('best-score-home').textContent = best ? 'REKOR: ' + best.score + '/100' : 'REKOR: —';
   }
 
   function setupHome() {
@@ -95,7 +102,7 @@
     });
     if (questionBank.length < 10 && questionBank.length >= 5) countSelect.value = '5';
     if (questionBank.length < 5) {
-      countSelect.innerHTML = `<option value="all">Semua soal (${questionBank.length})</option>`;
+      countSelect.innerHTML = '<option value="all">Semua soal (' + questionBank.length + ')</option>';
     }
     updateTimeEstimate();
     renderBestScore();
@@ -105,7 +112,7 @@
     const chosen = $('question-count').value;
     const count = chosen === 'all' ? questionBank.length : Math.min(Number(chosen), questionBank.length);
     const minutes = Math.ceil((count * (config.secondsPerQuestion || 60)) / 60);
-    $('time-estimate').textContent = `${minutes} menit`;
+    $('time-estimate').textContent = minutes + ' menit';
   }
 
   function startQuiz() {
@@ -128,14 +135,19 @@
     });
     state.currentIndex = 0;
     state.answers = new Map();
+    state.doubtful = new Set();
     state.finished = false;
+    state.questionFontSize = 21;
     state.startTime = Date.now();
     state.durationSeconds = amount * (config.secondsPerQuestion || 60);
     state.remainingSeconds = state.durationSeconds;
-    $('player-label').textContent = `PESERTA: ${state.player.toUpperCase()}`;
+    $('player-label').textContent = state.player;
     $('side-total').textContent = amount;
     $('timer-box').classList.remove('warning');
     $('timer').textContent = formatTime(state.remainingSeconds);
+    $('question-list-panel').classList.remove('mobile-open');
+    $('question-list-panel').classList.remove('is-collapsed');
+    $('instruction-modal').hidden = true;
     showScreen('quiz');
     renderQuestion();
     startTimer();
@@ -157,31 +169,53 @@
     const total = state.questions.length;
     const current = state.currentIndex + 1;
     const progress = Math.round((current / total) * 100);
-    $('progress-text').textContent = `SOAL ${current} DARI ${total}`;
-    $('progress-percent').textContent = `${progress}%`;
-    $('progress-fill').style.width = `${progress}%`;
-    $('question-number').textContent = `PERTANYAAN ${String(current).padStart(2, '0')}`;
+    const selectedIndex = state.answers.get(question.id);
+
+    $('progress-text').textContent = 'SOAL ' + current + ' DARI ' + total;
+    $('progress-percent').textContent = progress + '%';
+    $('progress-fill').style.width = progress + '%';
+    $('question-number').textContent = 'Soal nomor ' + current;
     $('question-category').textContent = question.category || 'KUIS';
     $('question-text').textContent = question.question;
+    $('question-text').style.fontSize = state.questionFontSize + 'px';
 
-    const selectedIndex = state.answers.get(question.id);
     const options = $('options-list');
     options.innerHTML = '';
     question.choices.forEach((choice, index) => {
-      const button = document.createElement('button');
-      button.type = 'button';
-      button.className = `option-button${selectedIndex === index ? ' selected' : ''}`;
-      button.setAttribute('aria-pressed', selectedIndex === index ? 'true' : 'false');
-      button.innerHTML = `<span class="option-key">${String.fromCharCode(65 + index)}</span><span>${escapeHTML(choice.text)}</span>`;
-      button.addEventListener('click', () => selectAnswer(question.id, index));
-      options.appendChild(button);
+      const label = document.createElement('label');
+      label.className = 'exam-option' + (selectedIndex === index ? ' selected' : '');
+      label.setAttribute('role', 'radio');
+      label.setAttribute('aria-checked', selectedIndex === index ? 'true' : 'false');
+      label.tabIndex = 0;
+      const input = document.createElement('span');
+      input.className = 'exam-radio' + (selectedIndex === index ? ' checked' : '');
+      input.setAttribute('aria-hidden', 'true');
+      const key = document.createElement('span');
+      key.className = 'exam-option-key';
+      key.textContent = String.fromCharCode(65 + index) + '.';
+      const text = document.createElement('span');
+      text.className = 'exam-option-text';
+      text.textContent = choice.text;
+      label.append(input, key, text);
+      label.addEventListener('click', () => selectAnswer(question.id, index));
+      label.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          selectAnswer(question.id, index);
+        }
+      });
+      options.appendChild(label);
     });
 
     $('prev-button').disabled = state.currentIndex === 0;
     const isLast = state.currentIndex === total - 1;
-    $('next-button').innerHTML = isLast ? 'Selesaikan Kuis <span aria-hidden="true">✓</span>' : 'Selanjutnya <span aria-hidden="true">→</span>';
-    $('next-button').disabled = selectedIndex === undefined;
-    updateAnsweredProgress();
+    $('next-button').innerHTML = isLast ? 'Selesaikan Ujian <span aria-hidden="true">›</span>' : 'Soal berikutnya <span aria-hidden="true">›</span>';
+    $('doubt-button').classList.toggle('active', state.doubtful.has(question.id));
+    $('doubt-button').setAttribute('aria-pressed', state.doubtful.has(question.id) ? 'true' : 'false');
+    $('doubt-button').innerHTML = '<span class="doubt-square" aria-hidden="true"></span> ' +
+      (state.doubtful.has(question.id) ? 'Hapus tanda ragu' : 'Ragu-ragu');
+    updateExamSummary();
+    renderQuestionGrid();
   }
 
   function selectAnswer(questionId, optionIndex) {
@@ -189,16 +223,55 @@
     renderQuestion();
   }
 
-  function updateAnsweredProgress() {
-    const answered = state.answers.size;
+  function updateExamSummary() {
     const total = state.questions.length;
+    const answered = state.answers.size;
+    const doubtful = state.doubtful.size;
+    const unanswered = total - answered;
     const percent = total ? (answered / total) * 100 : 0;
     $('answered-count').textContent = answered;
-    $('mini-progress-fill').style.width = `${percent}%`;
+    $('count-answered').textContent = answered;
+    $('count-unanswered').textContent = unanswered;
+    $('count-doubt').textContent = doubtful;
+    $('mini-progress-fill').style.width = percent + '%';
+  }
+
+  function renderQuestionGrid() {
+    const grid = $('question-grid');
+    grid.innerHTML = '';
+    state.questions.forEach((question, index) => {
+      const button = document.createElement('button');
+      const isCurrent = index === state.currentIndex;
+      const isAnswered = state.answers.has(question.id);
+      const isDoubtful = state.doubtful.has(question.id);
+      let status = 'unanswered';
+      if (isAnswered) status = 'answered';
+      if (isDoubtful) status = 'doubtful';
+      if (isCurrent) status = 'current';
+      button.type = 'button';
+      button.className = 'question-number-button ' + status;
+      button.textContent = index + 1;
+      button.setAttribute('aria-label', 'Buka soal nomor ' + (index + 1) + (isAnswered ? ', sudah dijawab' : ', belum dijawab') + (isDoubtful ? ', ragu-ragu' : ''));
+      button.setAttribute('aria-current', isCurrent ? 'step' : 'false');
+      button.addEventListener('click', () => {
+        state.currentIndex = index;
+        renderQuestion();
+        if (window.matchMedia('(max-width: 820px)').matches) {
+          $('question-list-panel').classList.remove('mobile-open');
+        }
+      });
+      grid.appendChild(button);
+    });
+  }
+
+  function toggleDoubt() {
+    const questionId = state.questions[state.currentIndex].id;
+    if (state.doubtful.has(questionId)) state.doubtful.delete(questionId);
+    else state.doubtful.add(questionId);
+    renderQuestion();
   }
 
   function goNext() {
-    if (state.answers.get(state.questions[state.currentIndex].id) === undefined) return;
     if (state.currentIndex < state.questions.length - 1) {
       state.currentIndex += 1;
       renderQuestion();
@@ -218,8 +291,12 @@
     if (state.finished) return;
     const unanswered = state.questions.length - state.answers.size;
     if (!timeExpired && unanswered > 0) {
-      const shouldFinish = window.confirm(`Masih ada ${unanswered} soal yang belum dijawab. Tetap akhiri kuis?`);
+      const shouldFinish = window.confirm('Masih ada ' + unanswered + ' soal yang belum dijawab. Tetap akhiri ujian?');
       if (!shouldFinish) return;
+    }
+    if (!timeExpired) {
+      const shouldSubmit = window.confirm('Apakah kamu yakin ingin mengakhiri ujian dan melihat hasil?');
+      if (!shouldSubmit) return;
     }
     state.finished = true;
     window.clearInterval(state.timerId);
@@ -241,9 +318,9 @@
     $('correct-count').textContent = result.correct;
     $('wrong-count').textContent = wrong;
     $('time-used').textContent = formatTime(result.elapsedSeconds);
-    $('result-heading').textContent = result.timeExpired ? 'Waktu habis!' : 'Kuis selesai!';
-    $('result-subtitle').textContent = `${state.player}, berikut hasil pengerjaan kuismu.`;
-    $('review-summary').textContent = `${result.correct} benar dari ${total} soal`;
+    $('result-heading').textContent = result.timeExpired ? 'Waktu habis!' : 'Ujian selesai!';
+    $('result-subtitle').textContent = state.player + ', berikut hasil pengerjaan kuismu.';
+    $('review-summary').textContent = result.correct + ' benar dari ' + total + ' soal';
 
     let rank = 'TERUS BERLATIH';
     let title = 'Perjalanan belajarmu berlanjut.';
@@ -275,12 +352,12 @@
       const details = document.createElement('details');
       details.className = 'review-item';
       const summary = document.createElement('summary');
-      summary.innerHTML = `<span class="review-index">${String(index + 1).padStart(2, '0')}</span><span class="review-question">${escapeHTML(question.question)}</span><span class="review-status ${isCorrect ? 'good' : 'bad'}">${isCorrect ? '✓ BENAR' : '× PERLU DIPERBAIKI'}</span>`;
+      summary.innerHTML = '<span class="review-index">' + String(index + 1).padStart(2, '0') + '</span><span class="review-question">' + escapeHTML(question.question) + '</span><span class="review-status ' + (isCorrect ? 'good' : 'bad') + '">' + (isCorrect ? '✓ BENAR' : '× PERLU DIPERBAIKI') + '</span>';
       const content = document.createElement('div');
       content.className = 'review-content';
       const answerLine = document.createElement('p');
       answerLine.className = 'review-answer';
-      answerLine.innerHTML = `<strong>Jawabanmu:</strong> ${selectedChoice ? escapeHTML(selectedChoice.text) : '<em>Tidak dijawab</em>'}<br><strong>Jawaban benar:</strong> ${escapeHTML(correctChoice.text)}`;
+      answerLine.innerHTML = '<strong>Jawabanmu:</strong> ' + (selectedChoice ? escapeHTML(selectedChoice.text) : '<em>Tidak dijawab</em>') + '<br><strong>Jawaban benar:</strong> ' + escapeHTML(correctChoice.text);
       content.appendChild(answerLine);
       if (config.showExplanation !== false && question.explanation) {
         const explanation = document.createElement('p');
@@ -291,6 +368,10 @@
       details.append(summary, content);
       list.appendChild(details);
     });
+  }
+
+  function closeInfo() {
+    $('instruction-modal').hidden = true;
   }
 
   function resetToHome() {
@@ -304,6 +385,8 @@
   $('start-button').addEventListener('click', startQuiz);
   $('next-button').addEventListener('click', goNext);
   $('prev-button').addEventListener('click', goPrevious);
+  $('doubt-button').addEventListener('click', toggleDoubt);
+  $('finish-button').addEventListener('click', () => finishQuiz(false));
   $('exit-button').addEventListener('click', () => {
     if (window.confirm('Akhiri kuis sekarang? Progres jawabanmu akan dihitung sebagai hasil akhir.')) finishQuiz(false);
   });
@@ -317,8 +400,52 @@
     const first = $('review-list').querySelector('details');
     if (first) first.open = true;
   });
+  $('info-button').addEventListener('click', () => { $('instruction-modal').hidden = false; });
+  $('info-close-button').addEventListener('click', closeInfo);
+  $('info-understood-button').addEventListener('click', closeInfo);
+  $('instruction-modal').addEventListener('click', (event) => {
+    if (event.target === $('instruction-modal')) closeInfo();
+  });
+  $('question-list-toggle').addEventListener('click', () => {
+    const panel = $('question-list-panel');
+    if (window.matchMedia('(max-width: 820px)').matches) {
+      panel.classList.toggle('mobile-open');
+    } else {
+      panel.classList.toggle('is-collapsed');
+    }
+  });
+  $('list-close-button').addEventListener('click', () => $('question-list-panel').classList.remove('mobile-open'));
+  $('font-smaller').addEventListener('click', () => {
+    state.questionFontSize = Math.max(17, state.questionFontSize - 2);
+    $('question-text').style.fontSize = state.questionFontSize + 'px';
+  });
+  $('font-larger').addEventListener('click', () => {
+    state.questionFontSize = Math.min(31, state.questionFontSize + 2);
+    $('question-text').style.fontSize = state.questionFontSize + 'px';
+  });
+  $('font-reset').addEventListener('click', () => {
+    state.questionFontSize = 21;
+    $('question-text').style.fontSize = state.questionFontSize + 'px';
+  });
   $('player-name').addEventListener('keydown', (event) => {
     if (event.key === 'Enter') startQuiz();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (!document.body.classList.contains('exam-mode') || state.finished) return;
+    if (event.altKey || event.ctrlKey || event.metaKey) return;
+    const active = document.activeElement;
+    if (active && ['BUTTON', 'INPUT', 'SELECT', 'TEXTAREA'].includes(active.tagName)) return;
+    const key = event.key.toLowerCase();
+    if (['a', 'b', 'c', 'd'].includes(key)) {
+      const index = key.charCodeAt(0) - 97;
+      if (state.questions[state.currentIndex].choices[index]) {
+        selectAnswer(state.questions[state.currentIndex].id, index);
+      }
+    } else if (key === 'arrowright') {
+      goNext();
+    } else if (key === 'arrowleft') {
+      goPrevious();
+    }
   });
 
   setupHome();
