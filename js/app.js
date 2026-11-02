@@ -96,28 +96,19 @@
     $('active-quiz-title').textContent = config.title || 'Kuis Interaktif';
     $('summary-title').textContent = config.title || 'Kuis Interaktif';
     $('quiz-description').textContent = config.description || 'Uji pemahamanmu melalui kuis interaktif.';
+    const requiredCount = config.questionsPerSession || 30;
     $('total-questions').textContent = questionBank.length;
-
-    const countSelect = $('question-count');
-    [...countSelect.options].forEach((option) => {
-      if (option.value !== 'all' && Number(option.value) > questionBank.length) option.disabled = true;
-    });
-    if (questionBank.length < 10 && questionBank.length >= 5) countSelect.value = '5';
-    if (questionBank.length < 5) {
-      countSelect.innerHTML = '<option value="all">Semua soal (' + questionBank.length + ')</option>';
-    }
+    $('start-button').disabled = questionBank.length < requiredCount;
     updateTimeEstimate();
     renderBestScore();
   }
 
   function getSelectedQuestionCount() {
-    const selected = $('question-count').value;
-    return selected === 'all' ? questionBank.length : Math.min(Number(selected), questionBank.length);
+    return config.questionsPerSession || 30;
   }
 
   function updateTimeEstimate() {
-    const count = getSelectedQuestionCount();
-    const minutes = Math.ceil((count * (config.secondsPerQuestion || 60)) / 60);
+    const minutes = config.sessionDurationMinutes || 45;
     $('time-estimate').textContent = minutes + ' menit';
   }
 
@@ -135,7 +126,11 @@
     }
 
     const count = getSelectedQuestionCount();
-    const duration = count * (config.secondsPerQuestion || 60);
+    if (questionBank.length < count) {
+      showToast('Bank soal belum mencukupi. Dibutuhkan ' + count + ' soal.');
+      return;
+    }
+    const duration = (config.sessionDurationMinutes || 45) * 60;
     state.player = name;
     $('summary-player').textContent = name;
     $('summary-title').textContent = config.title || 'Kuis Interaktif';
@@ -151,6 +146,10 @@
     }
 
     const amount = getSelectedQuestionCount();
+    if (questionBank.length < amount) {
+      showToast('Bank soal belum mencukupi. Dibutuhkan ' + amount + ' soal.');
+      return;
+    }
     state.player = $('player-name').value.trim();
     let selected = [...questionBank];
     if (config.shuffleQuestions !== false) selected = shuffle(selected);
@@ -170,7 +169,7 @@
     state.finished = false;
     state.questionFontSize = 19;
     state.startTime = Date.now();
-    state.durationSeconds = amount * (config.secondsPerQuestion || 60);
+    state.durationSeconds = (config.sessionDurationMinutes || 45) * 60;
     state.remainingSeconds = state.durationSeconds;
 
     $('player-label').textContent = state.player;
