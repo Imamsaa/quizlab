@@ -507,3 +507,186 @@ body.exam-mode button:focus-visible { outline: 3px solid rgba(36, 111, 169, .35)
   .exam-navigation { gap: 4px; }
   .timer-box { min-width: 96px; }
 }
+
+
+/* =========================================================
+   QUIZLAB CBT LANDING / PRE-EXAM SCREEN
+   ========================================================= */
+body.home-mode {
+  min-height: 100vh;
+  color: #263746;
+  background: #eef2f6;
+  overflow-x: hidden;
+}
+body.home-mode .ambient { display: none; }
+body.home-mode .site-header {
+  width: 100%; height: 70px; margin: 0; padding: 0 max(24px, calc((100% - 1180px) / 2));
+  border: 0; border-bottom: 1px solid #174a78; background: #245b91;
+  box-shadow: 0 2px 5px rgba(25, 53, 83, .13);
+}
+body.home-mode .brand { gap: 10px; color: #fff; }
+body.home-mode .brand-mark {
+  width: 38px; height: 38px; border: 1px solid rgba(255,255,255,.58); border-radius: 5px;
+  color: #245b91; background: #fff; box-shadow: none;
+}
+body.home-mode .brand-mark svg { width: 25px; height: 25px; }
+body.home-mode .brand-name { font-size: 20px; letter-spacing: -.5px; }
+body.home-mode .brand-name span { color: #d8eafa; }
+body.home-mode .header-label { color: #e0edf8; font-size: 9px; letter-spacing: 1.1px; }
+body.home-mode .status-dot { background: #a9e5c5; box-shadow: 0 0 8px rgba(169,229,197,.5); }
+body.home-mode .app-shell { width: 100%; max-width: none; margin: 0; }
+body.home-mode .home-screen {
+  display: block; width: min(1180px, calc(100% - 48px)); min-height: calc(100vh - 70px);
+  margin: 0 auto; padding: 25px 0 18px; animation: fade-up .25s ease both;
+}
+.home-page-container { width: 100%; }
+.home-breadcrumb {
+  display: flex; align-items: center; gap: 9px; margin: 0 0 22px;
+  color: #8997a6; font-size: 9px; font-weight: 700; letter-spacing: .65px;
+}
+.home-breadcrumb strong { color: #326d9f; }
+.home-page-heading {
+  display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 23px;
+}
+.home-heading-copy { max-width: 700px; }
+.home-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px; color: #4a7ca7;
+  font-size: 8px; font-weight: 800; letter-spacing: 1.4px;
+}
+.home-eyebrow > span { width: 18px; height: 2px; background: #3d83bb; }
+.home-heading-copy h1 {
+  margin: 9px 0 7px; color: #263f56; font: 800 clamp(25px, 3.1vw, 34px)/1.2 var(--display);
+  letter-spacing: -.9px;
+}
+.home-heading-copy h1 span { color: #2c76b1; }
+.home-heading-copy p { max-width: 670px; margin: 0; color: #718191; font-size: 11px; line-height: 1.7; }
+.home-mode-card {
+  min-width: 205px; padding: 13px 16px; display: flex; align-items: center; gap: 11px;
+  border: 1px solid #d8e2eb; border-radius: 5px; background: #fff;
+  box-shadow: 0 2px 6px rgba(32,55,78,.035);
+}
+.home-mode-icon {
+  flex: 0 0 35px; width: 35px; height: 35px; display: grid; place-items: center;
+  border-radius: 50%; color: #27835b; background: #eaf7f0; font-size: 17px; font-weight: 800;
+}
+.home-mode-card small { display: block; margin-bottom: 3px; color: #8795a3; font-size: 7px; font-weight: 800; letter-spacing: .9px; }
+.home-mode-card strong { display: block; color: #35516b; font: 700 12px var(--display); }
+.home-mode-card span { display: flex; align-items: center; gap: 5px; margin-top: 4px; color: #799087; font-size: 8px; }
+.home-mode-card span i { width: 6px; height: 6px; border-radius: 50%; background: #4cae7e; }
+.home-exam-layout {
+  display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(330px, .88fr);
+  gap: 17px; align-items: stretch;
+}
+.home-information-card, body.home-mode .start-card {
+  min-width: 0; padding: 23px 25px; border: 1px solid #d7e0e8; border-radius: 5px;
+  background: #fff; box-shadow: 0 2px 7px rgba(32,55,78,.045);
+}
+.home-card-heading { display: flex; align-items: center; gap: 12px; }
+.home-step-number {
+  flex: 0 0 33px; width: 33px; height: 33px; display: grid; place-items: center;
+  border: 1px solid #c9dced; border-radius: 4px; color: #3475a8; background: #f1f7fc;
+  font: 800 12px var(--display);
+}
+.home-card-heading small { display: block; margin-bottom: 3px; color: #8493a2; font-size: 7px; font-weight: 800; letter-spacing: 1.1px; }
+.home-card-heading h2 { margin: 0; color: #304b63; font: 700 17px var(--display); letter-spacing: -.35px; }
+.home-exam-description { max-width: 560px; margin: 17px 0 19px; color: #728191; font-size: 11px; line-height: 1.7; }
+.home-exam-facts { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 9px; }
+.home-fact {
+  min-width: 0; min-height: 66px; padding: 11px 10px; display: flex; align-items: center; gap: 9px;
+  border: 1px solid #e0e7ee; border-radius: 4px; background: #fbfcfd;
+}
+.home-fact-icon {
+  flex: 0 0 27px; width: 27px; height: 27px; display: grid; place-items: center;
+  border-radius: 4px; color: #3c7fb3; background: #eaf3fa; font-size: 15px;
+}
+.home-fact small { display: block; margin-bottom: 4px; color: #8997a4; font-size: 7px; font-weight: 800; letter-spacing: .55px; }
+.home-fact strong { display: block; overflow-wrap: anywhere; color: #3d5368; font: 700 10px var(--display); }
+.home-instructions { margin-top: 22px; padding-top: 17px; border-top: 1px solid #e8edf2; }
+.home-instructions-title { display: flex; align-items: center; gap: 8px; }
+.home-instructions-title > span { color: #317bb5; font-size: 16px; }
+.home-instructions-title h3 { margin: 0; color: #415b72; font: 700 11px var(--display); }
+.home-instructions ol { margin: 11px 0 0; padding-left: 21px; color: #748393; font-size: 9px; line-height: 1.85; }
+.home-instructions li { padding-left: 3px; margin: 3px 0; }
+.home-record-strip {
+  display: flex; align-items: center; gap: 10px; margin-top: 18px; padding: 10px 12px;
+  border: 1px solid #e5eaf0; border-radius: 4px; background: #f8fafc;
+}
+.home-record-icon { color: #bd9235; font-size: 17px; }
+.home-record-strip small { display: block; margin-bottom: 3px; color: #8997a4; font-size: 7px; font-weight: 800; letter-spacing: .75px; }
+.home-record-strip strong { color: #536b80; font-size: 9px; }
+body.home-mode .start-card {
+  position: relative; width: 100%; max-width: none; justify-self: stretch; padding: 23px 25px;
+  overflow: visible; border-radius: 5px; background: #fff; box-shadow: 0 2px 7px rgba(32,55,78,.045);
+}
+body.home-mode .start-card::before { display: none; }
+.start-card-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 23px; }
+.start-card-badge {
+  padding: 5px 7px; border: 1px solid #f0d9a2; border-radius: 3px; color: #94702d;
+  background: #fff9e9; font-size: 7px; font-weight: 800; letter-spacing: .7px;
+}
+body.home-mode .field-label {
+  margin: 17px 0 7px; color: #63788b; font-size: 8px; font-weight: 800; letter-spacing: .65px;
+}
+body.home-mode .text-input {
+  height: 42px; padding: 0 12px; border: 1px solid #cfd9e2; border-radius: 4px;
+  color: #344a5e; background: #fff; font-size: 10px; box-shadow: none;
+}
+body.home-mode .text-input::placeholder { color: #9aa7b3; }
+body.home-mode .text-input:focus { border-color: #5792c0; box-shadow: 0 0 0 3px rgba(55,126,181,.1); }
+body.home-mode select.text-input { appearance: auto; }
+body.home-mode .select-chevron { top: 6px; right: 11px; color: #718496; font-size: 17px; }
+body.home-mode select.text-input { padding-right: 35px; }
+.home-exam-notice {
+  min-height: 58px; margin: 19px 0 17px; padding: 10px 11px; display: flex; align-items: center; gap: 9px;
+  border: 1px solid #dce7f0; border-radius: 4px; background: #f5f9fc;
+}
+.home-notice-icon { flex: 0 0 25px; color: #377fb5; font-size: 17px; text-align: center; }
+.home-exam-notice div { flex: 1; min-width: 0; }
+.home-exam-notice strong { display: block; color: #405a71; font-size: 9px; }
+.home-exam-notice p { margin: 3px 0 0; color: #81909d; font-size: 8px; line-height: 1.4; }
+.home-exam-notice > b { white-space: nowrap; color: #2f73a8; font: 800 11px var(--display); }
+body.home-mode .primary-button {
+  min-height: 43px; border-radius: 4px; color: #fff; background: #287bb8;
+  box-shadow: none; font-size: 10px; letter-spacing: .45px; text-transform: uppercase;
+}
+body.home-mode .primary-button:hover:not(:disabled) { background: #216da6; box-shadow: 0 4px 12px rgba(37,105,158,.16); }
+body.home-mode .start-card .primary-button { width: 100%; justify-content: space-between; padding: 0 15px; }
+body.home-mode .privacy-note { margin: 12px 0 0; color: #8996a3; font-size: 8px; }
+body.home-mode .privacy-note span { color: #4b83ad; }
+body.home-mode .home-footer {
+  position: static; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  margin-top: 18px; padding: 13px 0 0; border-top: 1px solid #dce3ea;
+  color: #8b98a5; font-size: 8px; font-weight: 500; letter-spacing: .1px;
+}
+body.home-mode .home-footer strong { color: #59738b; font-weight: 800; }
+body.home-mode .home-footer b { color: #52718c; }
+body.home-mode .home-footer span:nth-child(2) { text-align: center; }
+body.home-mode .home-footer span:last-child { white-space: nowrap; }
+body.home-mode button:focus-visible, body.home-mode input:focus-visible, body.home-mode select:focus-visible {
+  outline: 3px solid rgba(36,111,169,.3); outline-offset: 2px;
+}
+@media (max-width: 860px) {
+  body.home-mode .home-screen { width: min(100% - 32px, 720px); }
+  .home-exam-layout { grid-template-columns: 1fr; }
+  .home-mode-card { min-width: 185px; }
+}
+@media (max-width: 600px) {
+  body.home-mode .site-header { height: 62px; padding: 0 15px; }
+  body.home-mode .header-label { font-size: 7px; letter-spacing: .55px; }
+  body.home-mode .home-screen { width: calc(100% - 24px); padding-top: 17px; }
+  .home-breadcrumb { margin-bottom: 16px; }
+  .home-page-heading { align-items: flex-start; flex-direction: column; gap: 13px; margin-bottom: 15px; }
+  .home-heading-copy h1 { font-size: 25px; }
+  .home-heading-copy p { font-size: 10px; }
+  .home-mode-card { width: 100%; min-width: 0; padding: 9px 11px; }
+  .home-information-card, body.home-mode .start-card { padding: 17px 15px; }
+  .home-exam-facts { gap: 5px; }
+  .home-fact { min-height: 61px; padding: 8px 6px; gap: 5px; flex-direction: column; align-items: flex-start; }
+  .home-fact-icon { width: 22px; height: 22px; flex-basis: 22px; font-size: 12px; }
+  .home-fact small { font-size: 6px; }
+  .home-fact strong { font-size: 9px; }
+  .home-instructions { margin-top: 16px; padding-top: 14px; }
+  .home-instructions ol { font-size: 8px; }
+  body.home-mode .home-footer { align-items: flex-start; flex-direction: column; gap: 6px; }
+  body.home-mode .home-footer span:nth-child(2) { text-align: left; }
+}
