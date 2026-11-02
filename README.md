@@ -7,7 +7,7 @@ QuizLab adalah web kuis statis berbasis HTML, Tailwind CSS, CSS, dan JavaScript.
 - Antarmuka responsif bergaya Material Design dengan layout utility-first Tailwind CSS dan elemen visual yang difokuskan pada informasi serta tindakan penting.
 - Alur persiapan peserta → konfirmasi tes → ruang ujian → hasil dan pembahasan.
 - Identitas peserta wajib diisi sebelum ujian.
-- Timer otomatis berdasarkan jumlah soal.
+- Satu sesi tetap berisi 30 soal dengan batas waktu total 45 menit.
 - Navigasi nomor soal dengan status aktif, terjawab, belum dijawab, dan ragu-ragu.
 - Konteks bacaan opsional pada soal melalui properti `context`.
 - Pengaturan ukuran font soal dan pintasan keyboard A–D / panah kiri-kanan.
@@ -39,14 +39,15 @@ window.QUIZ_CONFIG = {
   id: 'quiz-informatika-smp',
   title: 'Kuis Informatika',
   description: 'Asah logika dan pengetahuan digitalmu.',
-  secondsPerQuestion: 60,
+  questionsPerSession: 30,
+  sessionDurationMinutes: 45,
   shuffleQuestions: true,
   shuffleOptions: true,
   showExplanation: true
 };
 ```
 
-`secondsPerQuestion` menentukan batas waktu untuk setiap soal. Contoh: 60 berarti 1 menit per soal.
+`questionsPerSession` menentukan jumlah soal dalam satu sesi dan `sessionDurationMinutes` menentukan durasi total sesi.
 
 ## Menambah atau mengedit soal
 
