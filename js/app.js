@@ -53,13 +53,6 @@
     return minutes + ':' + seconds;
   }
 
-  function formatDateTime(date) {
-    return date.toLocaleString('id-ID', {
-      day: '2-digit', month: 'long', year: 'numeric',
-      hour: '2-digit', minute: '2-digit'
-    });
-  }
-
   function showToast(message) {
     const toast = $('toast');
     toast.textContent = message;
@@ -96,7 +89,6 @@
   function renderBestScore() {
     const best = getBestScore();
     $('best-score-home').textContent = best ? best.score + '/100' : 'Belum ada rekor';
-    $('best-score-footer').textContent = best ? best.score + '/100' : '—';
   }
 
   function setupHome() {
@@ -127,7 +119,6 @@
     const count = getSelectedQuestionCount();
     const minutes = Math.ceil((count * (config.secondsPerQuestion || 60)) / 60);
     $('time-estimate').textContent = minutes + ' menit';
-    $('time-estimate-copy').textContent = minutes + ' menit';
   }
 
   function prepareSummary() {
@@ -150,7 +141,6 @@
     $('summary-title').textContent = config.title || 'Kuis Interaktif';
     $('summary-question-count').textContent = count + ' soal';
     $('summary-duration').textContent = Math.ceil(duration / 60) + ' menit';
-    $('summary-date').textContent = formatDateTime(new Date());
     showScreen('summary');
   }
 
@@ -212,11 +202,11 @@
     if (!question) return;
 
     const total = state.questions.length;
-    const current = state.currentIndex + 1;
-    const progress = Math.round((current / total) * 100);
+    const answered = state.answers.size;
+    const progress = total ? Math.round((answered / total) * 100) : 0;
     const selectedIndex = state.answers.get(question.id);
 
-    $('progress-text').textContent = 'SOAL ' + current + ' DARI ' + total;
+    $('progress-text').textContent = 'TERJAWAB ' + answered + ' DARI ' + total + ' SOAL';
     $('progress-percent').textContent = progress + '%';
     $('progress-fill').style.width = progress + '%';
     $('question-number').textContent = 'Soal nomor ' + current;
@@ -482,7 +472,6 @@
   $('question-count').addEventListener('change', updateTimeEstimate);
   $('start-button').addEventListener('click', prepareSummary);
   $('back-to-settings-button').addEventListener('click', () => showScreen('home'));
-  $('back-to-settings-secondary').addEventListener('click', () => showScreen('home'));
   $('begin-exam-button').addEventListener('click', startQuiz);
 
   $('next-button').addEventListener('click', goNext);
