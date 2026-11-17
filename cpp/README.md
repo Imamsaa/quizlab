@@ -22,7 +22,7 @@ Buka folder `cpp/` melalui GitHub Pages atau jalankan `cpp/index.html` dengan Li
 
 Bank berisi 60 soal (15 per kelompok materi). Satu sesi berisi 30 soal dengan durasi maksimal 45 menit, dipilih secara acak dengan komposisi 7 mudah, 16 sedang, dan 7 sulit.
 
-Batas akhir pengerjaan: **Selasa, 17 November 2026 pukul 12.30 WIB**. Setelah waktu tersebut akses ditutup dan sesi yang sedang berlangsung diakhiri otomatis.
+Batas akhir pengerjaan: **Selasa, 17 November 2026 pukul 14.50 WIB**. Setelah waktu tersebut akses ditutup dan sesi yang sedang berlangsung diakhiri otomatis.
 
 ## Google Sheets
 
