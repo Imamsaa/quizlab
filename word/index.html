@@ -8,10 +8,10 @@
   <title>QuizLab Word — Simulasi Ujian Microsoft Word</title>
 
 
-  <link rel="stylesheet" href="css/tailwind.css?v=word-v1">
-  <link rel="stylesheet" href="css/style.css?v=word-v1">
-  <script src="js/questions.js?v=word-v1" defer></script>
-  <script src="js/app.js?v=word-v1" defer></script>
+  <link rel="stylesheet" href="css/tailwind.css?v=word-v2">
+  <link rel="stylesheet" href="css/style.css?v=word-v2">
+  <script src="js/questions.js?v=word-v2" defer></script>
+  <script src="js/app.js?v=word-v2" defer></script>
 </head>
 
 <body class="min-h-screen bg-slate-100 font-sans text-slate-800 antialiased">
@@ -25,7 +25,24 @@
         </div>
       </div>
 
-      <div class="grid items-start gap-5 lg:grid-cols-[minmax(0,1.15fr)_minmax(340px,.85fr)]">
+      <section id="deadline-countdown" class="deadline-countdown" role="timer" aria-label="Hitung mundur batas akhir pengerjaan">
+        <div class="deadline-copy">
+          <div class="deadline-kicker"><span class="deadline-dot" aria-hidden="true"></span> BATAS AKHIR PENGERJAAN</div>
+          <h2>Waktu pengerjaan berakhir</h2>
+          <p>Selasa, 17 November 2026 <span aria-hidden="true">·</span> <strong>12.30 WIB</strong></p>
+        </div>
+        <div class="deadline-countdown-side">
+          <div class="deadline-units" aria-label="Waktu tersisa">
+            <div class="deadline-unit"><strong id="deadline-days">--</strong><span>Hari</span></div>
+            <div class="deadline-unit"><strong id="deadline-hours">--</strong><span>Jam</span></div>
+            <div class="deadline-unit"><strong id="deadline-minutes">--</strong><span>Menit</span></div>
+            <div class="deadline-unit"><strong id="deadline-seconds">--</strong><span>Detik</span></div>
+          </div>
+          <p id="deadline-status">Selesaikan ujian sebelum batas waktu berakhir.</p>
+        </div>
+      </section>
+
+      <div class="grid items-start gap-5 lg:grid-cols-[minmax(0,1.15fr)_minmax(340px,.85fr)]
         <section class="md-card overflow-hidden">
           <div class="border-b border-slate-100 px-5 py-4 sm:px-6">
             <h2 id="quiz-title" class="text-lg font-bold text-ink-800">Kuis Microsoft Word</h2>
@@ -95,6 +112,27 @@
             </button>
           </div>
         </section>
+      </div>
+    </section>
+
+    <!-- ACCESS CLOSED -->
+    <section id="closed-screen" class="screen space-y-5" hidden>
+      <div class="access-closed-wrap">
+        <div class="md-card access-closed-card">
+          <div class="access-closed-header">
+            <span class="access-closed-icon">
+              <svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=word-v2#lock"></use></svg>
+            </span>
+            <p class="access-closed-label">AKSES DITUTUP</p>
+            <h1 class="access-closed-title">Waktu pengerjaan telah berakhir</h1>
+            <p class="access-closed-copy">QuizLab Word sudah tidak menerima pengerjaan baru maupun lanjutan ujian.</p>
+          </div>
+          <div class="access-closed-content">
+            <p class="access-closed-deadline-label">BATAS AKHIR PENGERJAAN</p>
+            <p class="access-closed-deadline">Selasa, 17 November 2026 · 12.30 WIB</p>
+            <p class="access-closed-note">Silakan hubungi guru/pengawas apabila terdapat kendala terkait pengerjaan.</p>
+          </div>
+        </div>
       </div>
     </section>
 

@@ -358,3 +358,78 @@ button:focus-visible, input:focus-visible, select:focus-visible {
   .deadline-copy h2 { font-size: 16px; }
   #deadline-status { text-align: left; }
 }
+
+
+/* Deadline lock screen for the Word quiz. */
+.access-closed-wrap {
+  width: min(100%, 680px);
+  margin: 42px auto;
+}
+.access-closed-card { overflow: hidden; }
+.access-closed-header {
+  padding: 34px 24px 30px;
+  border-bottom: 1px solid #e1e7ed;
+  background: #f8fafc;
+  text-align: center;
+}
+.access-closed-icon {
+  display: grid;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  color: #b42318;
+  background: #fff0ef;
+  font-size: 29px;
+}
+.access-closed-label {
+  margin: 20px 0 7px;
+  color: #b42318;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+}
+.access-closed-title {
+  margin: 0;
+  color: #26394d;
+  font-size: clamp(22px, 4vw, 30px);
+  font-weight: 800;
+  line-height: 1.2;
+}
+.access-closed-copy {
+  max-width: 480px;
+  margin: 12px auto 0;
+  color: #627487;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.access-closed-content {
+  padding: 24px;
+  text-align: center;
+}
+.access-closed-deadline-label {
+  margin: 0 0 6px;
+  color: #81909e;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+.access-closed-deadline {
+  margin: 0;
+  color: #26394d;
+  font-size: 16px;
+  font-weight: 800;
+}
+.access-closed-note {
+  margin: 16px 0 0;
+  color: #81909e;
+  font-size: 11px;
+  line-height: 1.6;
+}
+@media (max-width: 640px) {
+  .access-closed-wrap { margin: 22px auto; }
+  .access-closed-header { padding: 28px 18px 24px; }
+  .access-closed-content { padding: 21px 17px; }
+  .access-closed-deadline { font-size: 14px; }
+}

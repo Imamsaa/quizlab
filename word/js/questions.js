@@ -11,6 +11,7 @@ window.QUIZ_CONFIG = {
   "description": "Asesmen fitur Microsoft Word pada tab Home, Insert, Layout, dan Mail Merge.",
   "questionsPerSession": 30,
   "sessionDurationMinutes": 45,
+  "deadlineISO": "2026-11-17T12:30:00+07:00",
   "googleAppsScriptUrl": "https://script.google.com/macros/s/AKfycbzRAqVPOOe982Rozm6K--1n2ZvKUqx5gYnVYjqs-zFtvYrgVvWMzNDNn1NHO1UAKTll/exec",
   "shuffleQuestions": true,
   "shuffleOptions": true,

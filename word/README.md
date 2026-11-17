@@ -27,3 +27,8 @@ QuizLab Word **menggunakan URL Google Apps Script yang sama dengan QuizLab utama
 Tidak ada file Apps Script baru dan tidak ada perubahan pada `../apps-script/Code.gs`. Jangan membuat deployment baru. Pastikan URL yang sudah terpasang pada QuizLab utama tetap aktif.
 
 Karena Apps Script yang ada hanya menyimpan nama, waktu submit, dan nilai akhir, baris hasil dari QuizLab Word akan tercatat dengan format yang sama seperti hasil QuizLab utama.
+
+
+## Batas waktu pengerjaan
+
+Akses QuizLab Word ditutup pada **Selasa, 17 November 2026 pukul 12.30 WIB**. Halaman menampilkan hitung mundur. Setelah batas waktu, peserta tidak dapat memulai atau melanjutkan ujian. Jika peserta sedang mengerjakan saat batas waktu tercapai, aplikasi otomatis mengakhiri sesi dan mengirim nilai yang diperoleh ke endpoint Google Apps Script yang sama.

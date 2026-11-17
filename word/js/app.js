@@ -735,6 +735,7 @@
   }
 
   function submitQuiz(timeExpired) {
+    if (!timeExpired && !ensureAccess()) return;
     if (state.finished) return;
     if (!timeExpired && !canFinishManually()) {
       $('finish-modal').hidden = true;
