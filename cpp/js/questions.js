@@ -155,7 +155,7 @@ window.QUIZ_QUESTIONS = [
     "topicId": "dasar-cpp",
     "category": "DASAR C++",
     "difficulty": "sedang",
-    "question": "Perintah `cout << \"Halo\" << endl;` menggunakan endl untuk ....",
+    "question": "Perintah cout << \"Halo\" << endl; menggunakan endl untuk ....",
     "options": [
       "menghapus tulisan Halo",
       "memindahkan kursor ke baris baru",
@@ -219,7 +219,7 @@ window.QUIZ_QUESTIONS = [
     "topicId": "dasar-cpp",
     "category": "DASAR C++",
     "difficulty": "sedang",
-    "question": "Apa kegunaan `return 0;` pada akhir fungsi main() dalam contoh program dasar?",
+    "question": "Apa kegunaan return 0; pada akhir fungsi main() dalam contoh program dasar?",
     "options": [
       "mengulang fungsi main",
       "menandakan program selesai dengan status sukses",
@@ -235,7 +235,7 @@ window.QUIZ_QUESTIONS = [
     "topicId": "dasar-cpp",
     "category": "DASAR C++",
     "difficulty": "sulit",
-    "question": "Perhatikan kode berikut:\n`int main() {\n  cout << \"Belajar\";\n  cout << \"C++\";\n  return 0;\n}`\nApa keluaran program tersebut?",
+    "question": "Perhatikan kode berikut:\nint main() {\n  cout << \"Belajar\";\n  cout << \"C++\";\n  return 0;\n}\nApa keluaran program tersebut?",
     "options": [
       "Belajar C++ pada dua baris",
       "BelajarC++ pada satu baris",
@@ -251,7 +251,7 @@ window.QUIZ_QUESTIONS = [
     "topicId": "dasar-cpp",
     "category": "DASAR C++",
     "difficulty": "sulit",
-    "question": "Perhatikan kode berikut:\n`int main() {\n  cout << \"A\" << 5 << \"B\";\n  return 0;\n}`\nApa hasil yang ditampilkan?",
+    "question": "Perhatikan kode berikut:\nint main() {\n  cout << \"A\" << 5 << \"B\";\n  return 0;\n}\nApa hasil yang ditampilkan?",
     "options": [
       "A 5 B",
       "5AB",
@@ -267,7 +267,7 @@ window.QUIZ_QUESTIONS = [
     "topicId": "dasar-cpp",
     "category": "DASAR C++",
     "difficulty": "sulit",
-    "question": "C++ bersifat case-sensitive. Apa akibatnya jika variabel dibuat dengan nama `nilai`, tetapi dipanggil sebagai `Nilai`?",
+    "question": "C++ bersifat case-sensitive. Apa akibatnya jika variabel dibuat dengan nama nilai, tetapi dipanggil sebagai Nilai?",
     "options": [
       "Keduanya selalu dianggap sama",
       "Program otomatis mengubah huruf besar menjadi kecil",
@@ -283,7 +283,7 @@ window.QUIZ_QUESTIONS = [
     "topicId": "dasar-cpp",
     "category": "DASAR C++",
     "difficulty": "sulit",
-    "question": "Perhatikan kode berikut:\n`int angka = 4;\nangka = angka + 3;\ncout << angka;`\nApa keluaran program?",
+    "question": "Perhatikan kode berikut:\nint angka = 4;\nangka = angka + 3;\ncout << angka;\nApa keluaran program?",
     "options": [
       "4",
       "3",
@@ -363,7 +363,7 @@ window.QUIZ_QUESTIONS = [
     "topicId": "variabel-operator",
     "category": "VARIABEL & OPERATOR",
     "difficulty": "sedang",
-    "question": "Perhatikan deklarasi `double tinggi = 165.5;`. Mengapa tipe double sesuai digunakan?",
+    "question": "Perhatikan deklarasi double tinggi = 165.5;. Mengapa tipe double sesuai digunakan?",
     "options": [
       "karena menyimpan bilangan pecahan dengan presisi lebih tinggi daripada float",
       "karena hanya menyimpan huruf",
@@ -395,7 +395,7 @@ window.QUIZ_QUESTIONS = [
     "topicId": "variabel-operator",
     "category": "VARIABEL & OPERATOR",
     "difficulty": "sedang",
-    "question": "Apa hasil dari ekspresi `8 + 3 * 2`?",
+    "question": "Apa hasil dari ekspresi 8 + 3 * 2?",
     "options": [
       "22",
       "14",
@@ -411,7 +411,7 @@ window.QUIZ_QUESTIONS = [
     "topicId": "variabel-operator",
     "category": "VARIABEL & OPERATOR",
     "difficulty": "sedang",
-    "question": "Perhatikan kode `int a = 7, b = 2; cout << a / b;`. Apa hasilnya?",
+    "question": "Perhatikan kode int a = 7, b = 2; cout << a / b;. Apa hasilnya?",
     "options": [
       "3.5",
       "4",
@@ -443,7 +443,7 @@ window.QUIZ_QUESTIONS = [
     "topicId": "variabel-operator",
     "category": "VARIABEL & OPERATOR",
     "difficulty": "sedang",
-    "question": "Operator `!=` berarti ....",
+    "question": "Operator != berarti ....",
     "options": [
       "lebih besar dari",
       "sama dengan",
@@ -475,7 +475,7 @@ window.QUIZ_QUESTIONS = [
     "topicId": "variabel-operator",
     "category": "VARIABEL & OPERATOR",
     "difficulty": "sulit",
-    "question": "Perhatikan kode:\n`int x = 5;\nint y = 2;\ncout << x % y + x;`\nApa hasilnya?",
+    "question": "Perhatikan kode:\nint x = 5;\nint y = 2;\ncout << x % y + x;\nApa hasilnya?",
     "options": [
       "1",
       "2",
@@ -491,7 +491,7 @@ window.QUIZ_QUESTIONS = [
     "topicId": "variabel-operator",
     "category": "VARIABEL & OPERATOR",
     "difficulty": "sulit",
-    "question": "Diketahui `int nilai = 80;`. Apa hasil dari ekspresi `nilai >= 75 && nilai < 90`?",
+    "question": "Diketahui int nilai = 80;. Apa hasil dari ekspresi nilai >= 75 && nilai < 90?",
     "options": [
       "true",
       "false",
@@ -507,7 +507,7 @@ window.QUIZ_QUESTIONS = [
     "topicId": "variabel-operator",
     "category": "VARIABEL & OPERATOR",
     "difficulty": "sulit",
-    "question": "Perhatikan kode:\n`int x = 10;\nx += 4;\nx *= 2;\ncout << x;`\nApa keluaran program?",
+    "question": "Perhatikan kode:\nint x = 10;\nx += 4;\nx *= 2;\ncout << x;\nApa keluaran program?",
     "options": [
       "18",
       "24",
@@ -523,7 +523,7 @@ window.QUIZ_QUESTIONS = [
     "topicId": "variabel-operator",
     "category": "VARIABEL & OPERATOR",
     "difficulty": "sulit",
-    "question": "Perhatikan kode:\n`int a = 9;\nint b = 4;\ncout << a / b << \" \" << a % b;`\nApa keluaran program?",
+    "question": "Perhatikan kode:\nint a = 9;\nint b = 4;\ncout << a / b << \" \" << a % b;\nApa keluaran program?",
     "options": [
       "2 1",
       "2 0",
@@ -539,7 +539,7 @@ window.QUIZ_QUESTIONS = [
     "topicId": "percabangan",
     "category": "PERCABANGAN",
     "difficulty": "mudah",
-    "question": "Struktur `if` digunakan untuk ....",
+    "question": "Struktur if digunakan untuk ....",
     "options": [
       "mengulang perintah berkali-kali",
       "menjalankan kode ketika kondisi bernilai benar",
@@ -555,7 +555,7 @@ window.QUIZ_QUESTIONS = [
     "topicId": "percabangan",
     "category": "PERCABANGAN",
     "difficulty": "mudah",
-    "question": "Bagian `else` pada struktur if-else dijalankan ketika ....",
+    "question": "Bagian else pada struktur if-else dijalankan ketika ....",
     "options": [
       "kondisi if bernilai false",
       "kondisi if selalu true",
@@ -603,7 +603,7 @@ window.QUIZ_QUESTIONS = [
     "topicId": "percabangan",
     "category": "PERCABANGAN",
     "difficulty": "sedang",
-    "question": "Perhatikan kode:\n`int nilai = 80;\nif (nilai >= 75) cout << \"Lulus\";\nelse cout << \"Remedial\";`\nApa keluarannya?",
+    "question": "Perhatikan kode:\nint nilai = 80;\nif (nilai >= 75) cout << \"Lulus\";\nelse cout << \"Remedial\";\nApa keluarannya?",
     "options": [
       "Remedial",
       "Lulus",
@@ -651,7 +651,7 @@ window.QUIZ_QUESTIONS = [
     "topicId": "percabangan",
     "category": "PERCABANGAN",
     "difficulty": "sedang",
-    "question": "Apa fungsi `break` pada struktur switch-case?",
+    "question": "Apa fungsi break pada struktur switch-case?",
     "options": [
       "mengulang case sebelumnya",
       "mengakhiri eksekusi switch agar tidak lanjut ke case berikutnya",
@@ -667,7 +667,7 @@ window.QUIZ_QUESTIONS = [
     "topicId": "percabangan",
     "category": "PERCABANGAN",
     "difficulty": "sedang",
-    "question": "Bagian `default` pada switch dijalankan ketika ....",
+    "question": "Bagian default pada switch dijalankan ketika ....",
     "options": [
       "semua case cocok",
       "tidak ada case yang cocok dengan nilai ekspresi",
@@ -683,7 +683,7 @@ window.QUIZ_QUESTIONS = [
     "topicId": "percabangan",
     "category": "PERCABANGAN",
     "difficulty": "sedang",
-    "question": "Perhatikan kode:\n`int angka = 4;\nif (angka > 5) cout << \"A\";\nelse if (angka > 2) cout << \"B\";\nelse cout << \"C\";`\nApa hasilnya?",
+    "question": "Perhatikan kode:\nint angka = 4;\nif (angka > 5) cout << \"A\";\nelse if (angka > 2) cout << \"B\";\nelse cout << \"C\";\nApa hasilnya?",
     "options": [
       "A",
       "B",
@@ -699,7 +699,7 @@ window.QUIZ_QUESTIONS = [
     "topicId": "percabangan",
     "category": "PERCABANGAN",
     "difficulty": "sedang",
-    "question": "Perhatikan kondisi `umur >= 12 && umur <= 15`. Kondisi tersebut bernilai true ketika ....",
+    "question": "Perhatikan kondisi umur >= 12 && umur <= 15. Kondisi tersebut bernilai true ketika ....",
     "options": [
       "umur kurang dari 12",
       "umur lebih dari 15",
@@ -715,7 +715,7 @@ window.QUIZ_QUESTIONS = [
     "topicId": "percabangan",
     "category": "PERCABANGAN",
     "difficulty": "sulit",
-    "question": "Perhatikan kode nested if berikut:\n`int nilai = 85;\nif (nilai >= 75) {\n  if (nilai >= 90) cout << \"A\";\n  else cout << \"B\";\n} else cout << \"C\";`\nApa keluarannya?",
+    "question": "Perhatikan kode nested if berikut:\nint nilai = 85;\nif (nilai >= 75) {\n  if (nilai >= 90) cout << \"A\";\n  else cout << \"B\";\n} else cout << \"C\";\nApa keluarannya?",
     "options": [
       "A",
       "B",
@@ -731,7 +731,7 @@ window.QUIZ_QUESTIONS = [
     "topicId": "percabangan",
     "category": "PERCABANGAN",
     "difficulty": "sulit",
-    "question": "Apa keluaran kode berikut?\n`int x = 2;\nswitch (x) {\n  case 1: cout << \"Satu\"; break;\n  case 2: cout << \"Dua\";\n  case 3: cout << \"Tiga\"; break;\n  default: cout << \"Lain\";\n}`",
+    "question": "Apa keluaran kode berikut?\nint x = 2;\nswitch (x) {\n  case 1: cout << \"Satu\"; break;\n  case 2: cout << \"Dua\";\n  case 3: cout << \"Tiga\"; break;\n  default: cout << \"Lain\";\n}",
     "options": [
       "Dua",
       "DuaTiga",
@@ -763,7 +763,7 @@ window.QUIZ_QUESTIONS = [
     "topicId": "percabangan",
     "category": "PERCABANGAN",
     "difficulty": "sulit",
-    "question": "Perhatikan kondisi `!(nilai < 60 || nilai > 100)`. Kondisi tersebut setara dengan ....",
+    "question": "Perhatikan kondisi !(nilai < 60 || nilai > 100). Kondisi tersebut setara dengan ....",
     "options": [
       "nilai di bawah 60 atau di atas 100",
       "nilai antara 60 sampai 100 termasuk batas",
@@ -795,7 +795,7 @@ window.QUIZ_QUESTIONS = [
     "topicId": "perulangan",
     "category": "PERULANGAN",
     "difficulty": "mudah",
-    "question": "Perintah `while` akan mengulang selama ....",
+    "question": "Perintah while akan mengulang selama ....",
     "options": [
       "kondisi bernilai true",
       "kondisi bernilai false",
@@ -843,7 +843,7 @@ window.QUIZ_QUESTIONS = [
     "topicId": "perulangan",
     "category": "PERULANGAN",
     "difficulty": "sedang",
-    "question": "Perhatikan kode:\n`for (int i = 1; i <= 3; i++) {\n  cout << i;\n}`\nApa keluarannya?",
+    "question": "Perhatikan kode:\nfor (int i = 1; i <= 3; i++) {\n  cout << i;\n}\nApa keluarannya?",
     "options": [
       "012",
       "123",
@@ -859,7 +859,7 @@ window.QUIZ_QUESTIONS = [
     "topicId": "perulangan",
     "category": "PERULANGAN",
     "difficulty": "sedang",
-    "question": "Bagian ketiga pada struktur `for (inisialisasi; kondisi; perubahan)` digunakan untuk ....",
+    "question": "Bagian ketiga pada struktur for (inisialisasi; kondisi; perubahan) digunakan untuk ....",
     "options": [
       "mendeklarasikan header",
       "memeriksa kondisi awal",
@@ -875,7 +875,7 @@ window.QUIZ_QUESTIONS = [
     "topicId": "perulangan",
     "category": "PERULANGAN",
     "difficulty": "sedang",
-    "question": "Perhatikan kode:\n`int i = 1;\nwhile (i <= 3) {\n  cout << i;\n  i++;\n}`\nApa keluaran program?",
+    "question": "Perhatikan kode:\nint i = 1;\nwhile (i <= 3) {\n  cout << i;\n  i++;\n}\nApa keluaran program?",
     "options": [
       "123",
       "012",
@@ -907,7 +907,7 @@ window.QUIZ_QUESTIONS = [
     "topicId": "perulangan",
     "category": "PERULANGAN",
     "difficulty": "sedang",
-    "question": "Apa fungsi `continue` pada sebuah perulangan?",
+    "question": "Apa fungsi continue pada sebuah perulangan?",
     "options": [
       "menghentikan seluruh program",
       "melewati sisa perintah pada iterasi saat ini dan melanjutkan iterasi berikutnya",
@@ -923,7 +923,7 @@ window.QUIZ_QUESTIONS = [
     "topicId": "perulangan",
     "category": "PERULANGAN",
     "difficulty": "sedang",
-    "question": "Perhatikan kode:\n`for (int i = 1; i <= 5; i += 2) {\n  cout << i << \" \";\n}`\nApa yang ditampilkan?",
+    "question": "Perhatikan kode:\nfor (int i = 1; i <= 5; i += 2) {\n  cout << i << \" \";\n}\nApa yang ditampilkan?",
     "options": [
       "1 2 3 4 5",
       "1 3 5",
@@ -955,7 +955,7 @@ window.QUIZ_QUESTIONS = [
     "topicId": "perulangan",
     "category": "PERULANGAN",
     "difficulty": "sulit",
-    "question": "Perhatikan kode:\n`int total = 0;\nfor (int i = 1; i <= 4; i++) {\n  total += i;\n}\ncout << total;`\nApa hasil akhirnya?",
+    "question": "Perhatikan kode:\nint total = 0;\nfor (int i = 1; i <= 4; i++) {\n  total += i;\n}\ncout << total;\nApa hasil akhirnya?",
     "options": [
       "4",
       "6",
@@ -971,7 +971,7 @@ window.QUIZ_QUESTIONS = [
     "topicId": "perulangan",
     "category": "PERULANGAN",
     "difficulty": "sulit",
-    "question": "Berapa kali teks `*` ditampilkan oleh kode berikut?\n`for (int i = 1; i <= 3; i++) {\n  for (int j = 1; j <= 2; j++) {\n    cout << \"*\";\n  }\n}`",
+    "question": "Berapa kali teks * ditampilkan oleh kode berikut?\nfor (int i = 1; i <= 3; i++) {\n  for (int j = 1; j <= 2; j++) {\n    cout << \"*\";\n  }\n}",
     "options": [
       "2 kali",
       "3 kali",
@@ -987,7 +987,7 @@ window.QUIZ_QUESTIONS = [
     "topicId": "perulangan",
     "category": "PERULANGAN",
     "difficulty": "sulit",
-    "question": "Perhatikan kode:\n`int i = 1;\nwhile (i < 10) {\n  cout << i << \" \";\n  i += 3;\n}`\nApa keluaran program?",
+    "question": "Perhatikan kode:\nint i = 1;\nwhile (i < 10) {\n  cout << i << \" \";\n  i += 3;\n}\nApa keluaran program?",
     "options": [
       "1 4 7",
       "1 4 7 10",
@@ -1003,7 +1003,7 @@ window.QUIZ_QUESTIONS = [
     "topicId": "perulangan",
     "category": "PERULANGAN",
     "difficulty": "sulit",
-    "question": "Perhatikan kode:\n`for (int i = 1; i <= 5; i++) {\n  if (i == 3) continue;\n  cout << i << \" \";\n}`\nApa hasil yang ditampilkan?",
+    "question": "Perhatikan kode:\nfor (int i = 1; i <= 5; i++) {\n  if (i == 3) continue;\n  cout << i << \" \";\n}\nApa hasil yang ditampilkan?",
     "options": [
       "1 2 3 4 5",
       "1 2 4 5",
