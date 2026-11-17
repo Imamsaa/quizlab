@@ -9,12 +9,15 @@
   let awaySince = null;
   let lastSecurityViolation = { type: '', at: 0 };
   const $ = (id) => document.getElementById(id);
+  let deadlineExpired = false;
+  let deadlineCountdownId = null;
 
   const screens = {
     home: $('home-screen'),
     summary: $('summary-screen'),
     quiz: $('quiz-screen'),
-    result: $('result-screen')
+    result: $('result-screen'),
+    closed: $('closed-screen')
   };
 
   const state = {
@@ -48,6 +51,12 @@
   }
 
   function showScreen(name) {
+    const canShowCompletedResult = name === 'result' && state.finished;
+    if (name !== 'closed' && !canShowCompletedResult &&
+        (deadlineExpired || isDeadlinePassed())) {
+      closeAccess();
+      return;
+    }
     Object.entries(screens).forEach(([key, element]) => {
       element.hidden = key !== name;
     });
@@ -154,6 +163,10 @@
   }
 
   function restoreActiveSession() {
+    if (!ensureAccess()) {
+      clearSessionDraft();
+      return false;
+    }
     const snapshot = readSessionDraft();
     if (!snapshot) return false;
 
@@ -224,7 +237,7 @@
   }
 
   function registerSecurityViolation(type) {
-    if (!isQuizActive()) return;
+    if (!ensureAccess() || !isQuizActive()) return;
 
     const now = Date.now();
     if (lastSecurityViolation.type === type && now - lastSecurityViolation.at < 300) return;
@@ -316,7 +329,7 @@
     $('summary-title').textContent = config.title || 'Kuis Interaktif';
     $('quiz-description').textContent = config.description || 'Uji pemahamanmu melalui kuis interaktif.';
     $('total-questions').textContent = questionBank.length;
-    $('start-button').disabled = Boolean(getQuestionSelectionIssue());
+    $('start-button').disabled = !ensureAccess() || Boolean(getQuestionSelectionIssue());
     updateTimeEstimate();
     renderBestScore();
   }
@@ -394,6 +407,7 @@
   }
 
   function prepareSummary() {
+    if (!ensureAccess()) return;
     if (!questionBank.length) {
       showToast('Bank soal masih kosong. Tambahkan soal di js/questions.js.');
       return;
@@ -422,6 +436,7 @@
   }
 
   function startQuiz() {
+    if (!ensureAccess()) return;
     if (!questionBank.length) {
       showToast('Bank soal masih kosong. Tambahkan soal di js/questions.js.');
       return;
@@ -474,7 +489,7 @@
     window.clearInterval(state.timerId);
 
     const updateClock = () => {
-      if (state.finished) return;
+      if (!ensureAccess() || state.finished) return;
       state.remainingSeconds = Math.max(0, Math.ceil((state.endTime - Date.now()) / 1000));
       $('timer').textContent = formatTime(state.remainingSeconds);
       $('timer-box').classList.toggle('warning', state.remainingSeconds <= 60);
@@ -568,6 +583,7 @@
   }
 
   function selectAnswer(questionId, optionIndex) {
+    if (!ensureAccess() || !isQuizActive()) return;
     state.answers.set(questionId, optionIndex);
     renderQuestion();
   }
@@ -582,8 +598,8 @@
     $('count-answered').textContent = answered;
     $('count-unanswered').textContent = unanswered;
     $('count-doubt').textContent = doubtful;
-    $('finish-button').disabled = !canFinish;
-    $('finish-button').setAttribute('aria-disabled', canFinish ? 'false' : 'true');
+    $('finish-button').disabled = false;
+    $('finish-button').setAttribute('aria-disabled', 'false');
     $('finish-requirement').hidden = canFinish;
 
     if (unanswered > 0 && doubtful > 0) {
@@ -620,6 +636,7 @@
       button.setAttribute('aria-current', isCurrent ? 'step' : 'false');
 
       button.addEventListener('click', () => {
+        if (!ensureAccess() || !isQuizActive()) return;
         state.currentIndex = index;
         renderQuestion();
         if (window.matchMedia('(max-width: 1023px)').matches) {
@@ -631,6 +648,7 @@
   }
 
   function toggleDoubt() {
+    if (!ensureAccess() || !isQuizActive()) return;
     const questionId = state.questions[state.currentIndex].id;
     if (state.doubtful.has(questionId)) state.doubtful.delete(questionId);
     else state.doubtful.add(questionId);
@@ -638,6 +656,7 @@
   }
 
   function goNext() {
+    if (!ensureAccess() || !isQuizActive()) return;
     if (state.currentIndex < state.questions.length - 1) {
       state.currentIndex += 1;
       renderQuestion();
@@ -647,6 +666,7 @@
   }
 
   function goPrevious() {
+    if (!ensureAccess() || !isQuizActive()) return;
     if (state.currentIndex > 0) {
       state.currentIndex -= 1;
       renderQuestion();
@@ -654,7 +674,7 @@
   }
 
   function requestFinish() {
-    if (state.finished) return;
+    if (!ensureAccess() || state.finished || !isQuizActive()) return;
 
     const unanswered = state.questions.filter((question) => !state.answers.has(question.id));
     const doubtful = state.questions.filter((question) => state.doubtful.has(question.id));
@@ -933,6 +953,7 @@
     if ($('instruction-modal').hidden === false && event.key === 'Escape') closeInfo();
     if ($('finish-modal').hidden === false && event.key === 'Escape') $('finish-modal').hidden = true;
 
+    if (!ensureAccess()) return;
     if ($('quiz-screen').hidden || state.finished) return;
 
     const key = event.key.toLowerCase();
@@ -972,19 +993,66 @@
       beginAwayPeriod();
       persistSession();
     } else {
+      if (!ensureAccess()) return;
       endAwayPeriod();
     }
   });
 
   window.addEventListener('blur', beginAwayPeriod);
-  window.addEventListener('focus', endAwayPeriod);
+  window.addEventListener('focus', () => {
+    if (!ensureAccess()) return;
+    endAwayPeriod();
+  });
   window.addEventListener('pagehide', persistSession);
   $('security-warning-ack').addEventListener('click', acknowledgeSecurityWarning);
 
-  const DEADLINE_TIMESTAMP = new Date('2026-11-03T13:00:00+07:00').getTime();
+  function getDeadlineTimestamp() {
+    const timestamp = Date.parse(config.deadlineISO || '');
+    return Number.isFinite(timestamp) ? timestamp : Number.POSITIVE_INFINITY;
+  }
+
+  function isDeadlinePassed() {
+    return Date.now() >= getDeadlineTimestamp();
+  }
+
+  function ensureAccess() {
+    if (deadlineExpired || isDeadlinePassed()) {
+      closeAccess();
+      return false;
+    }
+    return true;
+  }
+
+  function closeAccess() {
+    if (deadlineExpired) return;
+    deadlineExpired = true;
+
+    if (deadlineCountdownId !== null) {
+      window.clearInterval(deadlineCountdownId);
+      deadlineCountdownId = null;
+    }
+
+    $('start-button').disabled = true;
+    $('begin-exam-button').disabled = true;
+    window.clearInterval(state.timerId);
+
+    if (isQuizActive() && !state.finished) {
+      state.endTime = Date.now();
+      submitQuiz(true);
+      return;
+    }
+
+    if (!screens.result.hidden && state.finished) return;
+
+    clearSessionDraft();
+    $('instruction-modal').hidden = true;
+    $('finish-modal').hidden = true;
+    $('security-warning-modal').hidden = true;
+    showScreen('closed');
+  }
 
   function updateDeadlineCountdown() {
-    const remainingMs = DEADLINE_TIMESTAMP - Date.now();
+    const remainingMs = getDeadlineTimestamp() - Date.now();
     const totalSeconds = Math.max(0, Math.floor(remainingMs / 1000));
     const values = {
       days: Math.floor(totalSeconds / 86400),
@@ -1002,10 +1070,10 @@
       const container = $('deadline-countdown');
       const status = $('deadline-status');
       if (container) container.classList.add('expired');
-      if (status) status.textContent = 'Batas akhir pengerjaan telah lewat.';
+      if (status) status.textContent = 'Batas akhir terlewati. Akses pengerjaan telah ditutup.';
+      closeAccess();
       return false;
     }
-
     return true;
   }
 
@@ -1013,12 +1081,15 @@
     if (!$('deadline-countdown')) return;
     if (!updateDeadlineCountdown()) return;
 
-    const intervalId = window.setInterval(() => {
-      if (!updateDeadlineCountdown()) window.clearInterval(intervalId);
+    deadlineCountdownId = window.setInterval(() => {
+      if (!updateDeadlineCountdown() && deadlineCountdownId !== null) {
+        window.clearInterval(deadlineCountdownId);
+        deadlineCountdownId = null;
+      }
     }, 1000);
   }
 
   startDeadlineCountdown();
   setupHome();
-  restoreActiveSession();
+  if (!deadlineExpired) restoreActiveSession();
 })();
