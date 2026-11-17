@@ -20,7 +20,7 @@ Buka folder `cpp/` melalui GitHub Pages atau jalankan `cpp/index.html` dengan Li
 
 ## Konfigurasi ujian
 
-Bank berisi 60 soal (15 per kelompok materi). Satu sesi berisi 30 soal dengan durasi maksimal 45 menit, dipilih secara acak dengan komposisi 7 mudah, 16 sedang, dan 7 sulit.
+Bank berisi 60 soal (15 per kelompok materi). Satu sesi berisi 50 soal dengan durasi maksimal 45 menit, dipilih secara acak dengan komposisi 12 mudah, 26 sedang, dan 12 sulit.
 
 Batas akhir pengerjaan: **Selasa, 17 November 2026 pukul 14.50 WIB**. Setelah waktu tersebut akses ditutup dan sesi yang sedang berlangsung diakhiri otomatis.
 

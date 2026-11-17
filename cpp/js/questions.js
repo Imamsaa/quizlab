@@ -1,15 +1,15 @@
 /*
  * BANK SOAL QUIZLAB C++
  * Materi: dasar program, variabel & tipe data, operator, percabangan, dan perulangan.
- * Bank berisi 60 soal. Satu sesi mengambil 30 soal secara acak.
- * Komposisi sesi: 7 mudah, 16 sedang, dan 7 sulit.
+ * Bank berisi 60 soal. Satu sesi mengambil 50 soal secara acak.
+ * Komposisi sesi: 12 mudah, 26 sedang, dan 12 sulit.
  * answer adalah indeks jawaban benar (0–3).
  */
 window.QUIZ_CONFIG = {
   "id": "quizlab-cpp",
   "title": "Kuis Dasar C++",
   "description": "Asesmen dasar pemrograman C++: program dasar, variabel dan operator, percabangan, serta perulangan.",
-  "questionsPerSession": 30,
+  "questionsPerSession": 50,
   "sessionDurationMinutes": 45,
   "deadlineISO": "2026-11-17T14:50:00+07:00",
   "googleAppsScriptUrl": "https://script.google.com/macros/s/AKfycbzRAqVPOOe982Rozm6K--1n2ZvKUqx5gYnVYjqs-zFtvYrgVvWMzNDNn1NHO1UAKTll/exec",
@@ -20,33 +20,33 @@ window.QUIZ_CONFIG = {
     {
       "topicId": "dasar-cpp",
       "difficulties": {
-        "mudah": 2,
-        "sedang": 4,
-        "sulit": 2
+        "mudah": 3,
+        "sedang": 7,
+        "sulit": 3
       }
     },
     {
       "topicId": "variabel-operator",
       "difficulties": {
-        "mudah": 2,
-        "sedang": 4,
-        "sulit": 2
+        "mudah": 3,
+        "sedang": 7,
+        "sulit": 3
       }
     },
     {
       "topicId": "percabangan",
       "difficulties": {
-        "mudah": 2,
-        "sedang": 4,
-        "sulit": 1
+        "mudah": 3,
+        "sedang": 6,
+        "sulit": 3
       }
     },
     {
       "topicId": "perulangan",
       "difficulties": {
-        "mudah": 1,
-        "sedang": 4,
-        "sulit": 2
+        "mudah": 3,
+        "sedang": 6,
+        "sulit": 3
       }
     }
   ]
