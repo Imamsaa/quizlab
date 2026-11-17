@@ -9,7 +9,7 @@
 
 
   <link rel="stylesheet" href="css/tailwind.css?v=word-v3">
-  <link rel="stylesheet" href="css/style.css?v=word-v3">
+  <link rel="stylesheet" href="css/style.css?v=word-v4">
   <script src="js/questions.js?v=word-v3" defer></script>
   <script src="js/app.js?v=word-v3" defer></script>
 </head>
@@ -17,13 +17,14 @@
 <body class="min-h-screen bg-slate-100 font-sans text-slate-800 antialiased">
   <main class="mx-auto w-full max-w-7xl px-4 pb-10 pt-5 sm:px-6 sm:pt-7 lg:px-8">
     <!-- SETUP / HOME -->
-    <section id="home-screen" class="screen space-y-5">
-      <div class="flex flex-col justify-between gap-4 md:flex-row md:items-end">
-        <div class="max-w-2xl">
-          <h1 class="text-2xl font-bold tracking-tight text-ink-800 sm:text-3xl">Ujian Microsoft Word</h1>
-          <p class="mt-2 max-w-xl text-sm leading-6 text-slate-600">Uji pemahaman fitur Microsoft Word. Pelajari fungsi tab Home, Insert, Layout, dan Mail Merge melalui 30 soal pilihan ganda.</p>
+    <section id="home-screen" class="screen word-home">
+      <header class="word-home-header">
+        <div>
+          <p class="word-home-eyebrow">QUIZLAB · MICROSOFT WORD</p>
+          <h1 class="word-home-title">Kuis Microsoft Word</h1>
+          <p class="word-home-subtitle">Uji pemahamanmu pada tab Home, Insert, Layout, dan Mail Merge.</p>
         </div>
-      </div>
+      </header>
 
       <section id="deadline-countdown" class="deadline-countdown" role="timer" aria-label="Hitung mundur batas akhir pengerjaan">
         <div class="deadline-copy">
@@ -42,58 +43,65 @@
         </div>
       </section>
 
-      <div class="grid items-start gap-5 lg:grid-cols-[minmax(0,1.15fr)_minmax(340px,.85fr)]
-        <section class="md-card overflow-hidden">
-          <div class="border-b border-slate-100 px-5 py-4 sm:px-6">
-            <h2 id="quiz-title" class="text-lg font-bold text-ink-800">Kuis Microsoft Word</h2>
+      <div class="word-home-layout">
+        <section class="md-card word-home-info">
+          <div class="word-home-card-heading">
+            <div>
+              <p class="word-home-card-eyebrow">CAKUPAN MATERI</p>
+              <h2>Materi yang Diujikan</h2>
+            </div>
+            <span class="word-home-card-icon" aria-hidden="true">W</span>
           </div>
-          <div class="space-y-5 p-5 sm:p-6">
-            <p id="quiz-description" class="text-sm leading-6 text-slate-600">Latihan penggunaan Microsoft Word, mulai dari pemformatan dokumen hingga pembuatan surat massal.</p>
-            <div class="flex flex-wrap gap-2" aria-label="Materi yang diujikan">
-              <span class="rounded-full bg-primary-50 px-3 py-1.5 text-xs font-semibold text-primary-800">Home</span>
-              <span class="rounded-full bg-primary-50 px-3 py-1.5 text-xs font-semibold text-primary-800">Insert</span>
-              <span class="rounded-full bg-primary-50 px-3 py-1.5 text-xs font-semibold text-primary-800">Layout</span>
-              <span class="rounded-full bg-primary-50 px-3 py-1.5 text-xs font-semibold text-primary-800">Mail Merge</span>
+          <div class="word-home-info-body">
+            <div class="word-topic-list" aria-label="Materi yang diujikan">
+              <span class="word-topic-chip">Home</span>
+              <span class="word-topic-chip">Insert</span>
+              <span class="word-topic-chip">Layout</span>
+              <span class="word-topic-chip">Mail Merge</span>
             </div>
 
-            <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            <div class="word-home-metrics">
               <div class="md-metric">
                 <svg class="ui-icon text-primary-600" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=google-sheets-20261102-1#format-list-numbered"></use></svg>
-                <span><small>SOAL TERSEDIA</small><strong><b id="total-questions">12</b> soal</strong></span>
+                <span><small>SOAL TERSEDIA</small><strong><b id="total-questions">60</b> soal</strong></span>
               </div>
               <div class="md-metric">
                 <svg class="ui-icon text-primary-600" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=google-sheets-20261102-1#schedule"></use></svg>
-                <span><small>ALOKASI WAKTU</small><strong id="time-estimate">10 menit</strong></span>
+                <span><small>ALOKASI WAKTU</small><strong id="time-estimate">45 menit</strong></span>
               </div>
             </div>
 
-            <div class="border-t border-slate-100 pt-4">
-              <div class="mb-3 flex items-center gap-2 text-sm font-bold text-ink-800">
-                <svg class="ui-icon text-lg text-primary-600" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=google-sheets-20261102-1#info"></use></svg>
+            <div class="word-home-instructions">
+              <h3>
+                <svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=google-sheets-20261102-1#info"></use></svg>
                 Petunjuk Pengerjaan
-              </div>
-              <ol class="space-y-2 pl-5 text-sm leading-5 text-slate-600 marker:font-bold marker:text-primary-700">
+              </h3>
+              <ul>
                 <li>Waktu mulai berjalan setelah ujian dimulai.</li>
-                <li>Jawaban bisa diubah dan soal dapat dibuka melalui daftar nomor.</li>
+                <li>Jawaban dapat diubah dan soal dapat dibuka melalui daftar nomor.</li>
                 <li>Tandai soal yang belum yakin dengan tombol <strong>Ragu-ragu</strong>.</li>
-              </ol>
+              </ul>
             </div>
 
-            <div class="flex flex-wrap items-center justify-between gap-3 rounded-lg bg-slate-50 px-4 py-3">
-              <span class="flex items-center gap-2 text-xs font-medium text-slate-500">
-                <svg class="ui-icon text-amber-500" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=google-sheets-20261102-1#emoji-events"></use></svg>
+            <div class="word-home-best-score">
+              <span>
+                <svg class="ui-icon" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=google-sheets-20261102-1#emoji-events"></use></svg>
                 Rekor nilai terbaik
               </span>
-              <strong id="best-score-home" class="text-sm font-bold text-ink-800">Belum ada rekor</strong>
+              <strong id="best-score-home">Belum ada rekor</strong>
             </div>
           </div>
         </section>
 
-        <section class="md-card overflow-hidden">
-          <div class="border-b border-slate-100 px-5 py-4 sm:px-6">
-            <h2 class="text-lg font-bold text-ink-800">Data Peserta</h2>
+        <section class="md-card word-home-participant">
+          <div class="word-home-card-heading">
+            <div>
+              <p class="word-home-card-eyebrow">SEBELUM MEMULAI</p>
+              <h2>Data Peserta</h2>
+            </div>
+            <span class="word-home-card-icon word-home-card-icon-user" aria-hidden="true">ID</span>
           </div>
-          <div class="space-y-5 p-5 sm:p-6">
+          <div class="word-home-participant-body">
             <div>
               <label for="player-name" class="md-label">NAMA LENGKAP PESERTA</label>
               <input id="player-name" class="md-input" type="text" maxlength="50" placeholder="Masukkan nama lengkap" autocomplete="name" required>
@@ -106,10 +114,11 @@
                 <span class="session-count-status">Tetap</span>
               </div>
             </div>
-
-            <button id="start-button" class="md-button md-button-primary w-full" type="button">
-              Konfirmasi Data <svg class="ui-icon text-lg" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=google-sheets-20261102-1#arrow-forward"></use></svg>
+            <button id="start-button" class="md-button md-button-primary word-home-start" type="button">
+              Konfirmasi Data
+              <svg class="ui-icon text-lg" aria-hidden="true" viewBox="0 0 24 24" focusable="false"><use href="assets/icons.svg?v=google-sheets-20261102-1#arrow-forward"></use></svg>
             </button>
+            <p class="word-home-footnote">Pastikan nama sudah benar sebelum melanjutkan ke konfirmasi ujian.</p>
           </div>
         </section>
       </div>
